@@ -1,0 +1,84 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+skinparam groupInheritance 2
+
+class app {
+-Rechercher()
+
+}
+package people <<folder>> {
+abstract class personnes #line.bold{
+-nom: String
+-prénom: String
+-adresse : String
+-code postal: Int
+-ville: String
+-téléphone: Int
+-email: String
+-getters()
+-setters()
+}
+class Mededin #palegreen ##[dashed]green{
+-numéro d'agréement: Entier
+-getters()
+-setters()
+}
+class Client #palegreen ##[dashed]green{
+-date de naissance: String
+-numero sécu: Int
+-mutuelle: String
+-getters()
+-setters()
+}
+class Specialiste #palegreen ##[dashed]green {
+spécialité: String
+-getters()
+-setters()
+}
+}
+personnes <|-- Client
+personnes <|-- Mededin
+personnes <|-- Specialiste
+
+package Autre <<folder>> {
+class Ordonnance #palegreen ##[dashed]green{
+-date: DateTime
+-nom du médecin: String
+-nom du patient: String
+-médicament: String
+-spécialiste : String
+-getters()
+-setters()
+}
+
+class Medicaments #palegreen ##[dashed]green{
+-nom : String
+-catégorie : String
+-prix: Int
+-date mise en service: DateTime
+-quantité: Int
+-getters()
+-setters()
+}
+
+class Mutelle #palegreen ##[dashed]green {
+-nom : String
+-adresse: String
+-code postal: int
+-ville: String
+-téléphone: int
+-email: String
+-département: String
+-charge rembousement: int
+-getters()
+-setters()
+}
+
+Ordonnance <-- Medicaments
+Mededin -->Ordonnance
+Ordonnance -> Client
+Mutelle - Client
+}
+
+@enduml
