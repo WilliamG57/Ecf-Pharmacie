@@ -1,10 +1,15 @@
 package ClassMetier;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Clients extends Personnes {
 
     private static final ArrayList<Clients> Client = new ArrayList<Clients>();
+    public static ArrayList<Clients> getClient() {
+        return Client;
+    }
+
     private int securiteSociale;
     private String dateNaissance;
     private String mutuelle;
@@ -21,6 +26,7 @@ public class Clients extends Personnes {
         this.setSecuriteSociale(securiteSociale);
         this.setDateNaissance(dateNaissance);
         this.setMutuelle(mutuelle);
+        Client.sort(null);
     }
 
     public int getSecuriteSociale() {

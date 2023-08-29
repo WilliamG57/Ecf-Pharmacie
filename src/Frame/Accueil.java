@@ -3,6 +3,10 @@ package Frame;
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import javax.swing.plaf.nimbus.NimbusStyle;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import Frame.*;
 
 public class Accueil extends JFrame {
     private JButton btnAchat;
@@ -18,7 +22,7 @@ public class Accueil extends JFrame {
             System.err.println("Failed to initialize LaF");
         }
         Accueil x = new Accueil();
-        x.setSize(600, 400);
+        x.setSize(1000, 600);
         x.setLocationRelativeTo(null);
         x.setVisible(true);
         x.getContentPane().add(x.accueilChoix);
@@ -27,7 +31,13 @@ public class Accueil extends JFrame {
     }
 
     public Accueil() {
-
-
+        btnClient.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DetailClient y = new DetailClient();
+                y.setVisible(true);
+                dispose();
+            }
+        });
     }
 }
