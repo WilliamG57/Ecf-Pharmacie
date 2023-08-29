@@ -3,9 +3,13 @@
 
 skinparam groupInheritance 2
 
-class app {
--Rechercher()
-
+class App {
+-main()
+}
+class Recherche {
+-afficherAchat()
+-afficherClient()
+-afficherOrdonnance()
 }
 package people <<folder>> {
 abstract class personnes #line.bold{
@@ -30,6 +34,8 @@ class Client #palegreen ##[dashed]green{
 -mutuelle: String
 -getters()
 -setters()
+-achatDirect()
+-achatOrdonnance()
 }
 class Specialiste #palegreen ##[dashed]green {
 spécialité: String
@@ -40,6 +46,7 @@ spécialité: String
 personnes <|-- Client
 personnes <|-- Mededin
 personnes <|-- Specialiste
+App <-- personnes
 
 package Autre <<folder>> {
 class Ordonnance #palegreen ##[dashed]green{

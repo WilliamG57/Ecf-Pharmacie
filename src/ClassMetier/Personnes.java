@@ -7,13 +7,13 @@ public abstract class Personnes {
     private String adresse;
     private int codePostal;
     private String ville;
-    private int telephone;
+    private String telephone;
     private String email;
 
     public Personnes() {
     }
 
-    public Personnes(String nom, String prenom, String adresse, int codePostal, String ville, int telephone, String email) {
+    public Personnes(String nom, String prenom, String adresse, int codePostal, String ville, String telephone, String email) {
         this.nom = nom;
         this.prenom = prenom;
         this.adresse = adresse;
@@ -63,11 +63,11 @@ public abstract class Personnes {
         this.ville = ville;
     }
 
-    public int getTelephone() {
+    public String getTelephone() {
         return telephone;
     }
 
-    public void setTelephone(int telephone) {
+    public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
 
