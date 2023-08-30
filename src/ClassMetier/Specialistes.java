@@ -30,11 +30,11 @@ public class Specialistes extends Personnes {
     public static void ajoutSpecialiste() {
 
         Specialistes specialiste1 = new Specialistes("z", "zz", "321 rue z", 90000, "xyz",
-                "9876543219", "z.zz@gmail.com", "Neurologue");
+                "9876543219", "z.zz@gmail.com", "Somnoliste");
         Specialistes specialiste2 = new Specialistes("y", "yy", "654 rue y", 80000,"uvw",
                 "8765432198", "y.yy@gmail.com", "Ophtalmologiste");
         Specialistes specialiste3 = new Specialistes("x","xx", "987 rue x", 70000, "rst",
-                "7654321987", "x.xx@gmail.com", "Podologue");
+                "7654321987", "x.xx@gmail.com", "Podologiste");
         Specialiste.add(specialiste1);
         Specialiste.add(specialiste2);
         Specialiste.add(specialiste3);

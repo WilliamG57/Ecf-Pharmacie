@@ -6,7 +6,8 @@ public class Medecins extends Personnes {
     private static final ArrayList<Medecins> Medecin = new ArrayList<Medecins>();
     private int agreement;
 
-    public static ArrayList<Medecins> getMedecins(){
+    public static ArrayList<Medecins> getMedecin(){
+
         return Medecin;
     }
 
@@ -16,10 +17,12 @@ public class Medecins extends Personnes {
         this.setAgreement(agreement);
     }
     public int getAgreement() {
+
         return agreement;
     }
 
     public void setAgreement(int agreement) {
+
         this.agreement = agreement;
     }
 
