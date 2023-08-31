@@ -62,7 +62,9 @@
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <editable value="false"/>
+        </properties>
       </component>
       <component id="ba486" class="javax.swing.JTextField" binding="textAdresse">
         <constraints>
@@ -70,7 +72,9 @@
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <editable value="false"/>
+        </properties>
       </component>
       <component id="92ae5" class="javax.swing.JTextField" binding="textTelephone">
         <constraints>
@@ -78,7 +82,9 @@
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <editable value="false"/>
+        </properties>
       </component>
       <component id="486af" class="javax.swing.JTextField" binding="textPrenom">
         <constraints>
@@ -86,7 +92,9 @@
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <editable value="false"/>
+        </properties>
       </component>
       <component id="e4830" class="javax.swing.JTextField" binding="textPostal">
         <constraints>
@@ -94,7 +102,9 @@
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <editable value="false"/>
+        </properties>
       </component>
       <component id="c417d" class="javax.swing.JTextField" binding="textEmail">
         <constraints>
@@ -102,7 +112,9 @@
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <editable value="false"/>
+        </properties>
       </component>
       <component id="3178d" class="javax.swing.JTextField" binding="textVille">
         <constraints>
@@ -110,7 +122,9 @@
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <editable value="false"/>
+        </properties>
       </component>
       <component id="c2501" class="javax.swing.JTextField" binding="textAgrement">
         <constraints>
@@ -118,9 +132,11 @@
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <editable value="false"/>
+        </properties>
       </component>
-      <component id="550e5" class="javax.swing.JLabel" binding="Medecin">
+      <component id="550e5" class="javax.swing.JLabel" binding="labelMedecin">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="6" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>

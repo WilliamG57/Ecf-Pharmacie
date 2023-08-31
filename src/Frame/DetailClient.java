@@ -52,12 +52,13 @@ public class DetailClient extends JFrame {
         setVisible(true);
         setContentPane(DetailClientPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         for (Clients clients : Clients.getClient()) {
             listeClient.addItem(clients.getNom());
+            listeClient.setSelectedIndex(-1);
             listeClient.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-
                     if (clients.getNom().equals(listeClient.getSelectedItem())) {
                         textPrenom.setText(clients.getPrenom());
                         textNom.setText(clients.getNom());
@@ -65,9 +66,9 @@ public class DetailClient extends JFrame {
                         textTelephone.setText(clients.getTelephone());
                         textMail.setText(clients.getEmail());
                         textAdresse.setText(clients.getAdresse());
-                        textPostal.setText(clients.getCodePostal()+"");
+                        textPostal.setText(clients.getCodePostal() + "");
                         textVille.setText(clients.getVille());
-                        textSecu.setText(clients.getSecuriteSociale()+"");
+                        textSecu.setText(clients.getSecuriteSociale() + "");
                         textMutuelle.setText(clients.getMutuelle());
                         textMedecin.setText(clients.getMedecin());
                         textSpecialiste.setText(clients.getSpecialiste());
@@ -106,8 +107,7 @@ public class DetailClient extends JFrame {
         textMedecin.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                //Generique.PourMedecin(textMedecin.getText());
-                Generique x = new Generique(textMedecin.getText(), "Medecin" );
+                Generique x = new Generique(textMedecin.getText(), "Medecin");
                 setVisible(true);
             }
 

@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 import ClassMetier.Medecins;
+import ClassMetier.Specialistes;
 
 public class Generique extends JFrame {
     private JPanel generiquePanel;
@@ -15,7 +16,7 @@ public class Generique extends JFrame {
     private JTextField textEmail;
     private JTextField textVille;
     private JTextField textAgrement;
-    private JLabel Medecin;
+    private JLabel labelMedecin;
     private JLabel Agreement;
     private JLabel Email;
     private JLabel Telephone;
@@ -37,20 +38,37 @@ public class Generique extends JFrame {
         setVisible(true);
         setContentPane(generiquePanel);
         if (type.equals("Medecin")) PourMedecin(nom);
-        // if (type.equals("Specialiste")) P
-
+        if (type.equals("Specialiste")) PourSpecialiste(nom);
     }
+
     public void PourMedecin(String nomMedecin) {
         textNom.setText(nomMedecin);
         for (Medecins medecins : Medecins.getMedecin()) {
             if (medecins.getNom().equals(textNom.getText())) {
                 textPrenom.setText(medecins.getPrenom());
                 textAdresse.setText(medecins.getAdresse());
-                textPostal.setText(medecins.getCodePostal()+"");
+                textPostal.setText(medecins.getCodePostal() + "");
                 textVille.setText(medecins.getVille());
                 textTelephone.setText(medecins.getTelephone());
                 textEmail.setText(medecins.getEmail());
-                textAgrement.setText(medecins.getAgreement()+"");
+                textAgrement.setText(medecins.getAgreement() + "");
+            }
+        }
+    }
+
+    public void PourSpecialiste(String nomSpecialiste) {
+        textNom.setText(nomSpecialiste);
+        for (Specialistes specialiste : Specialistes.getSpecialiste()) {
+            if (specialiste.getNom().equals(textNom.getText())) {
+                labelMedecin.setText("Spécialiste");
+                Agreement.setText("Spécialité");
+                textPrenom.setText(specialiste.getPrenom());
+                textAdresse.setText(specialiste.getAdresse());
+                textPostal.setText(specialiste.getCodePostal() + "");
+                textVille.setText(specialiste.getVille());
+                textTelephone.setText(specialiste.getTelephone());
+                textEmail.setText(specialiste.getEmail());
+                textAgrement.setText(specialiste.getSpecialite());
             }
         }
     }

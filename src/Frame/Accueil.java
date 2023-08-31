@@ -2,11 +2,8 @@ package Frame;
 
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
-import javax.swing.plaf.nimbus.NimbusStyle;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import Frame.*;
 
 public class Accueil extends JFrame {
     private JButton btnAchat;
@@ -14,6 +11,7 @@ public class Accueil extends JFrame {
     private JButton btnClient;
     private JButton btnHistorique;
     private JButton btnQuitter;
+    private JButton btnOrdonnance;
 
     public static void DesignAccueil() {
         try {
@@ -31,6 +29,15 @@ public class Accueil extends JFrame {
     }
 
     public Accueil() {
+
+        btnAchat.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Achats y = new Achats();
+                y.setVisible(true);
+                dispose();
+            }
+        });
         btnClient.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

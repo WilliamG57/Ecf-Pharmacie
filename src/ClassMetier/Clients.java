@@ -21,10 +21,10 @@ public class Clients extends Personnes {
 
     private String specialiste;
 
-    public static ArrayList<Clients> getClients() {
-
-        return Client;
-    }
+//    public static ArrayList<Clients> getClients() {
+//
+//        return Client;
+//    }
 
 
 
@@ -37,7 +37,7 @@ public class Clients extends Personnes {
         this.setMutuelle(mutuelle);
         this.setMedecin(medecin);
         this.setSpecialiste(specialiste);
-        Client.sort(null);
+        //Client.sort(null);
     }
 
     public int getSecuriteSociale() {
@@ -88,17 +88,18 @@ public class Clients extends Personnes {
 
     public static void ajoutClient() {
 
-        Clients client1 = new Clients("Dupont", "Jean", "123 rue de la République", 75001, "Paris",
+        Client.add(new Clients("Dupont", "Jean", "123 rue de la République", 75001, "Paris",
                 "0612345678", "dupont.jean@gmail.com", 123456789, "01-08-1988", "CCMO",
-                "a", "z");
-        Clients client2 = new Clients("Martin", "Marie", "456 avenue de la Gare", 92100, "Boulogne",
+                "a", "z"));
+        Client.add(new Clients("Martin", "Marie", "456 avenue de la Gare", 92100, "Boulogne",
                 "0789654321", "Martin.Marie@gmail.com", 234567891, "01-03-2000", "Mutami",
-                "b", "y");
-        Clients client3 = new Clients("Durand", "Paul", "789 rue de la Liberté", 69002, "Lyon",
+                "b", "y"));
+        Client.add(new Clients("Durand", "Paul", "789 rue de la Liberté", 69002, "Lyon",
                 "0476543210", "durand.paul@gmail.com", 345678912, "01-02-1958", "GFP",
-                "a", "x");
-        Client.add(client1);
-        Client.add(client2);
-        Client.add(client3);
+                "a", "x"));
     }
+
+     public static void ajoutClient(Clients obj) {
+        Client.add(obj);
+     }
 }
