@@ -1,4 +1,4 @@
 package ClassMetier;
 
-public class Mutuelle {
+public class Mutuelle  {
 }

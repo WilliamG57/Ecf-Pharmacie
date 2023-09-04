@@ -1,5 +1,9 @@
 package ClassMetier;
 
+import Utilitaire.MyException;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -16,28 +20,17 @@ public class Clients extends Personnes {
     private String dateNaissance;
     private String mutuelle;
     private String medecin;
-
-
-
     private String specialiste;
-
-//    public static ArrayList<Clients> getClients() {
-//
-//        return Client;
-//    }
-
-
 
 
     public Clients(String nom, String prenom, String adresse, int codePostal, String ville, String telephone,
-                   String email, int securiteSociale, String dateNaissance, String mutuelle, String medecin,String specialiste) {
+                   String email, int securiteSociale, String dateNaissance, String mutuelle, String medecin, String specialiste) throws Exception {
         super(nom, prenom, adresse, codePostal, ville, telephone, email);
         this.setSecuriteSociale(securiteSociale);
         this.setDateNaissance(dateNaissance);
         this.setMutuelle(mutuelle);
         this.setMedecin(medecin);
         this.setSpecialiste(specialiste);
-        //Client.sort(null);
     }
 
     public int getSecuriteSociale() {
@@ -50,13 +43,21 @@ public class Clients extends Personnes {
     }
 
     public String getDateNaissance() {
-
         return dateNaissance;
     }
 
-    public void setDateNaissance(String dateNaissance) {
 
-        this.dateNaissance = dateNaissance;
+    public void setDateNaissance(String dateNaissance) throws MyException, ParseException {
+        try {
+            if (dateNaissance == null) {
+                throw new NullPointerException("Merci de mettre une date de naissance");
+            }
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            sdf.parse(dateNaissance);
+            this.dateNaissance = dateNaissance;
+        } catch (ParseException pe) {
+            throw new MyException("La date de naissance n'est pas au bon format");
+        }
     }
 
     public String getMutuelle() {
@@ -68,6 +69,7 @@ public class Clients extends Personnes {
 
         this.mutuelle = mutuelle;
     }
+
     public String getMedecin() {
 
         return medecin;
@@ -77,6 +79,7 @@ public class Clients extends Personnes {
 
         this.medecin = medecin;
     }
+
     public String getSpecialiste() {
         return specialiste;
     }
@@ -86,7 +89,7 @@ public class Clients extends Personnes {
     }
 
 
-    public static void ajoutClient() {
+    public static void ajoutClient() throws MyException, ParseException, Exception {
 
         Client.add(new Clients("Dupont", "Jean", "123 rue de la République", 75001, "Paris",
                 "0612345678", "dupont.jean@gmail.com", 123456789, "01-08-1988", "CCMO",
@@ -99,7 +102,7 @@ public class Clients extends Personnes {
                 "a", "x"));
     }
 
-     public static void ajoutClient(Clients obj) {
+    public static void ajoutClient(Clients obj) {
         Client.add(obj);
-     }
+    }
 }

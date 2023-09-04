@@ -1,47 +1,60 @@
 package Frame;
 
-import ClassMetier.Clients;
-import ClassMetier.Historiques;
-import ClassMetier.Medicaments;
+import ClassMetier.*;
 
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Achats extends JFrame {
-    private JPanel AchatPanel;
-    private JComboBox comboClient;
-    private JButton btnAchat;
-    private JButton btnRetour;
-    private JLabel textClient;
-    private JLabel labelDate;
-    private JTextField textQuantite;
+public class AchatOrdonnance extends JFrame {
     private JTextField textPrix;
+    private JTextField textQuantite;
     private JTextField textDate;
+    private JComboBox comboMedecin;
+    private JComboBox comboClient;
+    private JLabel textTitre;
+    private JLabel labelClient;
+    private JLabel labelMedecin;
+    private JLabel labelMedicament;
     private JComboBox comboMedicament;
+    private JLabel labelDate;
+    private JPanel OrdonnancePanel;
     private JLabel labelQuantite;
     private JLabel labelPrix;
-    private JLabel labelMedicament;
-    private JLabel textTitre;
+    private JButton btnConfirmer;
+    private JButton btnRetour;
+    private JComboBox comboSpecialiste;
+    private JLabel textSpecialiste;
 
-    public Achats() {
+    public AchatOrdonnance() {
         try {
             UIManager.setLookAndFeel(new NimbusLookAndFeel());
         } catch (Exception ex) {
             System.err.println("Failed to initialize LaF");
         }
-        setTitle("Client");
+        setTitle("Traitement Ordonnance");
         setSize(1000, 600);
         setLocationRelativeTo(null);
         setVisible(true);
-        setContentPane(AchatPanel);
+        setContentPane(OrdonnancePanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         for (Clients clients : Clients.getClient()) {
             comboClient.addItem(clients.getNom());
             comboClient.setSelectedIndex(-1);
         }
+
+        for (Medecins medecins : Medecins.getMedecin()) {
+            comboMedecin.addItem(medecins.getNom());
+            comboMedecin.setSelectedIndex(-1);
+        }
+
+        for (Specialistes specialistes : Specialistes.getSpecialiste()) {
+            comboSpecialiste.addItem(specialistes.getNom());
+            comboSpecialiste.setSelectedIndex(-1);
+        }
+
         for (Medicaments medicaments : Medicaments.getMedicament()) {
             comboMedicament.addItem(medicaments.getNom());
             comboMedicament.setSelectedIndex(-1);
@@ -54,11 +67,12 @@ public class Achats extends JFrame {
                 }
             });
         }
-        btnAchat.addActionListener(new ActionListener() {
+
+        btnConfirmer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Historiques.ajoutHistorique((String) comboClient.getSelectedItem(),textDate.getText(), (String) comboMedicament.getSelectedItem(),
-                        textQuantite.getText(), textPrix.getText());
+                        textQuantite.getText(),textPrix.getText(), (String) comboMedecin.getSelectedItem(), (String) comboSpecialiste.getSelectedItem());
             }
         });
 
@@ -71,4 +85,3 @@ public class Achats extends JFrame {
         });
     }
 }
-

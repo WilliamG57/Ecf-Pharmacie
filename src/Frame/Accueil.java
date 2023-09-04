@@ -38,10 +38,28 @@ public class Accueil extends JFrame {
                 dispose();
             }
         });
+
+        btnOrdonnance.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AchatOrdonnance y = new AchatOrdonnance();
+                y.setVisible(true);
+                dispose();
+            }
+        });
         btnClient.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DetailClient y = new DetailClient();
+                y.setVisible(true);
+                dispose();
+            }
+        });
+
+        btnHistorique.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Historique y = new Historique();
                 y.setVisible(true);
                 dispose();
             }

@@ -62,7 +62,11 @@ public class DetailClient extends JFrame {
                     if (clients.getNom().equals(listeClient.getSelectedItem())) {
                         textPrenom.setText(clients.getPrenom());
                         textNom.setText(clients.getNom());
-                        textNaissance.setText(clients.getDateNaissance());
+                        try {
+                            textNaissance.setText(clients.getDateNaissance());
+                        } catch (Exception ex) {
+                            throw new RuntimeException(ex);
+                        }
                         textTelephone.setText(clients.getTelephone());
                         textMail.setText(clients.getEmail());
                         textAdresse.setText(clients.getAdresse());
