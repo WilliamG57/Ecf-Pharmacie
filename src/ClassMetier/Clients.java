@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.regex.Pattern;
 
 public class Clients extends Personnes {
 
@@ -16,15 +17,16 @@ public class Clients extends Personnes {
         return Client;
     }
 
-    private int securiteSociale;
+    private String securiteSociale;
     private String dateNaissance;
     private String mutuelle;
     private String medecin;
     private String specialiste;
+    private static final Pattern PATTERN = Pattern.compile("^[0-9]{13}$");
 
 
     public Clients(String nom, String prenom, String adresse, int codePostal, String ville, String telephone,
-                   String email, int securiteSociale, String dateNaissance, String mutuelle, String medecin, String specialiste) throws Exception {
+                   String email, String securiteSociale, String dateNaissance, String mutuelle, String medecin, String specialiste) throws Exception {
         super(nom, prenom, adresse, codePostal, ville, telephone, email);
         this.setSecuriteSociale(securiteSociale);
         this.setDateNaissance(dateNaissance);
@@ -33,19 +35,34 @@ public class Clients extends Personnes {
         this.setSpecialiste(specialiste);
     }
 
-    public int getSecuriteSociale() {
+    public String getSecuriteSociale() {
         return securiteSociale;
     }
 
-    public void setSecuriteSociale(int securiteSociale) {
-
-        this.securiteSociale = securiteSociale;
+    public void setSecuriteSociale(String securiteSociale) throws MyException {
+        try {
+            if (securiteSociale == null) {
+                throw new NullPointerException("Merci de mettre un numéro de sécurité sociale");
+            }
+            if (securiteSociale.length() != 15) {
+                throw new IllegalArgumentException("Le numéro de sécurité sociale doit contenir 15 chiffres");
+            }
+            for (int i = 0; i < securiteSociale.length(); i++) {
+                if (securiteSociale.charAt(i) < '0' || securiteSociale.charAt(i) > '9') {
+                    throw new IllegalArgumentException("Le numéro de sécurité sociale doit être composé uniquement de chiffres.");
+                }
+            }
+            this.securiteSociale = securiteSociale;
+        } catch (NullPointerException e) {
+            throw new NullPointerException("Merci de mettre un numéro de sécurité sociale");
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Le numéroe de sécurité sociale est invalide");
+        }
     }
 
     public String getDateNaissance() {
         return dateNaissance;
     }
-
 
     public void setDateNaissance(String dateNaissance) throws MyException, ParseException {
         try {
@@ -92,13 +109,13 @@ public class Clients extends Personnes {
     public static void ajoutClient() throws MyException, ParseException, Exception {
 
         Client.add(new Clients("Dupont", "Jean", "123 rue de la République", 75001, "Paris",
-                "0612345678", "dupont.jean@gmail.com", 123456789, "01-08-1988", "CCMO",
+                "0612345678", "dupont.jean@gmail.com", "123456789", "01-08-1988", "CCMO",
                 "a", "z"));
         Client.add(new Clients("Martin", "Marie", "456 avenue de la Gare", 92100, "Boulogne",
-                "0789654321", "Martin.Marie@gmail.com", 234567891, "01-03-2000", "Mutami",
+                "0789654321", "Martin.Marie@gmail.com", "234567891", "01-03-2000", "Mutami",
                 "b", "y"));
         Client.add(new Clients("Durand", "Paul", "789 rue de la Liberté", 69002, "Lyon",
-                "0476543210", "durand.paul@gmail.com", 345678912, "01-02-1958", "GFP",
+                "0476543210", "durand.paul@gmail.com", "345678912", "01-02-1958", "GFP",
                 "a", "x"));
     }
 
