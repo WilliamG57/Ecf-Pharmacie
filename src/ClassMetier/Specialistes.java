@@ -13,7 +13,7 @@ public class Specialistes extends Personnes {
         return Specialiste;
     }
 
-    public Specialistes(String nom, String prenom, String adresse, int codePostal, String ville, String telephone,
+    public Specialistes(String nom, String prenom, String adresse, String codePostal, String ville, String telephone,
                         String email, String specialite) {
         super(nom, prenom, adresse, codePostal, ville, telephone, email);
         this.setSpecialite(specialite);
@@ -28,11 +28,11 @@ public class Specialistes extends Personnes {
     }
 
     public static void ajoutSpecialiste() {
-        Specialiste.add(new Specialistes("z", "zz", "321 rue z", 90000, "xyz",
+        Specialiste.add(new Specialistes("z", "zz", "321 rue z", "90000", "xyz",
                 "9876543219", "z.zz@gmail.com", "Somnoliste"));
-        Specialiste.add(new Specialistes("y", "yy", "654 rue y", 80000, "uvw",
+        Specialiste.add(new Specialistes("y", "yy", "654 rue y", "80000", "uvw",
                 "8765432198", "y.yy@gmail.com", "Ophtalmologiste"));
-        Specialiste.add(new Specialistes("x", "xx", "987 rue x", 70000, "rst",
+        Specialiste.add(new Specialistes("x", "xx", "987 rue x", "70000", "rst",
                 "7654321987", "x.xx@gmail.com", "Urologiste"));
     }
 }

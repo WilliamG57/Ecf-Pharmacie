@@ -5,7 +5,7 @@ public abstract class Personnes {
     private String nom;
     private String prenom;
     private String adresse;
-    private int codePostal;
+    private String codePostal;
     private String ville;
     private String telephone;
     private String email;
@@ -13,7 +13,7 @@ public abstract class Personnes {
     public Personnes() {
     }
 
-    public Personnes(String nom, String prenom, String adresse, int codePostal, String ville, String telephone, String email) {
+    public Personnes(String nom, String prenom, String adresse, String codePostal, String ville, String telephone, String email) {
         this.nom = nom;
         this.prenom = prenom;
         this.adresse = adresse;
@@ -47,12 +47,24 @@ public abstract class Personnes {
         this.adresse = adresse;
     }
 
-    public int getCodePostal() {
+    public String getCodePostal() {
         return codePostal;
     }
 
-    public void setCodePostal(int codePostal) {
-        this.codePostal = codePostal;
+    public void setCodePostal(String codePostal) {
+        try {
+            if (codePostal == null) {
+                throw new NullPointerException("Merci de remplir le code postal.");
+            }
+            if (!codePostal.matches("[0-9]{5}")) {
+                throw new IllegalArgumentException("Le code postal n'est pas valide.");
+            }
+            this.codePostal = codePostal;
+        } catch (NullPointerException e) {
+            throw new NullPointerException("Merci de remplir le code postal.");
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Le code postal n'est pas valide.");
+        }
     }
 
     public String getVille() {
@@ -68,7 +80,19 @@ public abstract class Personnes {
     }
 
     public void setTelephone(String telephone) {
-        this.telephone = telephone;
+        try {
+            if (telephone == null) {
+                throw new NullPointerException("Merci de mettre un numéro de téléphone");
+            }
+            if (!telephone.matches("^(?:(?:\\+|00)33\\s?|0)\\s*[1-9](?:[\\s.-]*\\d{2}){4}$")) {
+                throw new IllegalArgumentException("Le numéro de téléphone est invalide");
+            }
+            this.telephone = telephone;
+        } catch (NullPointerException e) {
+            throw new NullPointerException("Merci de mettre un numéro de téléphone");
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Le numéro de téléphone est invalide");
+        }
     }
 
     public String getEmail() {
@@ -76,6 +100,18 @@ public abstract class Personnes {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        try {
+            if (email == null) {
+                throw new NullPointerException("Merci de mettre une adresse email");
+            }
+            if (!email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
+                throw new IllegalArgumentException("L'adresse email est invalide");
+            }
+            this.email = email;
+        } catch (NullPointerException e) {
+            throw new NullPointerException("Merci de mettre une adresse email");
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("L'adresse email est invalide");
+        }
     }
 }

@@ -1,9 +1,5 @@
 package ClassMetier;
 
-import Frame.Achats;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class Historiques {
@@ -16,8 +12,8 @@ public class Historiques {
 
     private String nom;
     private String medecin;
-    private String date = "04-09-2023";
-    private String format = "dd,MM,yyyy";
+    private String date;
+
     private String medicament;
     private String quantite;
     private String prix;
@@ -41,11 +37,17 @@ public class Historiques {
         this.setSpecialiste(specialiste);
     }
 
-    public String getNom() { return nom; }
+    public String getNom() {
+        return nom;
+    }
 
-    public void setNom(String nom) { this.nom = nom; }
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
 
-    public String getMedecin() { return medecin; }
+    public String getMedecin() {
+        return medecin;
+    }
 
     public String getSpecialiste() {
         return specialiste;
@@ -91,17 +93,6 @@ public class Historiques {
         this.prix = prix;
     }
 
-    public static class DateValidate {
-        public static boolean valideDate(String date, String format) {
-            try {
-                SimpleDateFormat sdf = new SimpleDateFormat(format);
-                sdf.parse(date);
-                return true;
-            } catch (ParseException e) {
-                return false;
-            }
-        }
-    }
 
     public static void ajoutHistorique(String nom, String date, String medicament, String quantite, String prix) {
         Historique.add(new Historiques(nom, date, medicament, quantite, prix));

@@ -22,10 +22,10 @@ public class Clients extends Personnes {
     private String mutuelle;
     private String medecin;
     private String specialiste;
-    private static final Pattern PATTERN = Pattern.compile("^[0-9]{13}$");
+    //private static final Pattern PATTERN = Pattern.compile("^[0-9]{13}$");
 
 
-    public Clients(String nom, String prenom, String adresse, int codePostal, String ville, String telephone,
+    public Clients(String nom, String prenom, String adresse, String codePostal, String ville, String telephone,
                    String email, String securiteSociale, String dateNaissance, String mutuelle, String medecin, String specialiste) throws Exception {
         super(nom, prenom, adresse, codePostal, ville, telephone, email);
         this.setSecuriteSociale(securiteSociale);
@@ -56,7 +56,7 @@ public class Clients extends Personnes {
         } catch (NullPointerException e) {
             throw new NullPointerException("Merci de mettre un numéro de sécurité sociale");
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("Le numéroe de sécurité sociale est invalide");
+            throw new IllegalArgumentException("Le numéro de sécurité sociale est invalide");
         }
     }
 
@@ -83,7 +83,6 @@ public class Clients extends Personnes {
     }
 
     public void setMutuelle(String mutuelle) {
-
         this.mutuelle = mutuelle;
     }
 
@@ -108,13 +107,13 @@ public class Clients extends Personnes {
 
     public static void ajoutClient() throws MyException, ParseException, Exception {
 
-        Client.add(new Clients("Dupont", "Jean", "123 rue de la République", 75001, "Paris",
+        Client.add(new Clients("Dupont", "Jean", "123 rue de la République", "75001", "Paris",
                 "0612345678", "dupont.jean@gmail.com", "123456789", "01-08-1988", "CCMO",
                 "a", "z"));
-        Client.add(new Clients("Martin", "Marie", "456 avenue de la Gare", 92100, "Boulogne",
+        Client.add(new Clients("Martin", "Marie", "456 avenue de la Gare", "92100", "Boulogne",
                 "0789654321", "Martin.Marie@gmail.com", "234567891", "01-03-2000", "Mutami",
                 "b", "y"));
-        Client.add(new Clients("Durand", "Paul", "789 rue de la Liberté", 69002, "Lyon",
+        Client.add(new Clients("Durand", "Paul", "789 rue de la Liberté", "69002", "Lyon",
                 "0476543210", "durand.paul@gmail.com", "345678912", "01-02-1958", "GFP",
                 "a", "x"));
     }
