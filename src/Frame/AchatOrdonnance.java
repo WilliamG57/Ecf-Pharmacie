@@ -1,6 +1,7 @@
 package Frame;
 
 import ClassMetier.*;
+import Utilitaire.MyException;
 
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
@@ -71,8 +72,12 @@ public class AchatOrdonnance extends JFrame {
         btnConfirmer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Historiques.ajoutHistorique((String) comboClient.getSelectedItem(),textDate.getText(), (String) comboMedicament.getSelectedItem(),
-                        textQuantite.getText(),textPrix.getText(), (String) comboMedecin.getSelectedItem(), (String) comboSpecialiste.getSelectedItem());
+                try {
+                    Historiques.ajoutHistorique((String) comboClient.getSelectedItem(),textDate.getText(), (String) comboMedicament.getSelectedItem(),
+                            textQuantite.getText(),textPrix.getText(), (String) comboMedecin.getSelectedItem(), (String) comboSpecialiste.getSelectedItem());
+                } catch (MyException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
 

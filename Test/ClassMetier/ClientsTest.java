@@ -1,12 +1,33 @@
 package ClassMetier;
 
-import ClassMetier.*;
+
 import Utilitaire.MyException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ClientsTest {
+
+    @Test
+    public void testConstructeur() throws Exception {
+        Clients clients = new Clients("Dupont", "Jean", "12 rue de la Paix",
+                "75008", "Paris", "06 12 34 56 78",
+                "jean.dupont@gmail.com", "123456789123456",
+                "04-09-1980", "Mutuelle 123", "Dr. Dupont", "Dr. Martin");
+
+        assertEquals("Dupont", clients.getNom());
+        assertEquals("Jean", clients.getPrenom());
+        assertEquals("12 rue de la Paix", clients.getAdresse());
+        assertEquals("75008", clients.getCodePostal());
+        assertEquals("Paris", clients.getVille());
+        assertEquals("06 12 34 56 78", clients.getTelephone());
+        assertEquals("jean.dupont@gmail.com", clients.getEmail());
+        assertEquals("123456789123456", clients.getSecuriteSociale());
+        assertEquals("04-09-1980", clients.getDateNaissance());
+        assertEquals("Mutuelle 123", clients.getMutuelle());
+        assertEquals("Dr. Dupont", clients.getMedecin());
+        assertEquals("Dr. Martin", clients.getSpecialiste());
+    }
 
     @Test
     public void test() {
@@ -16,7 +37,7 @@ public class ClientsTest {
     @Test
     public void testSetDateNaissanceValide() throws Exception {
         Clients clients = new Clients("a", "a", "a", "9", "a",
-                "a", "a", "1", "04-09-2023", "er", "a", "a");
+                "a", "a", "111111111111111", "04-09-2023", "er", "a", "a");
         assertEquals("04-09-2023", clients.getDateNaissance());
     }
 

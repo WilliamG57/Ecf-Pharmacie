@@ -72,7 +72,14 @@ public abstract class Personnes {
     }
 
     public void setVille(String ville) {
-        this.ville = ville;
+        try {
+            if (ville == null || ville.isEmpty()) {
+                throw new NullPointerException("Merci de remplir une ville.");
+            }
+            this.ville = ville;
+        } catch (NullPointerException e) {
+            throw new NullPointerException("Merci de remplir une ville.");
+        }
     }
 
     public String getTelephone() {

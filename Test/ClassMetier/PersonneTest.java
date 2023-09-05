@@ -12,6 +12,7 @@ public class PersonneTest {
                 "111111111111111", "04-09-2020", "er", "a", "a");
         assertEquals("99999", clients.getCodePostal());
     }
+
     @Test
     public void setCodePostalInvalide() throws Exception {
         Clients clients = new Clients("a", "a", "a", "99999", "a", "0123456789", "a.aa@gmail.com",
@@ -23,6 +24,23 @@ public class PersonneTest {
         assertEquals("Le code postal n'est pas valide.", message.getMessage());
     }
 
+    @Test
+    public void setVilleValide() throws Exception {
+        Clients clients = new Clients("a", "a", "a", "99999", "a", "0123456789", "a.aa@gmail.com",
+                "111111111111111", "04-09-2020", "er", "a", "a");
+        assertEquals("a", clients.getVille());
+    }
+
+    @Test
+    public void setVilleNull() throws Exception {
+        Clients clients = new Clients("a", "a", "a", "99999", "a", "0123456789", "a.aa@gmail.com",
+                "111111111111111", "04-09-2020", "er", "a", "a");
+        NullPointerException message = assertThrows(
+                NullPointerException.class,
+                ()  -> clients.setVille(null)
+        );
+        assertEquals("Merci de remplir une ville.", message.getMessage());
+    }
 
     @Test
     public void setTelephoneValide() throws Exception {

@@ -1,9 +1,15 @@
 package ClassMetier;
 
+import Utilitaire.MyException;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class Historiques {
-
+    /**
+     * Déclaration de la liste contenant les historiques
+     */
     private static final ArrayList<Historiques> Historique = new ArrayList<>();
 
     public static ArrayList<Historiques> getHistorique() {
@@ -13,13 +19,21 @@ public class Historiques {
     private String nom;
     private String medecin;
     private String date;
-
     private String medicament;
     private String quantite;
     private String prix;
     private String specialiste;
 
-    public Historiques(String nom, String date, String medicament, String quantite, String prix) {
+    /**
+     * Constructeur historique
+     * @param nom
+     * @param date
+     * @param medicament
+     * @param quantite
+     * @param prix
+     * @throws MyException
+     */
+    public Historiques(String nom, String date, String medicament, String quantite, String prix) throws MyException {
         this.setNom(nom);
         this.setDate(date);
         this.setMedicament(medicament);
@@ -27,7 +41,18 @@ public class Historiques {
         this.setPrix(prix);
     }
 
-    public Historiques(String nom, String date, String medicament, String quantite, String prix, String medecin, String specialiste) {
+    /**
+     * Constructeur d'historique surchargé
+     * @param nom
+     * @param date
+     * @param medicament
+     * @param quantite
+     * @param prix
+     * @param medecin
+     * @param specialiste
+     * @throws MyException
+     */
+    public Historiques(String nom, String date, String medicament, String quantite, String prix, String medecin, String specialiste) throws MyException {
         this.setNom(nom);
         this.setDate(date);
         this.setMedicament(medicament);
@@ -65,8 +90,18 @@ public class Historiques {
         return date;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setDate(String date) throws MyException {
+        try {
+            if (date == null) {
+                throw new NullPointerException("Merci de mettre une date");
+            }
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            sdf.parse(date);
+            this.date = date;
+        } catch (
+                ParseException pe) {
+            throw new MyException("La date n'est pas au bon format");
+        }
     }
 
     public String getMedicament() {
@@ -94,12 +129,12 @@ public class Historiques {
     }
 
 
-    public static void ajoutHistorique(String nom, String date, String medicament, String quantite, String prix) {
+    public static void ajoutHistorique(String nom, String date, String medicament, String quantite, String prix) throws MyException {
         Historique.add(new Historiques(nom, date, medicament, quantite, prix));
     }
 
     public static void ajoutHistorique(String nom, String date, String medicament, String quantite, String prix,
-                                       String medecin, String specialiste) {
+                                       String medecin, String specialiste) throws MyException {
         Historique.add(new Historiques(nom, date, medicament, quantite, prix, medecin, specialiste));
     }
 

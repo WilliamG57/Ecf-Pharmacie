@@ -24,7 +24,22 @@ public class Clients extends Personnes {
     private String specialiste;
     //private static final Pattern PATTERN = Pattern.compile("^[0-9]{13}$");
 
-
+    /**
+     * Constructeur client
+     * @param nom
+     * @param prenom
+     * @param adresse
+     * @param codePostal
+     * @param ville
+     * @param telephone
+     * @param email
+     * @param securiteSociale
+     * @param dateNaissance
+     * @param mutuelle
+     * @param medecin
+     * @param specialiste
+     * @throws Exception
+     */
     public Clients(String nom, String prenom, String adresse, String codePostal, String ville, String telephone,
                    String email, String securiteSociale, String dateNaissance, String mutuelle, String medecin, String specialiste) throws Exception {
         super(nom, prenom, adresse, codePostal, ville, telephone, email);
@@ -34,7 +49,9 @@ public class Clients extends Personnes {
         this.setMedecin(medecin);
         this.setSpecialiste(specialiste);
     }
-
+    /**
+     * Mise en place des getters/setters
+     */
     public String getSecuriteSociale() {
         return securiteSociale;
     }
@@ -64,7 +81,7 @@ public class Clients extends Personnes {
         return dateNaissance;
     }
 
-    public void setDateNaissance(String dateNaissance) throws MyException, ParseException {
+    public void setDateNaissance(String dateNaissance) throws MyException {
         try {
             if (dateNaissance == null) {
                 throw new NullPointerException("Merci de mettre une date de naissance");
@@ -76,7 +93,6 @@ public class Clients extends Personnes {
             throw new MyException("La date de naissance n'est pas au bon format");
         }
     }
-
     public String getMutuelle() {
 
         return mutuelle;
@@ -104,8 +120,11 @@ public class Clients extends Personnes {
         this.specialiste = specialiste;
     }
 
-
-    public static void ajoutClient() throws MyException, ParseException, Exception {
+    /**
+     *Création du jeu de test client
+     * @throws Exception
+     */
+    public static void ajoutClient() throws Exception {
 
         Client.add(new Clients("Dupont", "Jean", "123 rue de la République", "75001", "Paris",
                 "0612345678", "dupont.jean@gmail.com", "123456789", "01-08-1988", "CCMO",
@@ -118,7 +137,7 @@ public class Clients extends Personnes {
                 "a", "x"));
     }
 
-    public static void ajoutClient(Clients obj) {
-        Client.add(obj);
-    }
+//    public static void ajoutClient(Clients obj) {
+//        Client.add(obj);
+//    }
 }
