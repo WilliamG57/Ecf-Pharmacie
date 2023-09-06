@@ -6,8 +6,8 @@ import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.*;
+import java.awt.event.*;
 
 public class Historique extends JFrame {
     private JPanel HistoriquePanel;
@@ -27,26 +27,39 @@ public class Historique extends JFrame {
         setVisible(true);
         setContentPane(HistoriquePanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-
+        JButton btnRetour = new JButton("Retour");
+        btnRetour.setBounds(40, 500, 150, 20);
+        HistoriquePanel.add(btnRetour);
+        btnRetour.setVisible(true);
+        btnRetour.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                Accueil.DesignAccueil();
+            }
+        });
     }
 
     public void TableHistorique() {
-        DefaultTableModel model = new DefaultTableModel(new String[]{"Client","Date", "Médecin", "Médicament", "Spécialiste"}, 0);
+        DefaultTableModel model = new DefaultTableModel(new String[]{"Client", "Date", "Médecin", "Médicament", "Spécialiste", "Ordonnance"}, 0);
         for (Historiques historique : Historiques.getHistorique()) {
             model.addRow(new Object[]{
                     historique.getNom(),
                     historique.getDate(),
                     historique.getMedecin(),
                     historique.getMedicament(),
-                    historique.getSpecialiste()
+                    historique.getSpecialiste(),
+                    historique.getOrdonnance()
             });
         }
         table1 = new JTable(model);
         HistoriquePanel.add(new JScrollPane(table1));
         getContentPane().add(HistoriquePanel);
+        table1.setDefaultEditor(Object.class, null);
         textField = new JTextField();
-        add(textField);
+        textField.setPreferredSize(new Dimension(150, 30));
+        HistoriquePanel.add(textField);
+        textField.setVisible(true);
         textField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
@@ -57,4 +70,5 @@ public class Historique extends JFrame {
             }
         });
     }
+
 }

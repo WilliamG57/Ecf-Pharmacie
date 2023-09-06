@@ -27,6 +27,7 @@ public class AchatOrdonnance extends JFrame {
     private JButton btnRetour;
     private JComboBox comboSpecialiste;
     private JLabel textSpecialiste;
+    private JTextField textBoolean;
 
     public AchatOrdonnance() {
         try {
@@ -74,10 +75,18 @@ public class AchatOrdonnance extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 try {
                     Historiques.ajoutHistorique((String) comboClient.getSelectedItem(),textDate.getText(), (String) comboMedicament.getSelectedItem(),
+                            textQuantite.getText(),textPrix.getText(), (String) comboMedecin.getSelectedItem(),
+                            (String) comboSpecialiste.getSelectedItem(), Boolean.valueOf(textBoolean.getText()));
+                } catch (MyException ex) {
+                    throw new RuntimeException(ex);
+                }
+                try {
+                    Ordonnances.ajoutOdonnances((String) comboClient.getSelectedItem(),textDate.getText(), (String) comboMedicament.getSelectedItem(),
                             textQuantite.getText(),textPrix.getText(), (String) comboMedecin.getSelectedItem(), (String) comboSpecialiste.getSelectedItem());
                 } catch (MyException ex) {
                     throw new RuntimeException(ex);
                 }
+                JOptionPane.showMessageDialog(null,"Ordonnance traité");
             }
         });
 

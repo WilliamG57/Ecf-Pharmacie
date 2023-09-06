@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Medicaments {
     /**
-     * Déclaration de la liste de médicaments
+     * Declaration de la liste de medicaments
      */
     private static final ArrayList<Medicaments> Medicament = new ArrayList<>();
 
@@ -22,7 +22,7 @@ public class Medicaments {
     private String quantite;
 
     /**
-     * Constructeur de médicaments
+     * Constructeur de medicaments
      * @param nom
      * @param categorie
      * @param prix
@@ -38,7 +38,7 @@ public class Medicaments {
     }
 
     /**
-     * Déclaration des getters/setters
+     * Declaration des getters/setters
      */
     public String getNom() {
         return nom;
@@ -94,7 +94,7 @@ public class Medicaments {
     }
 
     /**
-     * Création du jeu de test de médicaments
+     * Creation du jeu de test de medicaments
      */
     public static void ajoutMedicament() {
         Medicament.add(new Medicaments("Doliprane", "Anti-douleur", "4,50", "Mars 1964", "14"));

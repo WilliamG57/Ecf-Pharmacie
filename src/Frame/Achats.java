@@ -25,6 +25,7 @@ public class Achats extends JFrame {
     private JLabel labelPrix;
     private JLabel labelMedicament;
     private JLabel textTitre;
+    private JTextField textBoolean;
 
     public Achats() {
         try {
@@ -65,6 +66,7 @@ public class Achats extends JFrame {
                 } catch (MyException ex) {
                     throw new RuntimeException(ex);
                 }
+                JOptionPane.showMessageDialog(null,"Achat réalisé");
             }
         });
 

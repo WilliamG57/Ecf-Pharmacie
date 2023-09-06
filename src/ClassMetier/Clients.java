@@ -9,7 +9,9 @@ import java.util.Collections;
 import java.util.regex.Pattern;
 
 public class Clients extends Personnes {
-
+    /**
+     * Declaration de la liste contenant les clients
+     */
     private static final ArrayList<Clients> Client = new ArrayList<Clients>();
 
     public static ArrayList<Clients> getClient() {
@@ -121,20 +123,20 @@ public class Clients extends Personnes {
     }
 
     /**
-     *Création du jeu de test client
+     *Creation du jeu de test client
      * @throws Exception
      */
     public static void ajoutClient() throws Exception {
 
         Client.add(new Clients("Dupont", "Jean", "123 rue de la République", "75001", "Paris",
-                "0612345678", "dupont.jean@gmail.com", "123456789", "01-08-1988", "CCMO",
-                "a", "z"));
+                "0612345678", "dupont.jean@gmail.com", "123456789123456", "01-08-1988", "CCMO",
+                "aaa", "zzz"));
         Client.add(new Clients("Martin", "Marie", "456 avenue de la Gare", "92100", "Boulogne",
-                "0789654321", "Martin.Marie@gmail.com", "234567891", "01-03-2000", "Mutami",
-                "b", "y"));
+                "0789654321", "Martin.Marie@gmail.com", "234567891234567", "01-03-2000", "Mutami",
+                "bbb", "yyy"));
         Client.add(new Clients("Durand", "Paul", "789 rue de la Liberté", "69002", "Lyon",
-                "0476543210", "durand.paul@gmail.com", "345678912", "01-02-1958", "GFP",
-                "a", "x"));
+                "0476543210", "durand.paul@gmail.com", "345678912345678", "01-02-1958", "GFP",
+                "aaa", "xxx"));
     }
 
 //    public static void ajoutClient(Clients obj) {

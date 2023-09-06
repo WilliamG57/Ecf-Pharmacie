@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Historiques {
     /**
-     * Déclaration de la liste contenant les historiques
+     * Declaration de la liste contenant les historiques
      */
     private static final ArrayList<Historiques> Historique = new ArrayList<>();
 
@@ -23,6 +23,7 @@ public class Historiques {
     private String quantite;
     private String prix;
     private String specialiste;
+    private Boolean Ordonnance;
 
     /**
      * Constructeur historique
@@ -42,17 +43,18 @@ public class Historiques {
     }
 
     /**
-     * Constructeur d'historique surchargé
-     * @param nom
-     * @param date
-     * @param medicament
-     * @param quantite
-     * @param prix
-     * @param medecin
-     * @param specialiste
+     * Constructeur d'historique surcharge
+     * @param nom nom du client
+     * @param date date d'achat
+     * @param medicament nom du medicament
+     * @param quantite quantite de medicament
+     * @param prix prix du medicament
+     * @param medecin nom du medecin
+     * @param specialiste nom du specialiste
+     * @param ordonnance boolean pour savoir si il y a une ordonnance ou non
      * @throws MyException
      */
-    public Historiques(String nom, String date, String medicament, String quantite, String prix, String medecin, String specialiste) throws MyException {
+    public Historiques(String nom, String date, String medicament, String quantite, String prix, String medecin, String specialiste, boolean ordonnance) throws MyException {
         this.setNom(nom);
         this.setDate(date);
         this.setMedicament(medicament);
@@ -60,8 +62,13 @@ public class Historiques {
         this.setPrix(prix);
         this.setMedecin(medecin);
         this.setSpecialiste(specialiste);
+        this.setOrdonnance(ordonnance);
     }
 
+    /**
+     * Mise en place des getters/setters
+     * @return
+     */
     public String getNom() {
         return nom;
     }
@@ -128,14 +135,41 @@ public class Historiques {
         this.prix = prix;
     }
 
+    public Boolean getOrdonnance() {
+        return Ordonnance;
+    }
+    public void setOrdonnance(Boolean ordonnance) {
+        Ordonnance = ordonnance;
+    }
 
+    /**
+     * Constructeur de base pour les achats sans ordonnance
+     * @param nom nom du client
+     * @param date date d'achat
+     * @param medicament nom du medicament
+     * @param quantite quantite de medicament
+     * @param prix prix du medicament
+     * @throws MyException
+     */
     public static void ajoutHistorique(String nom, String date, String medicament, String quantite, String prix) throws MyException {
         Historique.add(new Historiques(nom, date, medicament, quantite, prix));
     }
 
+    /**
+     * Constructeur surcharge pour les achats avec ordonnnance
+     * @param nom nom du client
+     * @param date date d'achat
+     * @param medicament nom du medicament
+     * @param quantite quantite de medicament
+     * @param prix prix du medicament
+     * @param medecin nom du medecin
+     * @param specialiste nom du specialiste
+     * @param Ordonnance boolean pour savoir si il y a une ordonnance ou non
+     * @throws MyException
+     */
     public static void ajoutHistorique(String nom, String date, String medicament, String quantite, String prix,
-                                       String medecin, String specialiste) throws MyException {
-        Historique.add(new Historiques(nom, date, medicament, quantite, prix, medecin, specialiste));
+                                       String medecin, String specialiste, Boolean Ordonnance) throws MyException {
+        Historique.add(new Historiques(nom, date, medicament, quantite, prix, medecin, specialiste, Ordonnance));
     }
 
 }

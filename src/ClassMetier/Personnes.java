@@ -1,5 +1,8 @@
 package ClassMetier;
 
+/**
+ * Creation de la class mere
+ */
 public abstract class Personnes {
 
     private String nom;
@@ -13,6 +16,16 @@ public abstract class Personnes {
     public Personnes() {
     }
 
+    /**
+     * Constructeur qui servira de base pour les enfants
+     * @param nom
+     * @param prenom
+     * @param adresse
+     * @param codePostal
+     * @param ville
+     * @param telephone
+     * @param email
+     */
     public Personnes(String nom, String prenom, String adresse, String codePostal, String ville, String telephone, String email) {
         this.nom = nom;
         this.prenom = prenom;
@@ -23,6 +36,10 @@ public abstract class Personnes {
         this.email = email;
     }
 
+    /**
+     * Mise en place des getters/setters
+     * @return
+     */
     public String getNom() {
         return nom;
     }
