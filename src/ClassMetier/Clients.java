@@ -12,17 +12,17 @@ public class Clients extends Personnes {
     /**
      * Declaration de la liste contenant les clients
      */
-    private static final ArrayList<Clients> Client = new ArrayList<Clients>();
+    //private static final ArrayList<Clients> Client = new ArrayList<Clients>();
 
-    public static ArrayList<Clients> getClient() {
+    //public static ArrayList<Clients> getClient() {
 
-        return Client;
-    }
-
+     //   return Client;
+   // }
+            private int id;
     private String securiteSociale;
     private String dateNaissance;
     private String mutuelle;
-    private String medecin;
+    private Medecins medecin;
     private String specialiste;
     //private static final Pattern PATTERN = Pattern.compile("^[0-9]{13}$");
 
@@ -43,7 +43,7 @@ public class Clients extends Personnes {
      * @throws Exception
      */
     public Clients(String nom, String prenom, String adresse, String codePostal, String ville, String telephone,
-                   String email, String securiteSociale, String dateNaissance, String mutuelle, String medecin, String specialiste) throws Exception {
+                   String email, String securiteSociale, String dateNaissance, String mutuelle, Medecins medecin, String specialiste) throws Exception {
         super(nom, prenom, adresse, codePostal, ville, telephone, email);
         this.setSecuriteSociale(securiteSociale);
         this.setDateNaissance(dateNaissance);
@@ -60,12 +60,15 @@ public class Clients extends Personnes {
 
     public void setSecuriteSociale(String securiteSociale) throws MyException {
         try {
+            // test valeur null
             if (securiteSociale == null) {
                 throw new NullPointerException("Merci de mettre un numéro de sécurité sociale");
             }
+            // test longueur
             if (securiteSociale.length() != 15) {
                 throw new IllegalArgumentException("Le numéro de sécurité sociale doit contenir 15 chiffres");
             }
+
             for (int i = 0; i < securiteSociale.length(); i++) {
                 if (securiteSociale.charAt(i) < '0' || securiteSociale.charAt(i) > '9') {
                     throw new IllegalArgumentException("Le numéro de sécurité sociale doit être composé uniquement de chiffres.");
@@ -104,12 +107,12 @@ public class Clients extends Personnes {
         this.mutuelle = mutuelle;
     }
 
-    public String getMedecin() {
+    public Medecins getMedecin() {
 
         return medecin;
     }
 
-    public void setMedecin(String medecin) {
+    public void setMedecin(Medecins medecin) {
 
         this.medecin = medecin;
     }
@@ -122,22 +125,7 @@ public class Clients extends Personnes {
         this.specialiste = specialiste;
     }
 
-    /**
-     *Creation du jeu de test client
-     * @throws Exception
-     */
-    public static void ajoutClient() throws Exception {
 
-        Client.add(new Clients("Dupont", "Jean", "123 rue de la République", "75001", "Paris",
-                "0612345678", "dupont.jean@gmail.com", "123456789123456", "01-08-1988", "CCMO",
-                "aaa", "zzz"));
-        Client.add(new Clients("Martin", "Marie", "456 avenue de la Gare", "92100", "Boulogne",
-                "0789654321", "Martin.Marie@gmail.com", "234567891234567", "01-03-2000", "Mutami",
-                "bbb", "yyy"));
-        Client.add(new Clients("Durand", "Paul", "789 rue de la Liberté", "69002", "Lyon",
-                "0476543210", "durand.paul@gmail.com", "345678912345678", "01-02-1958", "GFP",
-                "aaa", "xxx"));
-    }
 
 //    public static void ajoutClient(Clients obj) {
 //        Client.add(obj);

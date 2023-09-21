@@ -7,7 +7,7 @@ public class App {
     public static void main(String[] args) {
 
         try {
-            Clients.ajoutClient();
+            Pharmacie.ajoutClient();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

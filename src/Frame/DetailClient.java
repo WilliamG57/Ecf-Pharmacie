@@ -41,6 +41,7 @@ public class DetailClient extends JFrame {
 
 
     public DetailClient() {
+        Pharmacie p = new Pharmacie();
         try {
             UIManager.setLookAndFeel(new NimbusLookAndFeel());
         } catch (Exception ex) {
@@ -53,7 +54,7 @@ public class DetailClient extends JFrame {
         setContentPane(DetailClientPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        for (Clients clients : Clients.getClient()) {
+        for (Clients clients : p.getClient()) {
             listeClient.addItem(clients.getNom());
             listeClient.setSelectedIndex(-1);
             listeClient.addActionListener(new ActionListener() {
@@ -74,7 +75,7 @@ public class DetailClient extends JFrame {
                         textVille.setText(clients.getVille());
                         textSecu.setText(clients.getSecuriteSociale() + "");
                         textMutuelle.setText(clients.getMutuelle());
-                        textMedecin.setText(clients.getMedecin());
+                        textMedecin.setText(clients.getMedecin().getNom());
                         textSpecialiste.setText(clients.getSpecialiste());
                     }
                 }
