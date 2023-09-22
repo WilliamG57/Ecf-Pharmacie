@@ -28,8 +28,9 @@ public class AchatOrdonnance extends JFrame {
     private JComboBox comboSpecialiste;
     private JLabel textSpecialiste;
     private JTextField textBoolean;
+    Pharmacie p = new Pharmacie();
 
-    public AchatOrdonnance() {
+    public AchatOrdonnance() throws Exception {
         try {
             UIManager.setLookAndFeel(new NimbusLookAndFeel());
         } catch (Exception ex) {
@@ -42,7 +43,7 @@ public class AchatOrdonnance extends JFrame {
         setContentPane(OrdonnancePanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        for (Clients clients : Clients.getClient()) {
+        for (Clients clients : p.getClient()) {
             comboClient.addItem(clients.getNom());
             comboClient.setSelectedIndex(-1);
         }

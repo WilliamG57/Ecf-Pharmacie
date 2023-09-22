@@ -3,6 +3,9 @@ package ClassMetier;
 import java.util.ArrayList;
 
 public class Pharmacie {
+    public Pharmacie() throws Exception {
+        initialisationListe();
+    }
 
 
     /// LISTE
@@ -12,6 +15,7 @@ public class Pharmacie {
     public ArrayList<Clients> getClient() {
         return client;
     }
+
     public ArrayList<Medecins> getMedecin() {
         return medecin;
     }
@@ -23,24 +27,24 @@ public class Pharmacie {
 
     // ajouter un client
     // 1 creer le patient
-        // creer un objet patient à partir de la saisie
-        // ajouter cet objet à la liste.
+    // creer un objet patient à partir de la saisie
+    // ajouter cet objet à la liste.
 
     /**
-     *Creation du jeu de test client
+     * Creation du jeu de test client
+     *
      * @throws Exception
      */
     public void ajoutClient(Clients patient) throws Exception {
         client.add(patient);
     }
 
-    public Medecins getMedecinByIndex(int index) {
-        return this.medecin.get(index);
-    }
+//    public Medecins getMedecinByIndex(int index) {
+//        return this.medecin.get(index);
+//    }
 
     public Medecins getMedecinByName(String name) {
-
-        for(Medecins value : this.medecin) {
+        for (Medecins value : this.medecin) {
             if (value.getNom().equals(name)) {
                 return value;
             }

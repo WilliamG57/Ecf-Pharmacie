@@ -38,10 +38,10 @@ public class DetailClient extends JFrame {
     private JButton btnRetour;
     private JTextField textSpecialiste;
     private JLabel specialisteClient;
+    Pharmacie p = new Pharmacie();
 
+    public DetailClient() throws Exception {
 
-    public DetailClient() {
-        Pharmacie p = new Pharmacie();
         try {
             UIManager.setLookAndFeel(new NimbusLookAndFeel());
         } catch (Exception ex) {

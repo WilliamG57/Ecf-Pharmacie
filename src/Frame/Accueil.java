@@ -33,7 +33,12 @@ public class Accueil extends JFrame {
         btnAchat.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Achats y = new Achats();
+                Achats y = null;
+                try {
+                    y = new Achats();
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
                 y.setVisible(true);
                 dispose();
             }
@@ -42,7 +47,12 @@ public class Accueil extends JFrame {
         btnOrdonnance.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AchatOrdonnance y = new AchatOrdonnance();
+                AchatOrdonnance y = null;
+                try {
+                    y = new AchatOrdonnance();
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
                 y.setVisible(true);
                 dispose();
             }
@@ -50,7 +60,12 @@ public class Accueil extends JFrame {
         btnClient.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DetailClient y = new DetailClient();
+                DetailClient y = null;
+                try {
+                    y = new DetailClient();
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
                 y.setVisible(true);
                 dispose();
             }

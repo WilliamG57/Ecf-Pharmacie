@@ -4,13 +4,9 @@ import ClassMetier.*;
 import Frame.Accueil;
 
 public class App {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+        Pharmacie p = new Pharmacie();
 
-        try {
-            Pharmacie.ajoutClient();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
         Medecins.ajoutMedecins();
         Specialistes.ajoutSpecialiste();
         Medecins.ajoutMedecins();

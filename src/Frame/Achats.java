@@ -3,6 +3,7 @@ package Frame;
 import ClassMetier.Clients;
 import ClassMetier.Historiques;
 import ClassMetier.Medicaments;
+import ClassMetier.Pharmacie;
 import Utilitaire.MyException;
 
 import javax.swing.*;
@@ -26,8 +27,9 @@ public class Achats extends JFrame {
     private JLabel labelMedicament;
     private JLabel textTitre;
     private JTextField textBoolean;
+    Pharmacie p = new Pharmacie();
 
-    public Achats() {
+    public Achats() throws Exception {
         try {
             UIManager.setLookAndFeel(new NimbusLookAndFeel());
         } catch (Exception ex) {
@@ -40,7 +42,7 @@ public class Achats extends JFrame {
         setContentPane(AchatPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        for (Clients clients : Clients.getClient()) {
+        for (Clients clients : p.getClient()) {
             comboClient.addItem(clients.getNom());
             comboClient.setSelectedIndex(-1);
         }
@@ -63,10 +65,10 @@ public class Achats extends JFrame {
                     Historiques.ajoutHistorique((String) comboClient.getSelectedItem(),textDate.getText(),
                             (String) comboMedicament.getSelectedItem(),
                             textQuantite.getText(), textPrix.getText());
+                    JOptionPane.showMessageDialog(null,"Achat réalisé");
                 } catch (MyException ex) {
                     throw new RuntimeException(ex);
                 }
-                JOptionPane.showMessageDialog(null,"Achat réalisé");
             }
         });
 
