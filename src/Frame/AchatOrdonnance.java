@@ -48,12 +48,12 @@ public class AchatOrdonnance extends JFrame {
             comboClient.setSelectedIndex(-1);
         }
 
-        for (Medecins medecins : Medecins.getMedecin()) {
+        for (Medecins medecins : p.getMedecin()) {
             comboMedecin.addItem(medecins.getNom());
             comboMedecin.setSelectedIndex(-1);
         }
 
-        for (Specialistes specialistes : Specialistes.getSpecialiste()) {
+        for (Specialistes specialistes : p.getSpecialiste()) {
             comboSpecialiste.addItem(specialistes.getNom());
             comboSpecialiste.setSelectedIndex(-1);
         }

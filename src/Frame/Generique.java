@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 import ClassMetier.Medecins;
+import ClassMetier.Pharmacie;
 import ClassMetier.Specialistes;
 
 public class Generique extends JFrame {
@@ -25,8 +26,10 @@ public class Generique extends JFrame {
     private JLabel Prenom;
     private JLabel Postal;
     private JLabel Ville;
+    Pharmacie p = new Pharmacie();
 
-    public Generique(String nom, String type) {
+
+    public Generique(String nom, String type) throws Exception {
         try {
             UIManager.setLookAndFeel(new NimbusLookAndFeel());
         } catch (Exception ex) {
@@ -43,7 +46,7 @@ public class Generique extends JFrame {
 
     public void PourMedecin(String nomMedecin) {
         textNom.setText(nomMedecin);
-        for (Medecins medecins : Medecins.getMedecin()) {
+        for (Medecins medecins : p.getMedecin()) {
             if (medecins.getNom().equals(textNom.getText())) {
                 textPrenom.setText(medecins.getPrenom());
                 textAdresse.setText(medecins.getAdresse());
@@ -58,7 +61,7 @@ public class Generique extends JFrame {
 
     public void PourSpecialiste(String nomSpecialiste) {
         textNom.setText(nomSpecialiste);
-        for (Specialistes specialiste : Specialistes.getSpecialiste()) {
+        for (Specialistes specialiste : p.getSpecialiste()) {
             if (specialiste.getNom().equals(textNom.getText())) {
                 labelMedecin.setText("Spécialiste");
                 Agreement.setText("Spécialité");

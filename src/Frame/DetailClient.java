@@ -76,7 +76,7 @@ public class DetailClient extends JFrame {
                         textSecu.setText(clients.getSecuriteSociale() + "");
                         textMutuelle.setText(clients.getMutuelle());
                         textMedecin.setText(clients.getMedecin().getNom());
-                        textSpecialiste.setText(clients.getSpecialiste());
+                        textSpecialiste.setText(clients.getSpecialiste().getNom());
                     }
                 }
             });
@@ -84,7 +84,12 @@ public class DetailClient extends JFrame {
         textSpecialiste.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Generique x = new Generique(textSpecialiste.getText(), "Specialiste");
+                Generique x = null;
+                try {
+                    x = new Generique(textSpecialiste.getText(), "Specialiste");
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
                 x.setVisible(true);
             }
 
@@ -112,7 +117,11 @@ public class DetailClient extends JFrame {
         textMedecin.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Generique x = new Generique(textMedecin.getText(), "Medecin");
+                try {
+                    Generique x = new Generique(textMedecin.getText(), "Medecin");
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
                 setVisible(true);
             }
 

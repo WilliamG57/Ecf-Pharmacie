@@ -7,13 +7,18 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ClientsTest {
+    Pharmacie p = new Pharmacie();
+
+    public ClientsTest() throws Exception {
+    }
+
 
     @Test
     public void testConstructeur() throws Exception {
         Clients clients = new Clients("Dupont", "Jean", "12 rue de la Paix",
                 "75008", "Paris", "06 12 34 56 78",
                 "jean.dupont@gmail.com", "123456789123456",
-                "04-09-1980", "Mutuelle 123", "Dr. Dupont", "Dr. Martin");
+                "04-09-1980", "Mutuelle 123", p.getMedecinByName("Dr. Dupont"), p.getSpecialisteByName("Dr. Martin"));
 
         assertEquals("Dupont", clients.getNom());
         assertEquals("Jean", clients.getPrenom());
@@ -25,8 +30,8 @@ public class ClientsTest {
         assertEquals("123456789123456", clients.getSecuriteSociale());
         assertEquals("04-09-1980", clients.getDateNaissance());
         assertEquals("Mutuelle 123", clients.getMutuelle());
-        assertEquals("Dr. Dupont", clients.getMedecin());
-        assertEquals("Dr. Martin", clients.getSpecialiste());
+        assertEquals("Dr. Dupont", clients.getMedecin().getNom());
+        assertEquals("Dr. Martin", clients.getSpecialiste().getNom());
     }
 
     @Test
@@ -37,14 +42,14 @@ public class ClientsTest {
     @Test
     public void testSetDateNaissanceValide() throws Exception {
         Clients clients = new Clients("a", "a", "a", "9", "a",
-                "a", "a", "111111111111111", "04-09-2023", "er", "a", "a");
+                "a", "a", "111111111111111", "04-09-2023", "er", p.getMedecinByName("a"), p.getSpecialisteByName("a"));
         assertEquals("04-09-2023", clients.getDateNaissance());
     }
 
     @Test
     public void testSetDateNaissanceNull() throws Exception {
         Clients clients = new Clients("a", "a", "a", "9", "a",
-                "a", "a", "111111111111111", "17-12-1974", "er", "a", "a");
+                "a", "a", "111111111111111", "17-12-1974", "er", p.getMedecinByName("a"), p.getSpecialisteByName("a"));
         NullPointerException message = assertThrows(
                 NullPointerException.class,
                 () -> clients.setDateNaissance(null)
@@ -55,7 +60,7 @@ public class ClientsTest {
     @Test
     public void testSetDateNaissanceInvalide() throws Exception {
         Clients clients = new Clients("a", "a", "a", "9", "a",
-                "a", "a", "111111111111111", "04-09-2020", "er", "a", "a");
+                "a", "a", "111111111111111", "04-09-2020", "er", p.getMedecinByName("a"), p.getSpecialisteByName("a"));
         MyException message = assertThrows(
                 MyException.class,
                 () -> clients.setDateNaissance("04/09/2023")
@@ -66,14 +71,14 @@ public class ClientsTest {
     @Test
     public void testSecuriteSocialValide() throws Exception {
         Clients clients = new Clients("a", "a", "a", "9", "a", "a",
-                "a", "111111111111111", "04-09-2020", "er", "a", "a");
+                "a", "111111111111111", "04-09-2020", "er", p.getMedecinByName("a"), p.getSpecialisteByName("a"));
         assertEquals("111111111111111", clients.getSecuriteSociale());
     }
 
     @Test
     public void testSecuriteSocialeNull() throws Exception {
         Clients clients = new Clients("a", "a", "a", "9", "a", "a", "a",
-                "111111111111111", "04-09-2020", "er", "a", "a");
+                "111111111111111", "04-09-2020", "er", p.getMedecinByName("a"), p.getSpecialisteByName("a"));
         NullPointerException message = assertThrows(
                 NullPointerException.class,
                 () -> clients.setSecuriteSociale(null)
@@ -84,7 +89,7 @@ public class ClientsTest {
     @Test
     public void testSecuriteSocialInvalide() throws Exception {
         Clients clients = new Clients("a", "a", "a", "9", "a", "a", "a",
-                "111111111111111", "04-09-2020", "er", "a", "a");
+                "111111111111111", "04-09-2020", "er", p.getMedecinByName("a"), p.getSpecialisteByName("a"));
         IllegalArgumentException message = assertThrows(
                 IllegalArgumentException.class,
                 () ->clients.setSecuriteSociale("11111111111111")
@@ -95,7 +100,7 @@ public class ClientsTest {
     @Test
     public void testSecuriteSocialInvalideNumber() throws Exception {
         Clients clients = new Clients("a", "a", "a", "9", "a", "a", "a",
-                "111111111111111", "04-09-2020", "er", "a", "a");
+                "111111111111111", "04-09-2020", "er", p.getMedecinByName("a"), p.getSpecialisteByName("a"));
         IllegalArgumentException message = assertThrows(
                 IllegalArgumentException.class,
                 () ->clients.setSecuriteSociale("1111111111111aa")
