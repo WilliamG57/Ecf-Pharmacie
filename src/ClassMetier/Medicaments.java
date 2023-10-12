@@ -10,11 +10,7 @@ public class Medicaments {
     /**
      * Declaration de la liste de medicaments
      */
-    private static final ArrayList<Medicaments> Medicament = new ArrayList<>();
 
-    public static ArrayList <Medicaments> getMedicament() {
-        return Medicament;
-    }
     private String nom;
     private String categorie;
     private String prix;
@@ -23,6 +19,7 @@ public class Medicaments {
 
     /**
      * Constructeur de medicaments
+     *
      * @param nom
      * @param categorie
      * @param prix
@@ -84,22 +81,13 @@ public class Medicaments {
             throw new MyException("La date de mise en service n'est pas au bon format");
         }
     }
+
     public String getQuantite() {
         return quantite;
     }
-
 
     public void setQuantite(String quantite) {
         this.quantite = quantite;
     }
 
-    /**
-     * Creation du jeu de test de medicaments
-     */
-    public static void ajoutMedicament() {
-        Medicament.add(new Medicaments("Doliprane", "Anti-douleur", "4,50", "Mars 1964", "14"));
-        Medicament.add(new Medicaments("Millepertuis", "Somnifère", "7,90", "Juin 1985", "8"));
-        Medicament.add(new Medicaments("Collyre", "Goutte", "3,39", "Mars 1954", "31"));
-        Medicament.add(new Medicaments("Sildenafil", "Viagra", "9,99", "Avril 1998", "18"));
-    }
 }

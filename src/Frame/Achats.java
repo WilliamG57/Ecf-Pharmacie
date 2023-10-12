@@ -46,7 +46,7 @@ public class Achats extends JFrame {
             comboClient.addItem(clients.getNom());
             comboClient.setSelectedIndex(-1);
         }
-        for (Medicaments medicaments : Medicaments.getMedicament()) {
+        for (Medicaments medicaments : p.getMedicament()) {
             comboMedicament.addItem(medicaments.getNom());
             comboMedicament.setSelectedIndex(-1);
             comboMedicament.addActionListener(new ActionListener() {
