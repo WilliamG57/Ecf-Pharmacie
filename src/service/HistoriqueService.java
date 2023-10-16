@@ -7,6 +7,9 @@ import java.util.ArrayList;
 
 public class HistoriqueService {
 
+    /**
+     * Declaration de la liste contenant les historiques
+     */
     private static final ArrayList<Historiques> historique = new ArrayList<>();
 
     public static ArrayList<Historiques> getHistorique() {

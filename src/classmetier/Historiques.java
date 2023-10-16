@@ -4,9 +4,7 @@ import utils.MyException;
 import utils.DateManagment;
 
 public class Historiques {
-    /**
-     * Declaration de la liste contenant les historiques
-     */
+
 
     private String nom;
     private String medecin;

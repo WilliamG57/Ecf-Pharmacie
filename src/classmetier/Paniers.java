@@ -7,11 +7,6 @@ import java.util.ArrayList;
 
 public class Paniers {
 
-    private static final ArrayList<Paniers> panier = new ArrayList<>();
-
-    public static ArrayList<Paniers> getPanier() {
-        return panier;
-    }
 
     private String nom;
     private String medecin;
@@ -143,9 +138,9 @@ public class Paniers {
      * @param prix       prix du medicament
      * @throws MyException
      */
-    public static void ajoutPanier(String nom, String date, String medicament, String quantite, String prix) throws MyException {
-        panier.add(new Paniers(nom, date, medicament, quantite, prix));
-    }
+//    public static void ajoutPanier(String nom, String date, String medicament, String quantite, String prix) throws MyException {
+//        panier.add(new Paniers(nom, date, medicament, quantite, prix));
+//    }
 
     /**
      * Constructeur surcharge pour les achats avec ordonnnance
@@ -160,8 +155,8 @@ public class Paniers {
      * @param Ordonnance  boolean pour savoir si il y a une ordonnance ou non
      * @throws MyException
      */
-    public static void ajoutPanier(String nom, String date, String medicament, String quantite, String prix,
-                                   String medecin, String specialiste, Boolean Ordonnance) throws MyException {
-        panier.add(new Paniers(nom, date, medicament, quantite, prix, medecin, specialiste, Ordonnance));
-    }
+//    public static void ajoutPanier(String nom, String date, String medicament, String quantite, String prix,
+//                                   String medecin, String specialiste, Boolean Ordonnance) throws MyException {
+//        panier.add(new Paniers(nom, date, medicament, quantite, prix, medecin, specialiste, Ordonnance));
+//    }
 }

@@ -2,6 +2,7 @@ package frame;
 
 import classmetier.*;
 import service.HistoriqueService;
+import service.PanierService;
 import utils.MyException;
 
 import javax.swing.*;
@@ -76,7 +77,7 @@ public class AchatOrdonnance extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    HistoriqueService.ajoutHistorique((String) comboClient.getSelectedItem(),textDate.getText(), (String) comboMedicament.getSelectedItem(),
+                    PanierService.ajoutPanier((String) comboClient.getSelectedItem(),textDate.getText(), (String) comboMedicament.getSelectedItem(),
                             textQuantite.getText(),textPrix.getText(), (String) comboMedecin.getSelectedItem(),
                             (String) comboSpecialiste.getSelectedItem(), Boolean.valueOf(textBoolean.getText()));
                 } catch (MyException ex) {
@@ -89,6 +90,8 @@ public class AchatOrdonnance extends JFrame {
                     throw new RuntimeException(ex);
                 }
                 JOptionPane.showMessageDialog(null,"Ordonnance traité");
+                Panier y = new Panier();
+                y.setVisible(true);
             }
         });
 
