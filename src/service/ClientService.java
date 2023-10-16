@@ -1,6 +1,6 @@
 package service;
 
-import ClassMetier.Clients;
+import classmetier.Clients;
 import utils.DateManagment;
 import utils.MyException;
 

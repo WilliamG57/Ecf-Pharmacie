@@ -1,6 +1,6 @@
 package service;
 
-import ClassMetier.Historiques;
+import classmetier.Historiques;
 import utils.MyException;
 
 import java.util.ArrayList;
