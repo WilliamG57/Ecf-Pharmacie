@@ -1,27 +1,33 @@
 package ClassMetier;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import utils.MyException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PersonneTest {
-    Pharmacie p = new Pharmacie();
-
+    static Pharmacie p;
+    static Clients clients;
     public PersonneTest() throws Exception {
+    }
+
+    @BeforeAll
+    public static void before() throws Exception {
+        p = new Pharmacie();
+        clients = new Clients("a", "a", "a", "99999", "a", "0123456789", "a.aa@gmail.com",
+                "111111111111111", "04-09-2020", "er", p.getMedecinByName("a"), p.getSpecialisteByName("a"));
+
     }
 
     @Test
     public void setCodePostalValide() throws Exception {
-        Clients clients = new Clients("a", "a", "a", "99999", "a", "0123456789", "a.aa@gmail.com",
-                "111111111111111", "04-09-2020", "er", p.getMedecinByName("a"), p.getSpecialisteByName("a"));
-        assertEquals("99999", clients.getCodePostal());
+       assertEquals("99999", clients.getCodePostal());
     }
 
     @Test
     public void setCodePostalInvalide() throws Exception {
-        Clients clients = new Clients("a", "a", "a", "99999", "a", "0123456789", "a.aa@gmail.com",
-                "111111111111111", "04-09-2020", "er", p.getMedecinByName("a"), p.getSpecialisteByName("a"));
         IllegalArgumentException message = assertThrows(
                 IllegalArgumentException.class,
                 () -> clients.setCodePostal("1234")
@@ -31,15 +37,11 @@ public class PersonneTest {
 
     @Test
     public void setVilleValide() throws Exception {
-        Clients clients = new Clients("a", "a", "a", "99999", "a", "0123456789", "a.aa@gmail.com",
-                "111111111111111", "04-09-2020", "er", p.getMedecinByName("a"), p.getSpecialisteByName("a"));
-        assertEquals("a", clients.getVille());
+       assertEquals("a", clients.getVille());
     }
 
     @Test
     public void setVilleNull() throws Exception {
-        Clients clients = new Clients("a", "a", "a", "99999", "a", "0123456789", "a.aa@gmail.com",
-                "111111111111111", "04-09-2020", "er", p.getMedecinByName("a"), p.getSpecialisteByName("a"));
         NullPointerException message = assertThrows(
                 NullPointerException.class,
                 ()  -> clients.setVille(null)
@@ -49,15 +51,11 @@ public class PersonneTest {
 
     @Test
     public void setTelephoneValide() throws Exception {
-        Clients clients = new Clients("a", "a", "a", "9", "a", "0123456789", "a.aa@gmail.com",
-                "111111111111111", "04-09-2020", "er", p.getMedecinByName("a"), p.getSpecialisteByName("a"));
         assertEquals("0123456789", clients.getTelephone());
     }
 
     @Test
     public void setTelephoneNull() throws Exception {
-        Clients clients = new Clients("a", "a", "a", "9", "a", "0123456789", "a.aa@gmail.com",
-                "111111111111111", "04-09-2020", "er", p.getMedecinByName("a"), p.getSpecialisteByName("a"));
         NullPointerException message = assertThrows(
                 NullPointerException.class,
                 () -> clients.setTelephone(null)
@@ -67,8 +65,6 @@ public class PersonneTest {
 
     @Test
     public void setTelephoneInvalide() throws Exception {
-        Clients clients = new Clients("a", "a", "a", "9", "a", "0123456789", "a.aa@gmail.com",
-                "111111111111111", "04-09-2020", "er", p.getMedecinByName("a"), p.getSpecialisteByName("a"));
         IllegalArgumentException message = assertThrows(
                 IllegalArgumentException.class,
                 () -> clients.setTelephone("9876543210")
@@ -79,15 +75,11 @@ public class PersonneTest {
 
     @Test
     public void setEmailValide() throws Exception {
-        Clients clients = new Clients("a", "a", "a", "9", "a", "a", "a.aa@gmail.com",
-                "111111111111111", "04-09-2020", "er", p.getMedecinByName("a"), p.getSpecialisteByName("a"));
         assertEquals("a.aa@gmail.com", clients.getEmail());
     }
 
     @Test
     public void setEmailNull() throws Exception {
-        Clients clients = new Clients("a", "a", "a", "9", "a", "a", "a.aa@gmail.com",
-                "111111111111111", "04-09-2020", "er", p.getMedecinByName("a"), p.getSpecialisteByName("a"));
         NullPointerException message = assertThrows(
                 NullPointerException.class,
                 () -> clients.setEmail(null)
@@ -97,8 +89,6 @@ public class PersonneTest {
 
     @Test
     public void setEmailInvalide() throws Exception {
-        Clients clients = new Clients("a", "a", "a", "9", "a", "a", "a.aa@gmail.com",
-                "111111111111111", "04-09-2020", "er", p.getMedecinByName("a"), p.getSpecialisteByName("a"));
         IllegalArgumentException message = assertThrows(
                 IllegalArgumentException.class,
                 () -> clients.setEmail("a.aa@a.a")

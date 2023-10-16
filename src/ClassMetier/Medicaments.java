@@ -1,10 +1,7 @@
 package ClassMetier;
 
-import Utilitaire.MyException;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import utils.MyException;
+import utils.DateManagment;
 
 public class Medicaments {
     /**
@@ -69,17 +66,7 @@ public class Medicaments {
     }
 
     public void setMiseEnService(String miseEnService) throws MyException {
-        try {
-            if (miseEnService == null) {
-                throw new NullPointerException("Merci de mettre une date de mise en service");
-            }
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-            sdf.parse(miseEnService);
-            this.miseEnService = miseEnService;
-        } catch (
-                ParseException pe) {
-            throw new MyException("La date de mise en service n'est pas au bon format");
-        }
+        this.miseEnService = DateManagment.parse(miseEnService,"La date de mise en service n'est pas au bon format");
     }
 
     public String getQuantite() {

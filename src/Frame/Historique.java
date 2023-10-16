@@ -1,6 +1,7 @@
 package Frame;
 
 import ClassMetier.Historiques;
+import service.HistoriqueService;
 
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
@@ -10,7 +11,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class Historique extends JFrame {
-    private JPanel HistoriquePanel;
+    private JPanel historiquePanel;
     private JTable table1;
     private JTextField textField;
 
@@ -20,29 +21,29 @@ public class Historique extends JFrame {
         } catch (Exception ex) {
             System.err.println("Failed to initialize LaF");
         }
-        TableHistorique();
+        tableHistorique();
         setTitle("Historique");
         setSize(1000, 600);
         setLocationRelativeTo(null);
         setVisible(true);
-        setContentPane(HistoriquePanel);
+        setContentPane(historiquePanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JButton btnRetour = new JButton("Retour");
         btnRetour.setBounds(40, 500, 150, 20);
-        HistoriquePanel.add(btnRetour);
+        historiquePanel.add(btnRetour);
         btnRetour.setVisible(true);
         btnRetour.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                Accueil.DesignAccueil();
+                Accueil.designAccueil();
             }
         });
     }
 
-    public void TableHistorique() {
+    public void tableHistorique() {
         DefaultTableModel model = new DefaultTableModel(new String[]{"Client", "Date", "Médecin", "Médicament", "Spécialiste", "Ordonnance"}, 0);
-        for (Historiques historique : Historiques.getHistorique()) {
+        for (Historiques historique : HistoriqueService.getHistorique()) {
             model.addRow(new Object[]{
                     historique.getNom(),
                     historique.getDate(),
@@ -53,12 +54,12 @@ public class Historique extends JFrame {
             });
         }
         table1 = new JTable(model);
-        HistoriquePanel.add(new JScrollPane(table1));
-        getContentPane().add(HistoriquePanel);
+        historiquePanel.add(new JScrollPane(table1));
+        getContentPane().add(historiquePanel);
         table1.setDefaultEditor(Object.class, null);
         textField = new JTextField();
         textField.setPreferredSize(new Dimension(150, 30));
-        HistoriquePanel.add(textField);
+        historiquePanel.add(textField);
         textField.setVisible(true);
         textField.addKeyListener(new KeyAdapter() {
             @Override

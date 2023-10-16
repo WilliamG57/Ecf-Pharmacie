@@ -1,8 +1,7 @@
 package ClassMetier;
 
-import Utilitaire.MyException;
+import utils.MyException;
 
-import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 public class Medecins extends Personnes {

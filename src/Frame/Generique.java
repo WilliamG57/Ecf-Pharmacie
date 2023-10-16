@@ -40,11 +40,11 @@ public class Generique extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setContentPane(generiquePanel);
-        if (type.equals("Medecin")) PourMedecin(nom);
-        if (type.equals("Specialiste")) PourSpecialiste(nom);
+        if (type.equals("Medecin")) pourMedecin(nom);
+        if (type.equals("Specialiste")) pourSpecialiste(nom);
     }
 
-    public void PourMedecin(String nomMedecin) {
+    public void pourMedecin(String nomMedecin) {
         textNom.setText(nomMedecin);
         for (Medecins medecins : p.getMedecin()) {
             if (medecins.getNom().equals(textNom.getText())) {
@@ -59,7 +59,7 @@ public class Generique extends JFrame {
         }
     }
 
-    public void PourSpecialiste(String nomSpecialiste) {
+    public void pourSpecialiste(String nomSpecialiste) {
         textNom.setText(nomSpecialiste);
         for (Specialistes specialiste : p.getSpecialiste()) {
             if (specialiste.getNom().equals(textNom.getText())) {

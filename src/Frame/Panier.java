@@ -6,11 +6,11 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 public class Panier extends JFrame {
-    private JTable PanierTable;
-    private JButton BtnSupprimer;
-    private JButton BtnValider;
+    private JTable panierTable;
+    private JButton btnSupprimer;
+    private JButton btnValider;
 
-    public void TablePanier() {
+    public void tablePanier() {
         DefaultTableModel model = new DefaultTableModel(new String[]{"Date", "Médicament", "Quantité", "Prix"}, 0);
         for (Paniers panier : Paniers.getPanier()) {
             model.addRow(new Object[]{

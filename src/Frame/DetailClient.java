@@ -12,7 +12,7 @@ import java.awt.event.MouseListener;
 
 public class DetailClient extends JFrame {
     private JComboBox listeClient;
-    private JPanel DetailClientPanel;
+    private JPanel detailClientPanel;
     private JLabel nomClient;
     private JLabel prenomClient;
     private JLabel dateClient;
@@ -51,7 +51,7 @@ public class DetailClient extends JFrame {
         setSize(1000, 600);
         setLocationRelativeTo(null);
         setVisible(true);
-        setContentPane(DetailClientPanel);
+        setContentPane(detailClientPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         for (Clients clients : p.getClient()) {
@@ -149,7 +149,7 @@ public class DetailClient extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                Accueil.DesignAccueil();
+                Accueil.designAccueil();
             }
         });
     }

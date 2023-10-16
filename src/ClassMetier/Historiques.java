@@ -1,20 +1,14 @@
 package ClassMetier;
 
-import Utilitaire.MyException;
+import utils.MyException;
+import utils.DateManagment;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class Historiques {
     /**
      * Declaration de la liste contenant les historiques
      */
-    private static final ArrayList<Historiques> Historique = new ArrayList<>();
-
-    public static ArrayList<Historiques> getHistorique() {
-        return Historique;
-    }
 
     private String nom;
     private String medecin;
@@ -98,17 +92,7 @@ public class Historiques {
     }
 
     public void setDate(String date) throws MyException {
-        try {
-            if (date == null) {
-                throw new NullPointerException("Merci de mettre une date");
-            }
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-            sdf.parse(date);
-            this.date = date;
-        } catch (
-                ParseException pe) {
-            throw new MyException("La date n'est pas au bon format");
-        }
+        this.date = DateManagment.parse(date,"La date n'est pas au bon format");
     }
 
     public String getMedicament() {
@@ -140,36 +124,6 @@ public class Historiques {
     }
     public void setOrdonnance(Boolean ordonnance) {
         Ordonnance = ordonnance;
-    }
-
-    /**
-     * Constructeur de base pour les achats sans ordonnance
-     * @param nom nom du client
-     * @param date date d'achat
-     * @param medicament nom du medicament
-     * @param quantite quantite de medicament
-     * @param prix prix du medicament
-     * @throws MyException
-     */
-    public static void ajoutHistorique(String nom, String date, String medicament, String quantite, String prix) throws MyException {
-        Historique.add(new Historiques(nom, date, medicament, quantite, prix));
-    }
-
-    /**
-     * Constructeur surcharge pour les achats avec ordonnnance
-     * @param nom nom du client
-     * @param date date d'achat
-     * @param medicament nom du medicament
-     * @param quantite quantite de medicament
-     * @param prix prix du medicament
-     * @param medecin nom du medecin
-     * @param specialiste nom du specialiste
-     * @param Ordonnance boolean pour savoir si il y a une ordonnance ou non
-     * @throws MyException
-     */
-    public static void ajoutHistorique(String nom, String date, String medicament, String quantite, String prix,
-                                       String medecin, String specialiste, Boolean Ordonnance) throws MyException {
-        Historique.add(new Historiques(nom, date, medicament, quantite, prix, medecin, specialiste, Ordonnance));
     }
 
 }

@@ -1,7 +1,8 @@
 package Frame;
 
 import ClassMetier.*;
-import Utilitaire.MyException;
+import service.HistoriqueService;
+import utils.MyException;
 
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
@@ -75,14 +76,14 @@ public class AchatOrdonnance extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Historiques.ajoutHistorique((String) comboClient.getSelectedItem(),textDate.getText(), (String) comboMedicament.getSelectedItem(),
+                    HistoriqueService.ajoutHistorique((String) comboClient.getSelectedItem(),textDate.getText(), (String) comboMedicament.getSelectedItem(),
                             textQuantite.getText(),textPrix.getText(), (String) comboMedecin.getSelectedItem(),
                             (String) comboSpecialiste.getSelectedItem(), Boolean.valueOf(textBoolean.getText()));
                 } catch (MyException ex) {
                     throw new RuntimeException(ex);
                 }
                 try {
-                    Ordonnances.ajoutOdonnances((String) comboClient.getSelectedItem(),textDate.getText(), (String) comboMedicament.getSelectedItem(),
+                    Ordonnances.ajoutOrdonnances((String) comboClient.getSelectedItem(),textDate.getText(), (String) comboMedicament.getSelectedItem(),
                             textQuantite.getText(),textPrix.getText(), (String) comboMedecin.getSelectedItem(), (String) comboSpecialiste.getSelectedItem());
                 } catch (MyException ex) {
                     throw new RuntimeException(ex);
@@ -95,7 +96,7 @@ public class AchatOrdonnance extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                Accueil.DesignAccueil();
+                Accueil.designAccueil();
             }
         });
     }

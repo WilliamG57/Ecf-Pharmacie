@@ -1,6 +1,6 @@
 package ClassMetier;
 
-import Utilitaire.MyException;
+import utils.MyException;
 
 import java.util.ArrayList;
 

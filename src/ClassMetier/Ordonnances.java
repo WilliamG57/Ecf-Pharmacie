@@ -1,9 +1,8 @@
 package ClassMetier;
 
-import Utilitaire.MyException;
+import utils.MyException;
+import utils.DateManagment;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class Ordonnances {
@@ -78,17 +77,7 @@ public class Ordonnances {
     }
 
     public void setDate(String date) throws MyException {
-        try {
-            if (date == null) {
-                throw new NullPointerException("Merci de mettre une date");
-            }
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-            sdf.parse(date);
-            this.date = date;
-        } catch (
-                ParseException pe) {
-            throw new MyException("La date n'est pas au bon format");
-        }
+        this.date = DateManagment.parse(date, "La date n'est pas au bon format");
     }
 
     public String getMedicament() {
@@ -126,8 +115,8 @@ public class Ordonnances {
      * @param specialiste
      * @throws MyException
      */
-    public static void ajoutOdonnances(String nom, String date, String medicament, String quantite, String prix,
-                                       String medecin, String specialiste) throws MyException {
+    public static void ajoutOrdonnances(String nom, String date, String medicament, String quantite, String prix,
+                                        String medecin, String specialiste) throws MyException {
         Ordonnance.add(new Ordonnances(nom, date, medicament, quantite, prix, medecin, specialiste));
     }
 }

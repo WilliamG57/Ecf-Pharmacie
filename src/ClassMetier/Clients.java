@@ -1,9 +1,7 @@
 package ClassMetier;
 
-import Utilitaire.MyException;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import utils.MyException;
+import utils.DateManagment;
 
 public class Clients extends Personnes {
 
@@ -37,9 +35,9 @@ public class Clients extends Personnes {
         super(nom, prenom, adresse, codePostal, ville, telephone, email);
         this.setSecuriteSociale(securiteSociale);
         this.setDateNaissance(dateNaissance);
-        this.setMutuelle(mutuelle);
-        this.setMedecin(medecin);
-        this.setSpecialiste(specialiste);
+        this.mutuelle = mutuelle;
+        this.medecin = medecin;
+        this.specialiste =specialiste;
     }
 
     /**
@@ -50,25 +48,7 @@ public class Clients extends Personnes {
     }
 
     public void setSecuriteSociale(String securiteSociale) throws MyException {
-        try {
-            // test valeur null
-            if (securiteSociale == null) {
-                throw new MyException("Merci de mettre un numéro de sécurité sociale");
-            }
-            // test longueur
-            if (securiteSociale.length() != 15) {
-                throw new MyException("Le numéro de sécurité sociale doit contenir 15 chiffres");
-            }
-
-            for (int i = 0; i < securiteSociale.length(); i++) {
-                if (securiteSociale.charAt(i) < '0' || securiteSociale.charAt(i) > '9') {
-                    throw new MyException("Le numéro de sécurité sociale doit être composé uniquement de chiffres.");
-                }
-            }
-            this.securiteSociale = securiteSociale;
-        } catch (NullPointerException e) {
-            throw new MyException("Merci de mettre un numéro de sécurité sociale valide");
-        }
+        this.securiteSociale = securiteSociale;
     }
 
     public String getDateNaissance() {
@@ -76,16 +56,7 @@ public class Clients extends Personnes {
     }
 
     public void setDateNaissance(String dateNaissance) throws MyException {
-        try {
-            if (dateNaissance == null) {
-                throw new MyException("Merci de mettre une date de naissance");
-            }
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-            sdf.parse(dateNaissance);
-            this.dateNaissance = dateNaissance;
-        } catch (ParseException pe) {
-            throw new MyException("La date de naissance n'est pas au bon format");
-        }
+        this.dateNaissance = dateNaissance;
     }
 
     public String getMutuelle() {

@@ -1,24 +1,37 @@
 package ClassMetier;
 
 
-import Utilitaire.MyException;
+import org.junit.jupiter.api.BeforeAll;
+import service.ClientService;
+import utils.MyException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ClientsTest {
-    Pharmacie p = new Pharmacie();
+    static Pharmacie p;
+    static Clients clients;
+    ClientService clientService = new ClientService();
 
     public ClientsTest() throws Exception {
     }
 
+    @BeforeAll
+    public static void before() throws MyException, Exception {
+        p = new Pharmacie();
+        clients = new Clients("a", "a", "a", "9", "a", "a", "a",
+                "111111111111111", "04-09-2020", "er", p.getMedecinByName("a"), p.getSpecialisteByName("a"));
+
+    }
 
     @Test
     public void testConstructeur() throws Exception {
+        Medecins medecin = p.getMedecinByName("aaa");
+        Specialistes specialiste = p.getSpecialisteByName("zzz");
         Clients clients = new Clients("Dupont", "Jean", "12 rue de la Paix",
                 "75008", "Paris", "06 12 34 56 78",
                 "jean.dupont@gmail.com", "123456789123456",
-                "04-09-1980", "Mutuelle 123", p.getMedecinByName("Dr. Dupont"), p.getSpecialisteByName("Dr. Martin"));
+                "04-09-1980", "Mutuelle 123", medecin, specialiste);
 
         assertEquals("Dupont", clients.getNom());
         assertEquals("Jean", clients.getPrenom());
@@ -30,8 +43,8 @@ public class ClientsTest {
         assertEquals("123456789123456", clients.getSecuriteSociale());
         assertEquals("04-09-1980", clients.getDateNaissance());
         assertEquals("Mutuelle 123", clients.getMutuelle());
-        assertEquals("Dr. Dupont", clients.getMedecin().getNom());
-        assertEquals("Dr. Martin", clients.getSpecialiste().getNom());
+        assertEquals("aaa", clients.getMedecin().getNom());
+        assertEquals("zzz", clients.getSpecialiste().getNom());
     }
 
     @Test
@@ -41,70 +54,70 @@ public class ClientsTest {
 
     @Test
     public void testSetDateNaissanceValide() throws Exception {
-        Clients clients = new Clients("a", "a", "a", "9", "a",
-                "a", "a", "111111111111111", "04-09-2023", "er", p.getMedecinByName("a"), p.getSpecialisteByName("a"));
+        clients.setDateNaissance("04-09-2023");
+        clients.setSecuriteSociale("123456789123456");
         assertEquals("04-09-2023", clients.getDateNaissance());
     }
 
     @Test
     public void testSetDateNaissanceNull() throws Exception {
-        Clients clients = new Clients("a", "a", "a", "9", "a",
-                "a", "a", "111111111111111", "17-12-1974", "er", p.getMedecinByName("a"), p.getSpecialisteByName("a"));
-        NullPointerException message = assertThrows(
-                NullPointerException.class,
-                () -> clients.setDateNaissance(null)
+        clients.setDateNaissance(null);
+        clients.setSecuriteSociale("123456789123456");
+        MyException message = assertThrows(
+                MyException.class,
+                () -> clientService.ajouterClient(clients)
         );
         assertEquals("Merci de mettre une date de naissance", message.getMessage());
     }
 
     @Test
     public void testSetDateNaissanceInvalide() throws Exception {
-        Clients clients = new Clients("a", "a", "a", "9", "a",
-                "a", "a", "111111111111111", "04-09-2020", "er", p.getMedecinByName("a"), p.getSpecialisteByName("a"));
+        clients.setDateNaissance("04/09/2023");
+        clients.setSecuriteSociale("123456789123456");
         MyException message = assertThrows(
                 MyException.class,
-                () -> clients.setDateNaissance("04/09/2023")
+                () -> clientService.ajouterClient(clients)
         );
         assertEquals("La date de naissance n'est pas au bon format", message.getMessage());
     }
 
     @Test
     public void testSecuriteSocialValide() throws Exception {
-        Clients clients = new Clients("a", "a", "a", "9", "a", "a",
-                "a", "111111111111111", "04-09-2020", "er", p.getMedecinByName("a"), p.getSpecialisteByName("a"));
+        clients.setDateNaissance("04-09-2023");
+        clients.setSecuriteSociale("111111111111111");
         assertEquals("111111111111111", clients.getSecuriteSociale());
     }
 
     @Test
     public void testSecuriteSocialeNull() throws Exception {
-        Clients clients = new Clients("a", "a", "a", "9", "a", "a", "a",
-                "111111111111111", "04-09-2020", "er", p.getMedecinByName("a"), p.getSpecialisteByName("a"));
-        NullPointerException message = assertThrows(
-                NullPointerException.class,
-                () -> clients.setSecuriteSociale(null)
+        clients.setDateNaissance("04-09-2023");
+        clients.setSecuriteSociale(null);
+        MyException message = assertThrows(
+                MyException.class,
+                () -> clientService.ajouterClient(clients)
         );
         assertEquals("Merci de mettre un numéro de sécurité sociale", message.getMessage());
     }
 
     @Test
     public void testSecuriteSocialInvalide() throws Exception {
-        Clients clients = new Clients("a", "a", "a", "9", "a", "a", "a",
-                "111111111111111", "04-09-2020", "er", p.getMedecinByName("a"), p.getSpecialisteByName("a"));
-        IllegalArgumentException message = assertThrows(
-                IllegalArgumentException.class,
-                () ->clients.setSecuriteSociale("11111111111111")
+        clients.setDateNaissance("04-09-2023");
+        clients.setSecuriteSociale("11111111111111");
+        MyException message = assertThrows(
+                MyException.class,
+                () -> clientService.ajouterClient(clients)
         );
-        assertEquals("Le numéro de sécurité sociale est invalide", message.getMessage());
+        assertEquals("Le numéro de sécurité sociale doit contenir 15 chiffres", message.getMessage());
     }
 
     @Test
     public void testSecuriteSocialInvalideNumber() throws Exception {
-        Clients clients = new Clients("a", "a", "a", "9", "a", "a", "a",
-                "111111111111111", "04-09-2020", "er", p.getMedecinByName("a"), p.getSpecialisteByName("a"));
-        IllegalArgumentException message = assertThrows(
-                IllegalArgumentException.class,
-                () ->clients.setSecuriteSociale("1111111111111aa")
+        clients.setDateNaissance("04-09-2023");
+        clients.setSecuriteSociale("1111111111111aa");
+        MyException message = assertThrows(
+                MyException.class,
+                () -> clientService.ajouterClient(clients)
         );
-        assertEquals("Le numéro de sécurité sociale est invalide", message.getMessage());
+        assertEquals("Le numéro de sécurité sociale doit être composé uniquement de chiffres.", message.getMessage());
     }
 }

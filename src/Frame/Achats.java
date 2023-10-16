@@ -4,7 +4,8 @@ import ClassMetier.Clients;
 import ClassMetier.Historiques;
 import ClassMetier.Medicaments;
 import ClassMetier.Pharmacie;
-import Utilitaire.MyException;
+import service.HistoriqueService;
+import utils.MyException;
 
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
@@ -12,7 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Achats extends JFrame {
-    private JPanel AchatPanel;
+    private JPanel achatPanel;
     private JComboBox comboClient;
     private JButton btnAchat;
     private JButton btnRetour;
@@ -39,7 +40,7 @@ public class Achats extends JFrame {
         setSize(1000, 600);
         setLocationRelativeTo(null);
         setVisible(true);
-        setContentPane(AchatPanel);
+        setContentPane(achatPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         for (Clients clients : p.getClient()) {
@@ -62,7 +63,7 @@ public class Achats extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Historiques.ajoutHistorique((String) comboClient.getSelectedItem(),textDate.getText(),
+                    HistoriqueService.ajoutHistorique((String) comboClient.getSelectedItem(),textDate.getText(),
                             (String) comboMedicament.getSelectedItem(),
                             textQuantite.getText(), textPrix.getText());
                     JOptionPane.showMessageDialog(null,"Achat réalisé");
@@ -76,7 +77,7 @@ public class Achats extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                Accueil.DesignAccueil();
+                Accueil.designAccueil();
             }
         });
     }

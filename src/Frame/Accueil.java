@@ -13,7 +13,7 @@ public class Accueil extends JFrame {
     private JButton btnQuitter;
     private JButton btnOrdonnance;
 
-    public static void DesignAccueil() {
+    public static void designAccueil() {
         try {
             UIManager.setLookAndFeel(new NimbusLookAndFeel());
         } catch (Exception ex) {

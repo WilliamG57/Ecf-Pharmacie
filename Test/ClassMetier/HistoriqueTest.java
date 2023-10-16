@@ -1,17 +1,23 @@
 package ClassMetier;
 
-import Utilitaire.MyException;
+import org.junit.Before;
+import org.junit.jupiter.api.BeforeAll;
+import utils.MyException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class HistoriqueTest {
+    static Historiques historiques;
+    @BeforeAll
+    public static void before() throws MyException {
+        historiques = new Historiques("Dupont", "08-03-2023", "Doliprane",
+                "10", "10.00", "Dr. Dupont", "Dr. Martin", true);
+    }
 
     @Test
     public void testConstructeur() throws MyException {
-        Historiques historiques = new Historiques("Dupont", "08-03-2023", "Doliprane",
-                "10", "10.00", "Dr. Dupont", "Dr. Martin", true);
         assertEquals("Dupont", historiques.getNom());
         assertEquals("08-03-2023", historiques.getDate());
         assertEquals("Doliprane", historiques.getMedicament());
@@ -23,15 +29,11 @@ public class HistoriqueTest {
 
     @Test
     public void setDateValide() throws MyException {
-        Historiques historiques = new Historiques("Dupont", "08-03-2023", "Doliprane",
-                "10", "10.00", "Dr. Dupont", "Dr. Martin", true);
         assertEquals("08-03-2023", historiques.getDate());
     }
 
     @Test
     public void setMiseEnServiceInvalide() throws Exception {
-        Historiques historiques = new Historiques("Dupont", "08-03-2023", "Doliprane",
-                "10", "10.00", "Dr. Dupont", "Dr. Martin", true);
         MyException message = assertThrows(
                 MyException.class,
                 () -> historiques.setDate("20/11/1988")

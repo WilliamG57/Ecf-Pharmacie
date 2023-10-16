@@ -1,4 +1,4 @@
-package Utilitaire;
+package utils;
 
 public class MyException extends java.lang.Exception {
 
