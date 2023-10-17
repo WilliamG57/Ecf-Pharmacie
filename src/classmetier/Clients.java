@@ -46,7 +46,7 @@ public class Clients extends Personnes {
         return securiteSociale;
     }
 
-    public void setSecuriteSociale(String securiteSociale) throws MyException {
+    public void setSecuriteSociale(String securiteSociale) {
         this.securiteSociale = securiteSociale;
     }
 
@@ -54,7 +54,7 @@ public class Clients extends Personnes {
         return dateNaissance;
     }
 
-    public void setDateNaissance(String dateNaissance) throws MyException {
+    public void setDateNaissance(String dateNaissance) {
         this.dateNaissance = dateNaissance;
     }
 

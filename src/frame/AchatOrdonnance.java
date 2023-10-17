@@ -31,6 +31,7 @@ public class AchatOrdonnance extends JFrame {
     private JLabel textSpecialiste;
     private JTextField textBoolean;
     Pharmacie p = new Pharmacie();
+    PanierService ps = new PanierService();
 
     public AchatOrdonnance() throws Exception {
         try {
@@ -77,20 +78,27 @@ public class AchatOrdonnance extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    PanierService.ajoutPanier((String) comboClient.getSelectedItem(),textDate.getText(), (String) comboMedicament.getSelectedItem(),
-                            textQuantite.getText(),textPrix.getText(), (String) comboMedecin.getSelectedItem(),
+                    ps.ajoutPanier((String) comboClient.getSelectedItem(), textDate.getText(), (String) comboMedecin.getSelectedItem(),
                             (String) comboSpecialiste.getSelectedItem(), Boolean.valueOf(textBoolean.getText()));
+                    ps.ajoutLigneArticle((String) comboMedicament.getSelectedItem(), textQuantite.getText(), textPrix.getText());
                 } catch (MyException ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage());
                     throw new RuntimeException(ex);
                 }
                 try {
-                    Ordonnances.ajoutOrdonnances((String) comboClient.getSelectedItem(),textDate.getText(), (String) comboMedicament.getSelectedItem(),
-                            textQuantite.getText(),textPrix.getText(), (String) comboMedecin.getSelectedItem(), (String) comboSpecialiste.getSelectedItem());
+                    Ordonnances.ajoutOrdonnances((String) comboClient.getSelectedItem(), textDate.getText(), (String) comboMedicament.getSelectedItem(),
+                            textQuantite.getText(), textPrix.getText(), (String) comboMedecin.getSelectedItem(), (String) comboSpecialiste.getSelectedItem());
+                } catch (MyException ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage());
+                    throw new RuntimeException(ex);
+                }
+                JOptionPane.showMessageDialog(null, "Ordonnance traité");
+                Panier y = null;
+                try {
+                    y = new Panier();
                 } catch (MyException ex) {
                     throw new RuntimeException(ex);
                 }
-                JOptionPane.showMessageDialog(null,"Ordonnance traité");
-                Panier y = new Panier();
                 y.setVisible(true);
             }
         });

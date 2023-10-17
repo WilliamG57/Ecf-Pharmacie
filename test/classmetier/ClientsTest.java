@@ -53,14 +53,14 @@ public class ClientsTest {
     }
 
     @Test
-    public void testSetDateNaissanceValide() throws Exception {
+    public void testSetDateNaissanceValide() {
         clients.setDateNaissance("04-09-2023");
         clients.setSecuriteSociale("123456789123456");
         assertEquals("04-09-2023", clients.getDateNaissance());
     }
 
     @Test
-    public void testSetDateNaissanceNull() throws Exception {
+    public void testSetDateNaissanceNull() {
         clients.setDateNaissance(null);
         clients.setSecuriteSociale("123456789123456");
         MyException message = assertThrows(
@@ -71,7 +71,7 @@ public class ClientsTest {
     }
 
     @Test
-    public void testSetDateNaissanceInvalide() throws Exception {
+    public void testSetDateNaissanceInvalide() {
         clients.setDateNaissance("04/09/2023");
         clients.setSecuriteSociale("123456789123456");
         MyException message = assertThrows(
@@ -82,14 +82,14 @@ public class ClientsTest {
     }
 
     @Test
-    public void testSecuriteSocialValide() throws Exception {
+    public void testSecuriteSocialValide() {
         clients.setDateNaissance("04-09-2023");
         clients.setSecuriteSociale("111111111111111");
         assertEquals("111111111111111", clients.getSecuriteSociale());
     }
 
     @Test
-    public void testSecuriteSocialeNull() throws Exception {
+    public void testSecuriteSocialeNull() {
         clients.setDateNaissance("04-09-2023");
         clients.setSecuriteSociale(null);
         MyException message = assertThrows(
@@ -100,7 +100,7 @@ public class ClientsTest {
     }
 
     @Test
-    public void testSecuriteSocialInvalide() throws Exception {
+    public void testSecuriteSocialInvalide() {
         clients.setDateNaissance("04-09-2023");
         clients.setSecuriteSociale("11111111111111");
         MyException message = assertThrows(
@@ -111,7 +111,7 @@ public class ClientsTest {
     }
 
     @Test
-    public void testSecuriteSocialInvalideNumber() throws Exception {
+    public void testSecuriteSocialInvalideNumber() {
         clients.setDateNaissance("04-09-2023");
         clients.setSecuriteSociale("1111111111111aa");
         MyException message = assertThrows(

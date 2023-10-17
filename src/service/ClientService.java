@@ -4,7 +4,10 @@ import classmetier.Clients;
 import utils.DateManagment;
 import utils.MyException;
 
-public class ClientService {
+import javax.swing.*;
+import java.util.regex.Pattern;
+
+public class ClientService extends PersonneService{
 
     public ClientService() {
     }
@@ -12,10 +15,15 @@ public class ClientService {
     public void validate(Clients client) throws MyException {
         validateSecuriteSociale(client.getSecuriteSociale());
         validateDateNaissance(client.getDateNaissance());
+        validateCodePostal(client.getCodePostal());
+        validateVille(client.getVille());
+        validateTelephone(client.getTelephone());
+        validateEmail(client.getEmail());
     }
 
     private void validateDateNaissance(String dateNaissance) throws MyException {
         DateManagment.parse(dateNaissance, "La date de naissance n'est pas au bon format");
+        JOptionPane.showMessageDialog(null,"La date de naissance n'est pas au bon format");
     }
 
     private void validateSecuriteSociale(String securiteSociale) throws MyException {

@@ -2,6 +2,7 @@ package classmetier;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import service.PersonneService;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -9,6 +10,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class PersonneTest {
     static Pharmacie p;
     static Clients clients;
+
+    PersonneService personneService = new PersonneService();
+
     public PersonneTest() throws Exception {
     }
 
@@ -22,29 +26,33 @@ public class PersonneTest {
 
     @Test
     public void setCodePostalValide() throws Exception {
-       assertEquals("99999", clients.getCodePostal());
+        assertEquals("99999", clients.getCodePostal());
     }
 
     @Test
     public void setCodePostalInvalide() throws Exception {
+        clients.setCodePostal("1234");
         IllegalArgumentException message = assertThrows(
                 IllegalArgumentException.class,
-                () -> clients.setCodePostal("1234")
+                () -> personneService.validate(clients)
         );
         assertEquals("Le code postal n'est pas valide.", message.getMessage());
     }
 
     @Test
     public void setVilleValide() throws Exception {
-       assertEquals("a", clients.getVille());
+        assertEquals("a", clients.getVille());
     }
 
     @Test
     public void setVilleNull() throws Exception {
+        clients.setVille(null);
         NullPointerException message = assertThrows(
                 NullPointerException.class,
-                ()  -> clients.setVille(null)
+                () -> personneService.validate(clients)
         );
+        //reset
+        clients.setVille("a");
         assertEquals("Merci de remplir une ville.", message.getMessage());
     }
 
@@ -55,19 +63,25 @@ public class PersonneTest {
 
     @Test
     public void setTelephoneNull() throws Exception {
+        clients.setTelephone(null);
         NullPointerException message = assertThrows(
                 NullPointerException.class,
-                () -> clients.setTelephone(null)
+                () -> personneService.validate(clients)
         );
+        //reset
+        clients.setTelephone("1122334455");
         assertEquals("Merci de mettre un numéro de téléphone", message.getMessage());
     }
 
     @Test
     public void setTelephoneInvalide() throws Exception {
+        clients.setTelephone("9876543210");
         IllegalArgumentException message = assertThrows(
                 IllegalArgumentException.class,
-                () -> clients.setTelephone("9876543210")
+                () -> personneService.validate(clients)
         );
+        //reset
+        clients.setTelephone("1122334455");
         assertEquals("Le numéro de téléphone est invalide", message.getMessage());
     }
 
@@ -79,19 +93,25 @@ public class PersonneTest {
 
     @Test
     public void setEmailNull() throws Exception {
+        clients.setEmail(null);
         NullPointerException message = assertThrows(
                 NullPointerException.class,
-                () -> clients.setEmail(null)
+                () -> personneService.validate(clients)
         );
+        //reset
+        clients.setEmail("a.aa@gmail.com");
         assertEquals("Merci de mettre une adresse email", message.getMessage());
     }
 
     @Test
     public void setEmailInvalide() throws Exception {
+        clients.setEmail("a.aa@a.a");
         IllegalArgumentException message = assertThrows(
                 IllegalArgumentException.class,
-                () -> clients.setEmail("a.aa@a.a")
+                () -> personneService.validate(clients)
         );
+        //reset
+        clients.setEmail("a.aa@gmail.com");
         assertEquals("L'adresse email est invalide", message.getMessage());
     }
 }

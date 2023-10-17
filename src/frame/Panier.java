@@ -1,6 +1,7 @@
 package frame;
 
 import classmetier.Historiques;
+import classmetier.LigneArticle;
 import classmetier.Paniers;
 import service.HistoriqueService;
 import service.PanierService;
@@ -13,12 +14,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
+
 public class Panier extends JFrame {
 
+    Paniers pa = new Paniers();
     private JPanel panierPanel;
     private JTable tablePanier;
 
-    public Panier() {
+    public Panier() throws MyException {
         try {
             UIManager.setLookAndFeel(new NimbusLookAndFeel());
         } catch (Exception ex) {
@@ -35,6 +38,10 @@ public class Panier extends JFrame {
         btnValider.setBounds(80,500, 150,20);
         panierPanel.add(btnValider);
         btnValider.setVisible(true);
+        JButton btnSupprimer = new JButton("Supprimer");
+        btnValider.setBounds(80,500, 150,20);
+        panierPanel.add(btnSupprimer);
+        btnSupprimer.setVisible(true);
         JButton btnRetour = new JButton("Retour");
         btnRetour.setBounds(40, 500, 150, 20);
         panierPanel.add(btnRetour);
@@ -53,13 +60,12 @@ public class Panier extends JFrame {
         });
     }
     public void tablePanier() {
-        DefaultTableModel model = new DefaultTableModel(new String[]{"Date", "Médicament", "Quantité", "Prix/u"}, 0);
-        for (Paniers panier : PanierService.getPanier()) {
+        DefaultTableModel model = new DefaultTableModel(new String[]{"Médicament", "Quantité", "Prix/u"}, 0);
+        for (LigneArticle ligneArticles : pa.getLigneArticles()) {
             model.addRow(new Object[]{
-                    panier.getDate(),
-                    panier.getMedicament(),
-                    panier.getQuantite(),
-                    panier.getPrix()
+                    ligneArticles.getMedicament(),
+                    ligneArticles.getQuantite(),
+                    ligneArticles.getPrix()
             });
         }
         tablePanier = new JTable(model);

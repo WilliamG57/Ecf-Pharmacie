@@ -2,8 +2,10 @@ package frame;
 
 import classmetier.Clients;
 import classmetier.Medicaments;
+import classmetier.Paniers;
 import classmetier.Pharmacie;
 import service.HistoriqueService;
+import service.PanierService;
 import utils.MyException;
 
 import javax.swing.*;
@@ -28,6 +30,8 @@ public class Achats extends JFrame {
     private JLabel textTitre;
     private JTextField textBoolean;
     Pharmacie p = new Pharmacie();
+    PanierService ps = new PanierService();
+
 
     public Achats() throws Exception {
         try {
@@ -61,14 +65,21 @@ public class Achats extends JFrame {
         btnAchat.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Panier y = null;
                 try {
-                    HistoriqueService.ajoutHistorique((String) comboClient.getSelectedItem(),textDate.getText(),
-                            (String) comboMedicament.getSelectedItem(),
-                            textQuantite.getText(), textPrix.getText());
-                    JOptionPane.showMessageDialog(null,"Achat réalisé");
+                    y = new Panier();
                 } catch (MyException ex) {
                     throw new RuntimeException(ex);
                 }
+                try {
+                    ps.ajoutPanier((String) comboClient.getSelectedItem(), textDate.getText());
+                    ps.ajoutLigneArticle((String) comboMedicament.getSelectedItem(), textQuantite.getText(), textPrix.getText());
+                    JOptionPane.showMessageDialog(null, "Achat réalisé");
+                } catch (MyException ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage());
+                    throw new RuntimeException(ex);
+                }
+                y.setVisible(true);
             }
         });
 
