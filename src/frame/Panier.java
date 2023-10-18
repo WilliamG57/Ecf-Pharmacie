@@ -18,8 +18,9 @@ public class Panier extends JFrame {
 
     private JPanel panierPanel;
     private JTable tablePanier;
-    private DefaultTableModel model ;
+    private DefaultTableModel model;
     private Paniers currentPanier;
+    private PanierService panierService = new PanierService();
 
     public Panier(Paniers pa) throws MyException {
         currentPanier = pa;
@@ -47,11 +48,26 @@ public class Panier extends JFrame {
         btnRetour.setBounds(40, 500, 150, 20);
         panierPanel.add(btnRetour);
         btnRetour.setVisible(true);
+
         btnValider.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                for (PanierService ps : PanierService.getPanier()) {
+                for (Paniers p : PanierService.getPanier()) {
                     Historiques h = new Historiques();
+                    h.setNom(p.getNom());
+                    h.setMedecin(p.getMedecin());
+                    try {
+                        h.setDate(p.getDate());
+                    } catch (MyException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    h.setSpecialiste(p.getSpecialiste());
+                    h.setOrdonnance(p.getOrdonnance());
+                    for (LigneArticle la : p.getLigneArticles()) {
+                        h.setMedicament(la.getMedicament());
+                        h.setPrix(la.getPrix());
+                        h.setQuantite(la.getQuantite());
+                    }
                 }
             }
         });

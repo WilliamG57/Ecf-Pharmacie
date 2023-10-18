@@ -13,7 +13,7 @@ public class HistoriqueTest {
     @BeforeAll
     public static void before() throws MyException {
         historiques = new Historiques("Dupont", "08-03-2023", "Doliprane",
-                "10", "10.00", "Dr. Dupont", "Dr. Martin", true);
+                10, "10.00", "Dr. Dupont", "Dr. Martin", true);
     }
 
     @Test

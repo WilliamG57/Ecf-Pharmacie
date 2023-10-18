@@ -47,7 +47,7 @@ public class PanierService {
         DateManagment.parse(date, "La date n'est pas au bon format");
     }
 
-//    public void setPanier(Paniers panier) {
-//        this.panier = panier;
-//    }
+    public void setPanier(Paniers panier) {
+        this.panier = panier;
+    }
 }

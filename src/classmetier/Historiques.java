@@ -10,7 +10,7 @@ public class Historiques {
     private String medecin;
     private String date;
     private String medicament;
-    private String quantite;
+    private int quantite;
     private String prix;
     private String specialiste;
     private Boolean Ordonnance;
@@ -28,7 +28,7 @@ public class Historiques {
      * @param prix
      * @throws MyException
      */
-    public Historiques(String nom, String date, String medicament, String quantite, String prix) throws MyException {
+    public Historiques(String nom, String date, String medicament, int quantite, String prix) throws MyException {
         this.setNom(nom);
         this.setDate(date);
         this.setMedicament(medicament);
@@ -48,7 +48,7 @@ public class Historiques {
      * @param ordonnance boolean pour savoir si il y a une ordonnance ou non
      * @throws MyException
      */
-    public Historiques(String nom, String date, String medicament, String quantite, String prix, String medecin, String specialiste, boolean ordonnance) throws MyException {
+    public Historiques(String nom, String date, String medicament, int quantite, String prix, String medecin, String specialiste, boolean ordonnance) throws MyException {
         this.setNom(nom);
         this.setDate(date);
         this.setMedicament(medicament);
@@ -103,11 +103,11 @@ public class Historiques {
         this.medicament = medicament;
     }
 
-    public String getQuantite() {
+    public int getQuantite() {
         return quantite;
     }
 
-    public void setQuantite(String quantite) {
+    public void setQuantite(int quantite) {
         this.quantite = quantite;
     }
 
