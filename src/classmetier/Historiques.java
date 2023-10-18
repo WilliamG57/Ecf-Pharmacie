@@ -21,6 +21,7 @@ public class Historiques {
 
     /**
      * Constructeur historique
+     *
      * @param nom
      * @param date
      * @param medicament
@@ -38,14 +39,15 @@ public class Historiques {
 
     /**
      * Constructeur d'historique surcharge
-     * @param nom nom du client
-     * @param date date d'achat
-     * @param medicament nom du medicament
-     * @param quantite quantite de medicament
-     * @param prix prix du medicament
-     * @param medecin nom du medecin
+     *
+     * @param nom         nom du client
+     * @param date        date d'achat
+     * @param medicament  nom du medicament
+     * @param quantite    quantite de medicament
+     * @param prix        prix du medicament
+     * @param medecin     nom du medecin
      * @param specialiste nom du specialiste
-     * @param ordonnance boolean pour savoir si il y a une ordonnance ou non
+     * @param ordonnance  boolean pour savoir si il y a une ordonnance ou non
      * @throws MyException
      */
     public Historiques(String nom, String date, String medicament, int quantite, String prix, String medecin, String specialiste, boolean ordonnance) throws MyException {
@@ -61,6 +63,7 @@ public class Historiques {
 
     /**
      * Mise en place des getters/setters
+     *
      * @return
      */
     public String getNom() {
@@ -92,7 +95,7 @@ public class Historiques {
     }
 
     public void setDate(String date) throws MyException {
-        this.date = DateManagment.parse(date,"La date n'est pas au bon format");
+        this.date = date;
     }
 
     public String getMedicament() {
@@ -122,6 +125,7 @@ public class Historiques {
     public Boolean getOrdonnance() {
         return Ordonnance;
     }
+
     public void setOrdonnance(Boolean ordonnance) {
         Ordonnance = ordonnance;
     }
