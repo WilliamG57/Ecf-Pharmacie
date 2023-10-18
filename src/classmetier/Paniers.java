@@ -89,9 +89,8 @@ public class Paniers {
         return date;
     }
 
-    public void setDate(String date) throws MyException {
+    public void setDate(String date) {
         this.date = date;
-        //this.date = DateManagment.parse(date, "La date n'est pas au bon format");
     }
 
     public Boolean getOrdonnance() {

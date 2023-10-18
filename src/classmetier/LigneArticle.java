@@ -5,7 +5,7 @@ import utils.MyException;
 public class LigneArticle {
     private String prix;
     private String medicament;
-    private String quantite;
+    private int quantite;
 
 
     public String getMedicament() {
@@ -16,11 +16,11 @@ public class LigneArticle {
         this.medicament = medicament;
     }
 
-    public String getQuantite() {
+    public int getQuantite() {
         return quantite;
     }
 
-    public void setQuantite(String quantite) {
+    public void setQuantite(int quantite) {
         this.quantite = quantite;
     }
 
@@ -41,7 +41,7 @@ public class LigneArticle {
      * @param prix
      * @throws MyException
      */
-    public LigneArticle(String medicament, String quantite, String prix) throws MyException {
+    public LigneArticle(String medicament, int quantite, String prix) throws MyException {
         this.setMedicament(medicament);
         this.setQuantite(quantite);
         this.setPrix(prix);

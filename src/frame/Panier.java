@@ -14,14 +14,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-
 public class Panier extends JFrame {
 
-    Paniers pa = new Paniers();
     private JPanel panierPanel;
     private JTable tablePanier;
+    private DefaultTableModel model ;
+    private Paniers currentPanier;
 
-    public Panier() throws MyException {
+    public Panier(Paniers pa) throws MyException {
+        currentPanier = pa;
         try {
             UIManager.setLookAndFeel(new NimbusLookAndFeel());
         } catch (Exception ex) {
@@ -35,11 +36,11 @@ public class Panier extends JFrame {
         setContentPane(panierPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JButton btnValider = new JButton("Valider");
-        btnValider.setBounds(80,500, 150,20);
+        btnValider.setBounds(80, 500, 150, 20);
         panierPanel.add(btnValider);
         btnValider.setVisible(true);
         JButton btnSupprimer = new JButton("Supprimer");
-        btnValider.setBounds(80,500, 150,20);
+        btnValider.setBounds(80, 500, 150, 20);
         panierPanel.add(btnSupprimer);
         btnSupprimer.setVisible(true);
         JButton btnRetour = new JButton("Retour");
@@ -49,7 +50,20 @@ public class Panier extends JFrame {
         btnValider.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                for (PanierService ps : PanierService.getPanier()) {
+                    Historiques h = new Historiques();
+                }
+            }
+        });
 
+        btnSupprimer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (tablePanier.getSelectedRow() != -1) {
+                    int ligneSelection = tablePanier.getSelectedRow();
+                    currentPanier.getLigneArticles().remove(ligneSelection);
+                    model.removeRow(ligneSelection);
+                }
             }
         });
         btnRetour.addActionListener(new ActionListener() {
@@ -59,9 +73,10 @@ public class Panier extends JFrame {
             }
         });
     }
+
     public void tablePanier() {
-        DefaultTableModel model = new DefaultTableModel(new String[]{"Médicament", "Quantité", "Prix/u"}, 0);
-        for (LigneArticle ligneArticles : pa.getLigneArticles()) {
+        model = new DefaultTableModel(new String[]{"Médicament", "Quantité", "Prix/u"}, 0);
+        for (LigneArticle ligneArticles : currentPanier.getLigneArticles()) {
             model.addRow(new Object[]{
                     ligneArticles.getMedicament(),
                     ligneArticles.getQuantite(),

@@ -8,7 +8,7 @@ public class DateManagment {
     public static String parse(String date, String message) throws MyException{
         try {
             if (date == null) {
-                throw new MyException("Merci de mettre une date de naissance");
+                throw new MyException(message);
             }
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
             sdf.parse(date);

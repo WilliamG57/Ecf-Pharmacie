@@ -31,7 +31,7 @@ public class AchatOrdonnance extends JFrame {
     private JLabel textSpecialiste;
     private JTextField textBoolean;
     Pharmacie p = new Pharmacie();
-    PanierService ps = new PanierService();
+    private PanierService panierService = new PanierService();
 
     public AchatOrdonnance() throws Exception {
         try {
@@ -78,9 +78,9 @@ public class AchatOrdonnance extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    ps.ajoutPanier((String) comboClient.getSelectedItem(), textDate.getText(), (String) comboMedecin.getSelectedItem(),
+                    panierService.ajoutPanier((String) comboClient.getSelectedItem(), textDate.getText(), (String) comboMedecin.getSelectedItem(),
                             (String) comboSpecialiste.getSelectedItem(), Boolean.valueOf(textBoolean.getText()));
-                    ps.ajoutLigneArticle((String) comboMedicament.getSelectedItem(), textQuantite.getText(), textPrix.getText());
+                    panierService.ajoutLigneArticle((String) comboMedicament.getSelectedItem(), Integer.parseInt(textQuantite.getText()), textPrix.getText());
                 } catch (MyException ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage());
                     throw new RuntimeException(ex);
@@ -95,7 +95,7 @@ public class AchatOrdonnance extends JFrame {
                 JOptionPane.showMessageDialog(null, "Ordonnance traité");
                 Panier y = null;
                 try {
-                    y = new Panier();
+                    y = new Panier(panierService.getPanier());
                 } catch (MyException ex) {
                     throw new RuntimeException(ex);
                 }

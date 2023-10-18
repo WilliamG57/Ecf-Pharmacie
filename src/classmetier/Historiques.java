@@ -15,6 +15,10 @@ public class Historiques {
     private String specialiste;
     private Boolean Ordonnance;
 
+    public Historiques() {
+    }
+
+
     /**
      * Constructeur historique
      * @param nom
