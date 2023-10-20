@@ -50,7 +50,7 @@ public class Generique extends JFrame {
             if (medecins.getNom().equals(textNom.getText())) {
                 textPrenom.setText(medecins.getPrenom());
                 textAdresse.setText(medecins.getAdresse());
-                textPostal.setText(medecins.getCodePostal() + "");
+                textPostal.setText(medecins.getCodePostal());
                 textVille.setText(medecins.getVille());
                 textTelephone.setText(medecins.getTelephone());
                 textEmail.setText(medecins.getEmail());
@@ -67,7 +67,7 @@ public class Generique extends JFrame {
                 Agreement.setText("Spécialité");
                 textPrenom.setText(specialiste.getPrenom());
                 textAdresse.setText(specialiste.getAdresse());
-                textPostal.setText(specialiste.getCodePostal() + "");
+                textPostal.setText(specialiste.getCodePostal());
                 textVille.setText(specialiste.getVille());
                 textTelephone.setText(specialiste.getTelephone());
                 textEmail.setText(specialiste.getEmail());

@@ -1,10 +1,8 @@
 package classmetier;
 
 import utils.MyException;
-import utils.DateManagment;
 
 public class Historiques {
-
 
     private String nom;
     private String medecin;
@@ -17,7 +15,6 @@ public class Historiques {
 
     public Historiques() {
     }
-
 
     /**
      * Constructeur historique

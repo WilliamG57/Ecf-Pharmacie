@@ -1,8 +1,6 @@
 package classmetier;
 
 import utils.MyException;
-import utils.DateManagment;
-
 import java.util.ArrayList;
 
 public class Paniers {
@@ -13,9 +11,9 @@ public class Paniers {
         return ligneArticles;
     }
 
-    public void setLigneArticles(ArrayList<LigneArticle> ligneArticles) {
-        this.ligneArticles = ligneArticles;
-    }
+//    public void setLigneArticles(ArrayList<LigneArticle> ligneArticles) {
+//        this.ligneArticles = ligneArticles;
+//    }
 
     private String nom;
     private String medecin;

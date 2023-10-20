@@ -5,7 +5,6 @@ import utils.DateManagment;
 import utils.MyException;
 
 import javax.swing.*;
-import java.util.regex.Pattern;
 
 public class ClientService extends PersonneService{
 
@@ -45,10 +44,7 @@ public class ClientService extends PersonneService{
     }
 
     public void ajouterClient(Clients client) throws MyException {
-        //Before we validate
         validate(client);
-        //store in DB
-        //TODO
     }
 
     public void supprimerClient(Clients client){

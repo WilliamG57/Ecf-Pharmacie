@@ -71,10 +71,10 @@ public class HistoriqueService {
      * @param Ordonnance boolean pour savoir si il y a une ordonnance ou non
      * @throws MyException
      */
-    public void ajoutHistorique(String nom, String date, String medicament, int quantite, String prix,
-                                       String medecin, String specialiste, Boolean Ordonnance) throws MyException {
-        historique.add(new Historiques(nom, date, medicament, quantite, prix, medecin, specialiste, Ordonnance));
-    }
+//    public void ajoutHistorique(String nom, String date, String medicament, int quantite, String prix,
+//                                       String medecin, String specialiste, Boolean Ordonnance) throws MyException {
+//        historique.add(new Historiques(nom, date, medicament, quantite, prix, medecin, specialiste, Ordonnance));
+//    }
 
 
 }

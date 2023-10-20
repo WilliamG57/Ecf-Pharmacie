@@ -1,10 +1,8 @@
 package frame;
 
 import classmetier.*;
-import service.HistoriqueService;
 import service.PanierService;
 import utils.MyException;
-
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.awt.event.ActionEvent;
@@ -92,7 +90,7 @@ public class AchatOrdonnance extends JFrame {
                     JOptionPane.showMessageDialog(null, ex.getMessage());
                     throw new RuntimeException(ex);
                 }
-                JOptionPane.showMessageDialog(null, "Ordonnance traité");
+                JOptionPane.showMessageDialog(null, "Enregistré dans le panier");
                 Panier y = null;
                 try {
                     y = new Panier(panierService.getPanier());

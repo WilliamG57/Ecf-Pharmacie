@@ -1,14 +1,12 @@
 package classmetier;
 
 import utils.MyException;
-
 import java.util.ArrayList;
 
 public class Pharmacie {
     public Pharmacie() throws Exception {
         initialisationListe();
     }
-
 
     /// LISTES
     private final ArrayList<Clients> client = new ArrayList<Clients>();
@@ -31,21 +29,6 @@ public class Pharmacie {
     public ArrayList<Medicaments> getMedicament() {
         return medicament;
     }
-
-
-    // CRUD
-
-
-    // ajouter un client
-    // 1 creer le patient
-    // creer un objet patient à partir de la saisie
-    // ajouter cet objet à la liste.
-
-    /**
-     * Creation du jeu de test client
-     *
-     * @throws Exception
-     */
 
     public void ajoutMedicament(Medicaments medicaments) throws MyException {
         medicament.add(medicaments);

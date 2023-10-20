@@ -60,6 +60,7 @@ public class Panier extends JFrame {
                 } catch (MyException ex) {
                     throw new RuntimeException(ex);
                 }
+                JOptionPane.showMessageDialog(null,"Achat validée");
             }
         });
 

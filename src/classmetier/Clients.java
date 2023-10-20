@@ -1,16 +1,12 @@
 package classmetier;
 
-import utils.MyException;
-
 public class Clients extends Personnes {
 
-    private int id;
     private String securiteSociale;
     private String dateNaissance;
     private String mutuelle;
     private Medecins medecin;
     private Specialistes specialiste;
-    //private static final Pattern PATTERN = Pattern.compile("^[0-9]{13}$");
 
     /**
      * Constructeur client

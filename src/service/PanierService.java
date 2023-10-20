@@ -13,14 +13,14 @@ public class PanierService {
     }
 
     public void ajoutPanier(String nom, String date) throws MyException {
-        validateDate(date);
+        validationDate(date);
         if (!panierDejaExistant()) {
             panier = new Paniers(nom, date);
         }
     }
 
     public void ajoutPanier(String nom, String date, String medecin, String specialiste, Boolean Ordonnance) throws MyException {
-        validateDate(date);
+        validationDate(date);
         if (!panierDejaExistant()) {
             panier = new Paniers(nom, date, medecin, specialiste, Ordonnance);
         }
@@ -43,11 +43,11 @@ public class PanierService {
         panier.getLigneArticles().add(new LigneArticle(medicament, quantite, prix));
     }
 
-    private void validateDate(String date) throws MyException {
+    private void validationQte (int quantite, String message) throws MyException{
+
+    }
+    private void validationDate(String date) throws MyException {
         DateManagment.parse(date, "La date n'est pas au bon format");
     }
 
-    public void setPanier(Paniers panier) {
-        this.panier = panier;
-    }
 }
