@@ -1,5 +1,7 @@
 package frame;
 
+import connect.Singleton;
+
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.awt.event.ActionEvent;
@@ -82,6 +84,7 @@ public class Accueil extends JFrame {
         btnQuitter.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Singleton.closeInstanceDB();
                 dispose();
             }
         });
