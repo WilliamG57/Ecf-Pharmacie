@@ -1,6 +1,7 @@
 package frame;
 
 import classmetier.*;
+import dao.Singleton;
 
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
@@ -8,6 +9,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 
 public class DetailClient extends JFrame {
@@ -38,6 +42,7 @@ public class DetailClient extends JFrame {
     private JButton btnRetour;
     private JTextField textSpecialiste;
     private JLabel specialisteClient;
+    private JButton btnCreate;
     Pharmacie p = new Pharmacie();
 
     public DetailClient() throws Exception {
@@ -53,6 +58,12 @@ public class DetailClient extends JFrame {
         setVisible(true);
         setContentPane(detailClientPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        String query = "SELECT per_nom FROM personne";
+        PreparedStatement statement = .prepareStatement(query);
+        ResultSet results = statement.executeQuery();
+        //TODO
+
 
         for (Clients clients : p.getClient()) {
             listeClient.addItem(clients.getNom());
@@ -143,6 +154,28 @@ public class DetailClient extends JFrame {
             @Override
             public void mouseExited(MouseEvent e) {
 
+            }
+        });
+
+        btnCreate.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //if (null == textNom) {
+                textNom.setEditable(true);
+                textPrenom.setEditable(true);
+                textNaissance.setEditable(true);
+                textTelephone.setEditable(true);
+                textMail.setEditable(true);
+                textSpecialiste.setEditable(true);
+                textAdresse.setEditable(true);
+                textPostal.setEditable(true);
+                textVille.setEditable(true);
+                textSecu.setEditable(true);
+                textMutuelle.setEditable(true);
+                textMedecin.setEditable(true);
+               // } else {
+                //    return;
+                //}
             }
         });
         btnRetour.addActionListener(new ActionListener() {

@@ -45,8 +45,8 @@ public class Pharmacie {
     public void ajoutClient(Clients patient) throws MyException {
         client.add(patient);
     }
-//    public Medecins getMedecinByIndex(int index) {
-//        return this.medecin.get(index);
+//    public Adresse getAdresseById(int id) {
+//        return this.adresse.get(id);
 //    }
 
     public Medecins getMedecinByName(String name) {

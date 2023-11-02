@@ -1,4 +1,4 @@
-package connect;
+package dao;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.Properties;
 
 public class Singleton {
-    private static final String PATHCONF = "./src/connect/conf.Properties";
+    private static final String PATHCONF = "./src/ressource/conf.Properties";
     private static final Properties props = new Properties();
     private static Connection connection;
 

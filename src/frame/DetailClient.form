@@ -229,7 +229,7 @@
       </component>
       <component id="f7ca5" class="javax.swing.JButton" binding="btnRetour">
         <constraints>
-          <grid row="5" column="0" row-span="1" col-span="6" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="5" column="3" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Retour"/>
@@ -249,7 +249,17 @@
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <editable value="false"/>
+        </properties>
+      </component>
+      <component id="e3583" class="javax.swing.JButton" binding="btnCreate">
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Créer"/>
+        </properties>
       </component>
     </children>
   </grid>

@@ -1,6 +1,6 @@
 package frame;
 
-import connect.Singleton;
+import dao.Singleton;
 
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
