@@ -1,7 +1,7 @@
 package frame;
 
 import classmetier.*;
-import dao.Singleton;
+import dao.ClientDAO;
 
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
@@ -9,9 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 
 public class DetailClient extends JFrame {
@@ -59,12 +56,13 @@ public class DetailClient extends JFrame {
         setContentPane(detailClientPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        String query = "SELECT per_nom FROM personne";
-        PreparedStatement statement = .prepareStatement(query);
-        ResultSet results = statement.executeQuery();
-        //TODO
+        ;
+//        while (ClientDAO.addComboBox().next()) {
+//            listeClient.addItem(results.getString("cli_nom"));
+//        }
 
 
+        ClientDAO.findAll();
         for (Clients clients : p.getClient()) {
             listeClient.addItem(clients.getNom());
             listeClient.setSelectedIndex(-1);
