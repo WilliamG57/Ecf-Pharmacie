@@ -16,5 +16,5 @@ public abstract class DAO<T> {
 
     public abstract T find(Integer pID);
 
-    public abstract List<T> findAll() throws SQLException;
+    public abstract List<T> findAll() throws Exception;
 }

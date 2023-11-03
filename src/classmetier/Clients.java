@@ -32,7 +32,11 @@ public class Clients extends Personnes {
         this.setDateNaissance(dateNaissance);
         this.mutuelle = mutuelle;
         this.medecin = medecin;
-        this.specialiste =specialiste;
+        this.specialiste = specialiste;
+    }
+
+    public Clients() {
+        super();
     }
 
     /**

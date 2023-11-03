@@ -62,7 +62,8 @@ public class DetailClient extends JFrame {
 //        }
 
 
-        ClientDAO.findAll();
+        ClientDAO dao = new ClientDAO();
+        dao.findAll();
         for (Clients clients : p.getClient()) {
             listeClient.addItem(clients.getNom());
             listeClient.setSelectedIndex(-1);
