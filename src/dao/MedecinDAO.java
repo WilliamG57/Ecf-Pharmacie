@@ -2,9 +2,11 @@ package dao;
 
 import classmetier.Clients;
 import classmetier.Medecins;
+import utils.MyException;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,8 +34,31 @@ public class MedecinDAO extends DAO<Medecins> {
     }
 
     @Override
-    public Medecins find(Integer pID) {
-        return null;
+    public Medecins find(Integer mID) throws SQLException {
+
+        StringBuilder sqlFindMedecin = new StringBuilder();
+        sqlFindMedecin.append("SELECT * FROM personne p JOIN medecin m ON p.per_id = m.per_id");
+        sqlFindMedecin.append(" WHERE med_id=?");
+        Medecins med = null;
+        try (PreparedStatement preparedStatement = connect.prepareStatement(sqlFindMedecin.toString())) {
+            preparedStatement.setInt(1, mID);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                med = new Medecins();
+                med.setMedId(resultSet.getInt("med_id"));
+                med.setNom(resultSet.getString("per_nom"));
+                med.setPrenom(resultSet.getString("per_prenom"));
+                med.setTelephone(resultSet.getString("per_telephone"));
+                med.setEmail(resultSet.getString("per_email"));
+                med.setAdresse(resultSet.getString("per_adr"));
+                med.setCodePostal(resultSet.getString("per_codepostal"));
+                med.setVille(resultSet.getString("per_ville"));
+                med.setAgreement(resultSet.getInt("med_agreement"));
+            }
+        } catch (MyException e) {
+            throw new RuntimeException(e);
+        }
+        return med;
     }
 
     @Override
@@ -43,6 +68,7 @@ public class MedecinDAO extends DAO<Medecins> {
         ResultSet resultSet = statement.executeQuery();
         while (resultSet.next()) {
             Medecins med = new Medecins();
+            med.setMedId(resultSet.getInt("med_id"));
             med.setNom(resultSet.getString("per_nom"));
             med.setPrenom(resultSet.getString("per_prenom"));
             med.setAdresse(resultSet.getString("per_adr"));

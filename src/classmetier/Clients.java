@@ -2,6 +2,7 @@ package classmetier;
 
 public class Clients extends Personnes {
 
+    private int cli_id;
     private String securiteSociale;
     private String dateNaissance;
     private String mutuelle;
@@ -42,9 +43,19 @@ public class Clients extends Personnes {
         super();
     }
 
+
     /**
      * Mise en place des getters/setters
      */
+
+    public int getCli_id() {
+        return cli_id;
+    }
+
+    public void setCli_id(int cli_id) {
+        this.cli_id = cli_id;
+    }
+
     public String getSecuriteSociale() {
         return securiteSociale;
     }

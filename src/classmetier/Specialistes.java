@@ -2,6 +2,8 @@ package classmetier;
 
 public class Specialistes extends Personnes {
 
+
+    private int speId;
     private String specialite;
 
 
@@ -25,6 +27,14 @@ public class Specialistes extends Personnes {
 
     public Specialistes() {
 
+    }
+
+    public int getSpeId() {
+        return speId;
+    }
+
+    public void setSpeId(int speId) {
+        this.speId = speId;
     }
 
     public String getSpecialite() {

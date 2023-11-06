@@ -5,6 +5,8 @@ import utils.MyException;
 import java.util.regex.Pattern;
 
 public class Medecins extends Personnes {
+
+    private int medId;
     private int agreement;
 
     /**
@@ -26,12 +28,19 @@ public class Medecins extends Personnes {
     }
 
     public Medecins() {
-
     }
 
     /**
      * Declaration getters/setters
      */
+    public int getMedId() {
+        return medId;
+    }
+
+    public void setMedId(int medId) {
+        this.medId = medId;
+    }
+
     public int getAgreement() {
         return agreement;
     }

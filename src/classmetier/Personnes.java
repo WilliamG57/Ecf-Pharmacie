@@ -16,6 +16,7 @@ public abstract class Personnes {
     public Personnes() {
     }
 
+
     /**
      * Constructeur qui servira de base pour les enfants
      *
@@ -42,6 +43,8 @@ public abstract class Personnes {
      *
      * @return
      */
+
+
     public String getNom() {
         return nom;
     }
