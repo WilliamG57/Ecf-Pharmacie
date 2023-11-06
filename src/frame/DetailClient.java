@@ -1,7 +1,7 @@
 package frame;
 
 import classmetier.*;
-import dao.ClientDAO;
+import service.ClientService;
 
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
@@ -42,6 +42,8 @@ public class DetailClient extends JFrame {
     private JButton btnCreate;
     Pharmacie p = new Pharmacie();
 
+    ClientService clientService = new ClientService();
+
     public DetailClient() throws Exception {
 
         try {
@@ -57,14 +59,9 @@ public class DetailClient extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         ;
-//        while (ClientDAO.addComboBox().next()) {
-//            listeClient.addItem(results.getString("cli_nom"));
-//        }
 
 
-        ClientDAO dao = new ClientDAO();
-        dao.findAll();
-        for (Clients clients : p.getClient()) {
+        for (Clients clients : clientService.findAll()) {
             listeClient.addItem(clients.getNom());
             listeClient.setSelectedIndex(-1);
             listeClient.addActionListener(new ActionListener() {
@@ -81,7 +78,7 @@ public class DetailClient extends JFrame {
                         textTelephone.setText(clients.getTelephone());
                         textMail.setText(clients.getEmail());
                         textAdresse.setText(clients.getAdresse());
-                        textPostal.setText(clients.getCodePostal() + "");
+                        textPostal.setText(clients.getCodePostal());
                         textVille.setText(clients.getVille());
                         textSecu.setText(clients.getSecuriteSociale() + "");
                         textMutuelle.setText(clients.getMutuelle());

@@ -25,6 +25,10 @@ public class Medecins extends Personnes {
         this.setAgreement(agreement);
     }
 
+    public Medecins() {
+
+    }
+
     /**
      * Declaration getters/setters
      */

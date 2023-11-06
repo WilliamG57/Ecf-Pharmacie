@@ -8,6 +8,9 @@ public class Clients extends Personnes {
     private Medecins medecin;
     private Specialistes specialiste;
 
+    private int medecin_id;
+    private int specialiste_id;
+
     /**
      * Constructeur client
      *
@@ -80,5 +83,21 @@ public class Clients extends Personnes {
 
     public void setSpecialiste(Specialistes specialiste) {
         this.specialiste = specialiste;
+    }
+
+    public int getMedecin_id() {
+        return medecin_id;
+    }
+
+    public void setMedecin_id(int medecin_id) {
+        this.medecin_id = medecin_id;
+    }
+
+    public int getSpecialiste_id() {
+        return specialiste_id;
+    }
+
+    public void setSpecialiste_id(int specialiste_id) {
+        this.specialiste_id = specialiste_id;
     }
 }

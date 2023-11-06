@@ -23,6 +23,10 @@ public class Specialistes extends Personnes {
         this.setSpecialite(specialite);
     }
 
+    public Specialistes() {
+
+    }
+
     public String getSpecialite() {
         return specialite;
     }
