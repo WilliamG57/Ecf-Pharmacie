@@ -27,7 +27,7 @@ public class ClientDAO extends DAO<Clients> {
         sqlDeleteClient.append("WHERE cli_id=?");
         boolean requeteOk = false;
         try (PreparedStatement preparedStatement = connect.prepareStatement(sqlDeleteClient.toString())) {
-            preparedStatement.setInt(1, obj.getCli_id());
+            preparedStatement.setInt(1, obj.getCliId());
             requeteOk = true;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -51,7 +51,7 @@ public class ClientDAO extends DAO<Clients> {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 cl = new Clients();
-                cl.setCli_id(resultSet.getInt("cli_id"));
+                cl.setCliId(resultSet.getInt("cli_id"));
                 cl.setNom(resultSet.getString("per_nom"));
                 cl.setPrenom(resultSet.getString("per_prenom"));
                 cl.setAdresse(resultSet.getString("per_adr"));
@@ -61,7 +61,7 @@ public class ClientDAO extends DAO<Clients> {
                 cl.setEmail(resultSet.getString("per_email"));
                 cl.setSecuriteSociale(resultSet.getString("cli_secu"));
                 cl.setDateNaissance(resultSet.getString("cli_datenaissance"));
-                //cl.setMutuelle(resultSet.getString("mutuelle"));
+                cl.setMutuelle_id(resultSet.getInt("mut_id"));
                 cl.setMedecin_id(resultSet.getInt("med_id"));
                 cl.setSpecialiste_id(resultSet.getInt("spe_id"));
             }
@@ -80,7 +80,7 @@ public class ClientDAO extends DAO<Clients> {
         Clients cl = null;
         while (resultSet.next()) {
             cl = new Clients();
-            cl.setCli_id(resultSet.getInt("cli_id"));
+            cl.setCliId(resultSet.getInt("cli_id"));
             cl.setNom(resultSet.getString("per_nom"));
             cl.setPrenom(resultSet.getString("per_prenom"));
             cl.setAdresse(resultSet.getString("per_adr"));
@@ -90,7 +90,7 @@ public class ClientDAO extends DAO<Clients> {
             cl.setEmail(resultSet.getString("per_email"));
             cl.setSecuriteSociale(resultSet.getString("cli_secu"));
             cl.setDateNaissance(resultSet.getString("cli_datenaissance"));
-            //cl.setMutuelle(resultSet.getString("mutuelle"));
+            cl.setMutuelle_id(resultSet.getInt("mut_id"));
             cl.setMedecin_id(resultSet.getInt("med_id"));
             cl.setSpecialiste_id(resultSet.getInt("spe_id"));
             client.add(cl);

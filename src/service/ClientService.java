@@ -2,9 +2,11 @@ package service;
 
 import classmetier.Clients;
 import classmetier.Medecins;
+import classmetier.Mutuelle;
 import classmetier.Specialistes;
 import dao.ClientDAO;
 import dao.MedecinDAO;
+import dao.MutuelleDAO;
 import dao.SpecialisteDAO;
 import utils.DateManagment;
 import utils.MyException;
@@ -16,6 +18,7 @@ public class ClientService extends PersonneService {
     ClientDAO clientDAO = new ClientDAO();
     MedecinDAO medecinDAO = new MedecinDAO();
     SpecialisteDAO specialisteDAO = new SpecialisteDAO();
+    MutuelleDAO mutuelleDAO = new MutuelleDAO();
 
     public ClientService() {
     }
@@ -75,6 +78,10 @@ public class ClientService extends PersonneService {
                 Specialistes s = specialisteDAO.find(cl.getSpecialiste_id());
                 if (s != null) {
                     cl.setSpecialiste(s);
+                }
+                Mutuelle mut = mutuelleDAO.find(cl.getMutuelle_id());
+                if (mut != null) {
+                    cl.setMutuelle(mut);
                 }
             }
             return clients;

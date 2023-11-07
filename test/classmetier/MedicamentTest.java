@@ -12,12 +12,12 @@ public class MedicamentTest {
 
     @BeforeAll
     public static void before() throws MyException {
-        medicaments = new Medicaments("h", "h", "40", "20-11-1988", "4");
+        medicaments = new Medicaments("h", "h", 40, "20-11-1988", "4");
     }
 
     @Test
     public void testConstructeur() {
-        Medicaments medicaments = new Medicaments("Doliprane", "Anti-douleur", "10.00", "2023-03-08", "10");
+        Medicaments medicaments = new Medicaments("Doliprane", "Anti-douleur", 10.00, "2023-03-08", "10");
 
         assertEquals("Doliprane", medicaments.getNom());
         assertEquals("Anti-douleur", medicaments.getCategorie());
@@ -35,7 +35,7 @@ public class MedicamentTest {
     public void setMiseEnServiceInvalide() throws Exception {
         MyException message = assertThrows(
                 MyException.class,
-                () -> medicaments.setMiseEnService("20/11/1988")
+                () -> medicaments.setMiseEnService("1988/11/20");
         );
         assertEquals("La date de mise en service n'est pas au bon format", message.getMessage());
     }

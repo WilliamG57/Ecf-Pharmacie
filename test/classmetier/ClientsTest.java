@@ -20,7 +20,7 @@ public class ClientsTest {
     public static void before() throws MyException, Exception {
         p = new Pharmacie();
         clients = new Clients("a", "a", "a", "9", "a", "a", "a",
-                "111111111111111", "04-09-2020", "er", p.getMedecinByName("a"), p.getSpecialisteByName("a"));
+                "111111111111111", "04-09-2020", p.getMutuelleByName("er"), p.getMedecinByName("a"), p.getSpecialisteByName("a"));
 
     }
 
@@ -28,10 +28,11 @@ public class ClientsTest {
     public void testConstructeur() throws Exception {
         Medecins medecin = p.getMedecinByName("aaa");
         Specialistes specialiste = p.getSpecialisteByName("zzz");
+        Mutuelle mutuelle = p.getMutuelleByName("er");
         Clients clients = new Clients("Dupont", "Jean", "12 rue de la Paix",
                 "75008", "Paris", "06 12 34 56 78",
                 "jean.dupont@gmail.com", "123456789123456",
-                "04-09-1980", "Mutuelle 123", medecin, specialiste);
+                "04-09-1980", mutuelle, medecin, specialiste);
 
         assertEquals("Dupont", clients.getNom());
         assertEquals("Jean", clients.getPrenom());
@@ -42,7 +43,7 @@ public class ClientsTest {
         assertEquals("jean.dupont@gmail.com", clients.getEmail());
         assertEquals("123456789123456", clients.getSecuriteSociale());
         assertEquals("04-09-1980", clients.getDateNaissance());
-        assertEquals("Mutuelle 123", clients.getMutuelle());
+        assertEquals("Mutuelle 123", clients.getMutuelle().getNom());
         assertEquals("aaa", clients.getMedecin().getNom());
         assertEquals("zzz", clients.getSpecialiste().getNom());
     }

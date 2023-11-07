@@ -3,15 +3,18 @@ package classmetier;
 import utils.MyException;
 import utils.DateManagment;
 
+import java.util.Date;
+
 public class Medicaments {
     /**
      * Declaration de la liste de medicaments
      */
 
+    private int medicamentID;
     private String nom;
     private String categorie;
-    private String prix;
-    private String miseEnService;
+    private double prix;
+    private Date miseEnService;
     private String quantite;
 
     /**
@@ -23,7 +26,7 @@ public class Medicaments {
      * @param miseEnService
      * @param quantite
      */
-    public Medicaments(String nom, String categorie, String prix, String miseEnService, String quantite) {
+    public Medicaments(String nom, String categorie, double prix, Date miseEnService, String quantite) {
         this.nom = nom;
         this.categorie = categorie;
         this.prix = prix;
@@ -31,9 +34,21 @@ public class Medicaments {
         this.quantite = quantite;
     }
 
+    public Medicaments() {
+
+    }
+
+
     /**
      * Declaration des getters/setters
      */
+
+    public int getMedicamentID() {
+        return medicamentID;
+    }
+    public void setMedicamentID(int medicamentID) {
+        this.medicamentID = medicamentID;
+    }
     public String getNom() {
         return nom;
     }
@@ -50,22 +65,22 @@ public class Medicaments {
         this.categorie = categorie;
     }
 
-    public String getPrix() {
+    public double getPrix() {
         return prix;
     }
 
-    public void setPrix(String prix) {
-        if (prix == null) {
+    public void setPrix(double prix) {
+        if (prix == 0) {
             throw new NullPointerException("Merci de mettre un prix");
         }
         this.prix = prix;
     }
 
-    public String getMiseEnService() {
+    public Date getMiseEnService() {
         return miseEnService;
     }
 
-    public void setMiseEnService(String miseEnService) throws MyException {
+    public void setMiseEnService(Date miseEnService) throws MyException {
         this.miseEnService = DateManagment.parse(miseEnService,"La date de mise en service n'est pas au bon format");
     }
 

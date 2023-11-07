@@ -13,6 +13,7 @@ public class Pharmacie {
     private final ArrayList<Medecins> medecin = new ArrayList<Medecins>();
     private final ArrayList<Specialistes> specialiste = new ArrayList<Specialistes>();
     private final ArrayList<Medicaments> medicament = new ArrayList<>();
+    private final ArrayList<Mutuelle> mutuelle = new ArrayList<>();
 
     public ArrayList<Clients> getClient() {
         return client;
@@ -49,6 +50,14 @@ public class Pharmacie {
 //        return this.adresse.get(id);
 //    }
 
+    public Mutuelle getMutuelleByName(String name) {
+        for (Mutuelle value : this.mutuelle) {
+            if (value.getNom().equals(name)) {
+                return value;
+            }
+        }
+        return null;
+    }
     public Medecins getMedecinByName(String name) {
         for (Medecins value : this.medecin) {
             if (value.getNom().equals(name)) {
@@ -101,13 +110,13 @@ public class Pharmacie {
          * Creation du jeu de test de clients
          */
         ajoutClient(new Clients("Dupont", "Jean", "123 rue de la République", "75001", "Paris",
-                "0612345678", "dupont.jean@gmail.com", "123456789123456", "01-08-1988", "CCMO",
+                "0612345678", "dupont.jean@gmail.com", "123456789123456", "01-08-1988", getMutuelleByName("CCMO"),
                 getMedecinByName("aaa"), getSpecialisteByName("zzz")));
         ajoutClient(new Clients("Martin", "Marie", "456 avenue de la Gare", "92100", "Boulogne",
-                "0789654321", "Martin.Marie@gmail.com", "234567891234567", "01-03-2000", "Mutami",
+                "0789654321", "Martin.Marie@gmail.com", "234567891234567", "01-03-2000", getMutuelleByName("Mutami"),
                 getMedecinByName("bbb"), getSpecialisteByName("yyy")));
         ajoutClient(new Clients("Durand", "Paul", "789 rue de la Liberté", "69002", "Lyon",
-                "0476543210", "durand.paul@gmail.com", "345678912345678", "01-02-1958", "GFP",
+                "0476543210", "durand.paul@gmail.com", "345678912345678", "01-02-1958", getMutuelleByName("GFP"),
                 getMedecinByName("aaa"), getSpecialisteByName("xxx")));
     }
 }

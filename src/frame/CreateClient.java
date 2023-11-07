@@ -2,8 +2,10 @@ package frame;
 
 import classmetier.Clients;
 import classmetier.Medecins;
+import classmetier.Mutuelle;
 import classmetier.Specialistes;
 import dao.MedecinDAO;
+import dao.MutuelleDAO;
 import dao.SpecialisteDAO;
 
 import javax.swing.*;
@@ -42,6 +44,7 @@ public class CreateClient extends JFrame {
 
     MedecinDAO medecinDAO = new MedecinDAO();
     SpecialisteDAO specialisteDAO = new SpecialisteDAO();
+    MutuelleDAO mutuelleDAO = new MutuelleDAO();
 
     public CreateClient() throws Exception {
         try {
@@ -64,6 +67,10 @@ public class CreateClient extends JFrame {
         for (Specialistes specialistes : specialisteDAO.findAll()) {
             comboSpecialiste.addItem(specialistes.getNom());
             comboSpecialiste.setSelectedIndex(-1);
+        }
+        for (Mutuelle mutuelle : mutuelleDAO.findAll()) {
+            comboMutuelle.addItem(mutuelle.getNom());
+            comboMutuelle.setSelectedIndex(-1);
         }
         btnRetour.addActionListener(new ActionListener() {
             @Override

@@ -1,6 +1,5 @@
 package dao;
 
-import classmetier.Clients;
 import classmetier.Medecins;
 import utils.MyException;
 

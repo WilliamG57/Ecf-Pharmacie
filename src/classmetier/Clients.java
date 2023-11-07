@@ -2,15 +2,15 @@ package classmetier;
 
 public class Clients extends Personnes {
 
-    private int cli_id;
+    private int cliId;
     private String securiteSociale;
     private String dateNaissance;
-    private String mutuelle;
+    private Mutuelle mutuelle;
     private Medecins medecin;
     private Specialistes specialiste;
-
     private int medecin_id;
     private int specialiste_id;
+    private int mutuelle_id;
 
     /**
      * Constructeur client
@@ -30,7 +30,7 @@ public class Clients extends Personnes {
      * @throws Exception
      */
     public Clients(String nom, String prenom, String adresse, String codePostal, String ville, String telephone,
-                   String email, String securiteSociale, String dateNaissance, String mutuelle, Medecins medecin, Specialistes specialiste) throws Exception {
+                   String email, String securiteSociale, String dateNaissance, Mutuelle mutuelle, Medecins medecin, Specialistes specialiste) throws Exception {
         super(nom, prenom, adresse, codePostal, ville, telephone, email);
         this.setSecuriteSociale(securiteSociale);
         this.setDateNaissance(dateNaissance);
@@ -48,12 +48,12 @@ public class Clients extends Personnes {
      * Mise en place des getters/setters
      */
 
-    public int getCli_id() {
-        return cli_id;
+    public int getCliId() {
+        return cliId;
     }
 
-    public void setCli_id(int cli_id) {
-        this.cli_id = cli_id;
+    public void setCliId(int cliId) {
+        this.cliId = cliId;
     }
 
     public String getSecuriteSociale() {
@@ -72,11 +72,11 @@ public class Clients extends Personnes {
         this.dateNaissance = dateNaissance;
     }
 
-    public String getMutuelle() {
+    public Mutuelle getMutuelle() {
         return mutuelle;
     }
 
-    public void setMutuelle(String mutuelle) {
+    public void setMutuelle(Mutuelle mutuelle) {
         this.mutuelle = mutuelle;
     }
 
@@ -110,5 +110,13 @@ public class Clients extends Personnes {
 
     public void setSpecialiste_id(int specialiste_id) {
         this.specialiste_id = specialiste_id;
+    }
+
+    public int getMutuelle_id() {
+        return mutuelle_id;
+    }
+
+    public void setMutuelle_id(int mutuelle_id) {
+        this.mutuelle_id = mutuelle_id;
     }
 }

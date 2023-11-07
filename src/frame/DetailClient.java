@@ -78,7 +78,7 @@ public class DetailClient extends JFrame {
                         textPostal.setText(clients.getCodePostal());
                         textVille.setText(clients.getVille());
                         textSecu.setText(clients.getSecuriteSociale() + "");
-                        textMutuelle.setText(clients.getMutuelle());
+                        textMutuelle.setText(clients.getMutuelle().getNom());
                         textMedecin.setText(clients.getMedecin().getNom());
                         textSpecialiste.setText(clients.getSpecialiste().getNom());
                     }
