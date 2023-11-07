@@ -35,8 +35,8 @@ public class MedicamentTest {
     public void setMiseEnServiceInvalide() throws Exception {
         MyException message = assertThrows(
                 MyException.class,
-                () -> medicaments.setMiseEnService("1988/11/20");
-        );
+                () -> medicaments.setMiseEnService("1988/11/20"));
+
         assertEquals("La date de mise en service n'est pas au bon format", message.getMessage());
     }
 }

@@ -46,7 +46,7 @@ public class MedicamentDAO extends DAO<Medicaments> {
                 medi.setMedicamentID(resultSet.getInt("medi_id"));
                 medi.setNom(resultSet.getString("medi_nom"));
                 medi.setPrix(resultSet.getDouble("medi_prix"));
-                medi.setMiseEnService(resultSet.getDate("medi_miseenservice"));
+                medi.setMiseEnService(resultSet.getString("medi_miseenservice"));
             }
         } catch (MyException e) {
             throw new RuntimeException(e);

@@ -81,10 +81,10 @@ public class Pharmacie {
         /**
          * Creation du jeu de test de medicaments
          */
-        ajoutMedicament(new Medicaments("Doliprane", "Anti-douleur", "4,50", "Mars 1964", "14"));
-        ajoutMedicament(new Medicaments("Millepertuis", "Somnifère", "7,90", "Juin 1985", "8"));
-        ajoutMedicament(new Medicaments("Collyre", "Goutte", "3,39", "Mars 1954", "31"));
-        ajoutMedicament(new Medicaments("Sildenafil", "Viagra", "9,99", "Avril 1998", "18"));
+        ajoutMedicament(new Medicaments("Doliprane", "Anti-douleur", 4.50, "Mars 1964", "14"));
+        ajoutMedicament(new Medicaments("Millepertuis", "Somnifère", 7.90, "Juin 1985", "8"));
+        ajoutMedicament(new Medicaments("Collyre", "Goutte", 3.39, "Mars 1954", "31"));
+        ajoutMedicament(new Medicaments("Sildenafil", "Viagra", 9.99, "Avril 1998", "18"));
 
         /**
          * Creation du jeu de test de medecins
