@@ -63,7 +63,7 @@ public class MedecinDAO extends DAO<Medecins> {
 
     @Override
     public List<Medecins> findAll() throws Exception {
-        String query = "SELECT * FROM personne p JOIN medecin m c ON p.per_id = m.per_id";
+        String query = "SELECT * FROM personne p JOIN medecin m ON p.per_id = m.per_id";
         PreparedStatement statement = connect.prepareStatement(query);
         ResultSet resultSet = statement.executeQuery();
         while (resultSet.next()) {
@@ -77,6 +77,7 @@ public class MedecinDAO extends DAO<Medecins> {
             med.setTelephone(resultSet.getString("per_telephone"));
             med.setEmail(resultSet.getString("per_email"));
             med.setAgreement(resultSet.getInt("med_agreement"));
+            medecins.add(med);
         }
         resultSet.close();
         return medecins;

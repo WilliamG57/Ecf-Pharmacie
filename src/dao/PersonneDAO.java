@@ -20,7 +20,6 @@ public class PersonneDAO extends DAO<Personnes> {
     public void create(Personnes obj) {
         StringBuilder insertPersonne = new StringBuilder();
         insertPersonne.append("insert into personne");
-
         insertPersonne.append("(per_nom, per_prenom, per_telephone, per_email, per_adr," +
                 " per_codepostal, per_ville)");
 

@@ -14,6 +14,7 @@ public class Accueil extends JFrame {
     private JButton btnHistorique;
     private JButton btnQuitter;
     private JButton btnOrdonnance;
+    private JButton btnCreate;
 
     public static void designAccueil() {
         try {
@@ -65,6 +66,20 @@ public class Accueil extends JFrame {
                 DetailClient y = null;
                 try {
                     y = new DetailClient();
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+                y.setVisible(true);
+                dispose();
+            }
+        });
+
+        btnCreate.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CreateClient y = null;
+                try {
+                    y = new CreateClient();
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }

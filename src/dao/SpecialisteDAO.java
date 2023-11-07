@@ -64,7 +64,7 @@ public class SpecialisteDAO extends DAO<Specialistes> {
 
         @Override
     public List<Specialistes> findAll() throws Exception {
-        String query = "SELECT * FROM personne p JOIN specialiste s c ON p.per_id = s.per_id";
+        String query = "SELECT * FROM personne p JOIN specialiste s ON p.per_id = s.per_id";
         PreparedStatement statement = connect.prepareStatement(query);
         ResultSet resultSet = statement.executeQuery();
         while (resultSet.next()) {
@@ -78,8 +78,9 @@ public class SpecialisteDAO extends DAO<Specialistes> {
             spe.setTelephone(resultSet.getString("per_telephone"));
             spe.setEmail(resultSet.getString("per_email"));
             spe.setSpecialite(resultSet.getString("spe_specialite"));
+            specialistes.add(spe);
         }
         resultSet.close();
-        return null;
+        return specialistes;
     }
 }

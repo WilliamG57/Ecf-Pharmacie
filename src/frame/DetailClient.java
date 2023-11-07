@@ -58,9 +58,6 @@ public class DetailClient extends JFrame {
         setContentPane(detailClientPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        ;
-
-
         for (Clients clients : clientService.findAll()) {
             listeClient.addItem(clients.getNom());
             listeClient.setSelectedIndex(-1);
@@ -153,27 +150,27 @@ public class DetailClient extends JFrame {
             }
         });
 
-        btnCreate.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //if (null == textNom) {
-                textNom.setEditable(true);
-                textPrenom.setEditable(true);
-                textNaissance.setEditable(true);
-                textTelephone.setEditable(true);
-                textMail.setEditable(true);
-                textSpecialiste.setEditable(true);
-                textAdresse.setEditable(true);
-                textPostal.setEditable(true);
-                textVille.setEditable(true);
-                textSecu.setEditable(true);
-                textMutuelle.setEditable(true);
-                textMedecin.setEditable(true);
-               // } else {
-                //    return;
-                //}
-            }
-        });
+//        btnCreate.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                //if (null == textNom) {
+//                textNom.setEditable(true);
+//                textPrenom.setEditable(true);
+//                textNaissance.setEditable(true);
+//                textTelephone.setEditable(true);
+//                textMail.setEditable(true);
+//                textSpecialiste.setEditable(true);
+//                textAdresse.setEditable(true);
+//                textPostal.setEditable(true);
+//                textVille.setEditable(true);
+//                textSecu.setEditable(true);
+//                textMutuelle.setEditable(true);
+//                textMedecin.setEditable(true);
+//                // } else {
+//                //    return;
+//                //}
+//            }
+//        });
         btnRetour.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

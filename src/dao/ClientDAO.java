@@ -1,7 +1,6 @@
 package dao;
 
 import classmetier.Clients;
-import classmetier.Medecins;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -100,4 +99,4 @@ public class ClientDAO extends DAO<Clients> {
         return client;
     }
 }
-}
+
