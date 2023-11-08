@@ -11,7 +11,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 
-public class DetailClient extends JFrame {
+public class DetailClientFrame extends JFrame {
     private JComboBox listeClient;
     private JPanel detailClientPanel;
     private JLabel nomClient;
@@ -44,14 +44,14 @@ public class DetailClient extends JFrame {
 
     ClientService clientService = new ClientService();
 
-    public DetailClient() throws Exception {
+    public DetailClientFrame() throws Exception {
 
         try {
             UIManager.setLookAndFeel(new NimbusLookAndFeel());
         } catch (Exception ex) {
             System.err.println("Failed to initialize LaF");
         }
-        setTitle("Client");
+        setTitle("Détail client");
         setSize(1000, 600);
         setLocationRelativeTo(null);
         setVisible(true);
@@ -88,9 +88,9 @@ public class DetailClient extends JFrame {
         textSpecialiste.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Generique x = null;
+                GeneriqueFrame x = null;
                 try {
-                    x = new Generique(textSpecialiste.getText(), "Specialiste");
+                    x = new GeneriqueFrame(textSpecialiste.getText(), "Specialiste");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
@@ -122,7 +122,7 @@ public class DetailClient extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 try {
-                    Generique x = new Generique(textMedecin.getText(), "Medecin");
+                    GeneriqueFrame x = new GeneriqueFrame(textMedecin.getText(), "Medecin");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
@@ -175,7 +175,7 @@ public class DetailClient extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                Accueil.designAccueil();
+                AccueilFrame.designAccueil();
             }
         });
     }

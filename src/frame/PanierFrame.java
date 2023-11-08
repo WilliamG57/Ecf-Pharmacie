@@ -5,7 +5,6 @@ import classmetier.LigneArticle;
 import classmetier.Paniers;
 import service.HistoriqueService;
 import service.PanierService;
-import utils.DateManagment;
 import utils.MyException;
 
 import javax.swing.*;
@@ -15,15 +14,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class Panier extends JFrame {
+public class PanierFrame extends JFrame {
 
     private JPanel panierPanel;
     private JTable tablePanier;
     private DefaultTableModel model;
     private Paniers currentPanier;
     private HistoriqueService historiqueService = new HistoriqueService();
+    private PanierService panierService = new PanierService();
 
-    public Panier(Paniers pa) throws MyException {
+    public PanierFrame(Paniers pa) throws MyException {
         currentPanier = pa;
         try {
             UIManager.setLookAndFeel(new NimbusLookAndFeel());
@@ -57,10 +57,13 @@ public class Panier extends JFrame {
                 Historiques h = historiqueService.transfertPanierHistorique(currentPanier);
                 try {
                     historiqueService.ajoutHistorique(h);
+                    //panierService.supprimerPanier();
+                    pa.getLigneArticles().clear();
                 } catch (MyException ex) {
                     throw new RuntimeException(ex);
                 }
                 JOptionPane.showMessageDialog(null,"Achat validée");
+                dispose();
             }
         });
 
@@ -69,7 +72,7 @@ public class Panier extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (tablePanier.getSelectedRow() != -1) {
                     int ligneSelection = tablePanier.getSelectedRow();
-                    currentPanier.getLigneArticles().remove(ligneSelection);
+                    pa.getLigneArticles().remove(ligneSelection);
                     model.removeRow(ligneSelection);
                 }
             }

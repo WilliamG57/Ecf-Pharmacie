@@ -1,19 +1,14 @@
 package frame;
 
-import classmetier.Clients;
-import classmetier.Medecins;
-import classmetier.Mutuelle;
-import classmetier.Specialistes;
-import dao.MedecinDAO;
-import dao.MutuelleDAO;
-import dao.SpecialisteDAO;
+import classmetier.*;
+import dao.*;
 
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CreateClient extends JFrame {
+public class CreateClientFrame extends JFrame {
     private JPanel createPanel;
     private JButton btnRetour;
     private JTextField textNom;
@@ -42,11 +37,13 @@ public class CreateClient extends JFrame {
     private JLabel medecinClient;
     private JLabel specialisteClient;
 
-    MedecinDAO medecinDAO = new MedecinDAO();
-    SpecialisteDAO specialisteDAO = new SpecialisteDAO();
-    MutuelleDAO mutuelleDAO = new MutuelleDAO();
+    private PersonneDAO personneDAO = new PersonneDAO();
+    private ClientDAO clientDAO = new ClientDAO();
+    private MedecinDAO medecinDAO = new MedecinDAO();
+    private SpecialisteDAO specialisteDAO = new SpecialisteDAO();
+    private MutuelleDAO mutuelleDAO = new MutuelleDAO();
 
-    public CreateClient() throws Exception {
+    public CreateClientFrame() throws Exception {
         try {
             UIManager.setLookAndFeel(new NimbusLookAndFeel());
         } catch (Exception ex) {
@@ -60,24 +57,86 @@ public class CreateClient extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         for (Medecins medecins : medecinDAO.findAll()) {
-            comboMedecin.addItem(medecins.getNom());
+            comboMedecin.addItem(medecins);
             comboMedecin.setSelectedIndex(-1);
         }
 
         for (Specialistes specialistes : specialisteDAO.findAll()) {
-            comboSpecialiste.addItem(specialistes.getNom());
+            comboSpecialiste.addItem(specialistes);
             comboSpecialiste.setSelectedIndex(-1);
         }
         for (Mutuelle mutuelle : mutuelleDAO.findAll()) {
-            comboMutuelle.addItem(mutuelle.getNom());
+            comboMutuelle.addItem(mutuelle);
             comboMutuelle.setSelectedIndex(-1);
         }
         btnRetour.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                Accueil.designAccueil();
+                AccueilFrame.designAccueil();
+            }
+        });
+
+        btnCreate.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Object selectItem = comboMutuelle.getSelectedItem();
+                int muId = ((Mutuelle) selectItem).getMutId();
+                Object selectItem1 = comboMedecin.getSelectedItem();
+                int mId = ((Medecins) selectItem1).getMedId();
+                Object selectItem2 = comboSpecialiste.getSelectedItem();
+                int sId = ((Specialistes) selectItem2).getSpeId();
+                try {
+                    Clients cl = new Clients(nomClient.getText(), prenomClient.getText(), adresseClient.getText(),
+                            textPostal.getText(), villeClient.getText(), telClient.getText(), mailClient.getText(),
+                            secuClient.getText(), dateClient.getText(), muId, mId, sId);
+                    clientDAO.create(cl);
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

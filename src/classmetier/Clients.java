@@ -43,6 +43,9 @@ public class Clients extends Personnes {
         super();
     }
 
+    public Clients(String text, String text1, String text2, String text3, String text4, String text5, String text6, String text7, String text8, int muId, int mId, int sId) {
+    }
+
 
     /**
      * Mise en place des getters/setters

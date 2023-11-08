@@ -5,6 +5,7 @@ package classmetier;
  */
 public abstract class Personnes {
 
+    private int perId;
     private String nom;
     private String prenom;
     private String adresse;
@@ -15,7 +16,6 @@ public abstract class Personnes {
 
     public Personnes() {
     }
-
 
     /**
      * Constructeur qui servira de base pour les enfants
@@ -38,12 +38,20 @@ public abstract class Personnes {
         this.email = email;
     }
 
+
     /**
      * Mise en place des getters/setters
      *
      * @return
      */
 
+    public int getPerId() {
+        return perId;
+    }
+
+    public void setPerId(int perId) {
+        this.perId = perId;
+    }
 
     public String getNom() {
         return nom;

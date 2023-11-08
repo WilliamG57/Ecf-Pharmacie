@@ -44,4 +44,8 @@ public class Specialistes extends Personnes {
     public void setSpecialite(String specialite) {
         this.specialite = specialite;
     }
+
+    public String toString() {
+        return getNom();
+    }
 }

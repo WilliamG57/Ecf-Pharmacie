@@ -10,12 +10,12 @@ import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Historique extends JFrame {
+public class HistoriqueFrame extends JFrame {
     private JPanel historiquePanel;
     private JTable table1;
     private JTextField textField;
 
-    public Historique() {
+    public HistoriqueFrame() {
         try {
             UIManager.setLookAndFeel(new NimbusLookAndFeel());
         } catch (Exception ex) {
@@ -36,7 +36,7 @@ public class Historique extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                Accueil.designAccueil();
+                AccueilFrame.designAccueil();
             }
         });
     }

@@ -16,13 +16,13 @@ public class PersonneTest {
     public PersonneTest() throws Exception {
     }
 
-    @BeforeAll
-    public static void before() throws Exception {
-        p = new Pharmacie();
-        clients = new Clients("a", "a", "a", "99999", "a", "0123456789", "a.aa@gmail.com",
-                "111111111111111", "04-09-2020", p.getMutuelleByName("er"), p.getMedecinByName("a"), p.getSpecialisteByName("a"));
-
-    }
+//    @BeforeAll
+//    public static void before() throws Exception {
+//        p = new Pharmacie();
+//        clients = new Clients("a", "a", "a", "99999", "a", "0123456789", "a.aa@gmail.com",
+//                "111111111111111", "04-09-2020", p.getMutuelleByName("er"), p.getMedecinByName("a"), p.getSpecialisteByName("a"));
+//
+//    }
 
     @Test
     public void setCodePostalValide() throws Exception {

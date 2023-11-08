@@ -16,8 +16,33 @@ public class ClientDAO extends DAO<Clients> {
     }
 
     @Override
-    public void create(Clients obj) {
+    public int create(Clients obj) {
 
+        StringBuilder insertClient = new StringBuilder();
+        insertClient.append("insert into personne");
+        insertClient.append("(cli_id, cli_secu, cli_datenaissance, per_id, spe_id, med_id, mut_id");
+        insertClient.append("values(?, ?, ?, ?, ?, ?, ?");
+
+        int newId = 0;
+        try (PreparedStatement ps = this.connect.prepareStatement(insertClient.toString(), PreparedStatement.RETURN_GENERATED_KEYS)) {
+            ps.setInt(1, obj.getPerId());
+            ps.setString(1, obj.getSecuriteSociale());
+            ps.setString(2, obj.getDateNaissance());
+            ps.setString(3, obj.getTelephone());
+            ps.setString(4, obj.getEmail());
+            ps.setString(5, obj.getAdresse());
+            ps.setString(6, obj.getCodePostal());
+            ps.setString(7, obj.getVille());
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                newId = rs.getInt("cli_id");
+            }
+        } catch (SQLException e) {
+            System.out.println("RelationWithDB erreur : " + e.getMessage()
+                    + "[SQL error code : " + e.getSQLState() + "]");
+        }
+        return newId;
     }
 
     @Override
@@ -25,7 +50,7 @@ public class ClientDAO extends DAO<Clients> {
         StringBuilder sqlDeleteClient = new StringBuilder();
         sqlDeleteClient.append("DELETE FROM client ");
         sqlDeleteClient.append("WHERE cli_id=?");
-        boolean requeteOk = false;
+        boolean requeteOk;
         try (PreparedStatement preparedStatement = connect.prepareStatement(sqlDeleteClient.toString())) {
             preparedStatement.setInt(1, obj.getCliId());
             requeteOk = true;

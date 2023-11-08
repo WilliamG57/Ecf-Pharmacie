@@ -18,13 +18,14 @@ public class HistoriqueService {
     public static ArrayList<Historiques> getHistorique() {
         return historique;
     }
+
     public HistoriqueService() {
     }
 
     /**
      * Methode pour transferer le panier dans l'historique
      */
-    public Historiques transfertPanierHistorique (Paniers p) {
+    public Historiques transfertPanierHistorique(Paniers p) {
         Historiques h = new Historiques();
         h.setNom(p.getNom());
         h.setMedecin(p.getMedecin());
@@ -40,41 +41,11 @@ public class HistoriqueService {
             h.setMedicament(la.getMedicament());
             h.setPrix(la.getPrix());
             h.setQuantite(la.getQuantite());
-        } return h;
+        }
+        return h;
     }
-    /**
-     * Constructeur de base pour les achats sans ordonnance
-     * @param nom nom du client
-     * @param date date d'achat
-     * @param medicament nom du medicament
-     * @param quantite quantite de medicament
-     * @param prix prix du medicament
-     * @throws MyException
-     */
-    //public void ajoutHistorique(String nom, String date, String medicament, int quantite, String prix) throws MyException {
-    //    historique.add(new Historiques(nom, date, medicament, quantite, prix));
-   //}
 
     public void ajoutHistorique(Historiques h) throws MyException {
         historique.add(h);
     }
-
-    /**
-     * Constructeur surcharge pour les achats avec ordonnnance
-     * @param nom nom du client
-     * @param date date d'achat
-     * @param medicament nom du medicament
-     * @param quantite quantite de medicament
-     * @param prix prix du medicament
-     * @param medecin nom du medecin
-     * @param specialiste nom du specialiste
-     * @param Ordonnance boolean pour savoir si il y a une ordonnance ou non
-     * @throws MyException
-     */
-//    public void ajoutHistorique(String nom, String date, String medicament, int quantite, String prix,
-//                                       String medecin, String specialiste, Boolean Ordonnance) throws MyException {
-//        historique.add(new Historiques(nom, date, medicament, quantite, prix, medecin, specialiste, Ordonnance));
-//    }
-
-
 }

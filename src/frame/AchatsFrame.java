@@ -2,9 +2,10 @@ package frame;
 
 import classmetier.Clients;
 import classmetier.Medicaments;
-import classmetier.Paniers;
 import classmetier.Pharmacie;
-import service.HistoriqueService;
+import dao.ClientDAO;
+import dao.MedicamentDAO;
+import service.ClientService;
 import service.PanierService;
 import utils.MyException;
 
@@ -13,7 +14,7 @@ import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Achats extends JFrame {
+public class AchatsFrame extends JFrame {
     private JPanel achatPanel;
     private JComboBox comboClient;
     private JButton btnAchat;
@@ -29,35 +30,38 @@ public class Achats extends JFrame {
     private JLabel labelMedicament;
     private JLabel textTitre;
     private JTextField textBoolean;
-    Pharmacie p = new Pharmacie();
+    private ClientDAO clientDAO = new ClientDAO();
+    private MedicamentDAO medicamentDAO = new MedicamentDAO();
+
     private PanierService panierService = new PanierService();
 
 
-    public Achats() throws Exception {
+    public AchatsFrame() throws Exception {
         try {
             UIManager.setLookAndFeel(new NimbusLookAndFeel());
         } catch (Exception ex) {
             System.err.println("Failed to initialize LaF");
         }
-        setTitle("Client");
+        setTitle("Achat");
         setSize(1000, 600);
         setLocationRelativeTo(null);
         setVisible(true);
         setContentPane(achatPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        for (Clients clients : p.getClient()) {
+        for (Clients clients : clientDAO.findAll()) {
             comboClient.addItem(clients.getNom());
             comboClient.setSelectedIndex(-1);
         }
-        for (Medicaments medicaments : p.getMedicament()) {
+        for (Medicaments medicaments : medicamentDAO.findAll()) {
             comboMedicament.addItem(medicaments.getNom());
             comboMedicament.setSelectedIndex(-1);
             comboMedicament.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     if (medicaments.getNom().equals(comboMedicament.getSelectedItem())) {
-                        textPrix.setText(medicaments.getPrix());
+                        double prix = medicaments.getPrix();
+                        textPrix.setText(String.valueOf(prix));
                     }
                 }
             });
@@ -73,9 +77,9 @@ public class Achats extends JFrame {
                     JOptionPane.showMessageDialog(null, ex.getMessage());
                     throw new RuntimeException(ex);
                 }
-                Panier y = null;
+                PanierFrame y = null;
                 try {
-                    y = new Panier(panierService.getPanier());
+                    y = new PanierFrame(panierService.getPanier());
                 } catch (MyException ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage());
                     throw new RuntimeException(ex);
@@ -88,7 +92,7 @@ public class Achats extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                Accueil.designAccueil();
+                AccueilFrame.designAccueil();
             }
         });
     }

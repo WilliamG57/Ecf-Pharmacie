@@ -8,7 +8,7 @@ import java.util.List;
 public abstract class DAO<T> {
     protected static Connection connect = Singleton.getInstanceDB();
 
-    public abstract void create(T obj);
+    public abstract int create(T obj);
 
     public abstract boolean delete(T obj);
 

@@ -1,9 +1,6 @@
 package dao;
 
-import classmetier.Clients;
-import classmetier.Medecins;
 import classmetier.Specialistes;
-import utils.MyException;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,8 +17,9 @@ public class SpecialisteDAO extends DAO<Specialistes> {
     }
 
     @Override
-    public void create(Specialistes obj) {
+    public int create(Specialistes obj) {
 
+        return 0;
     }
 
     @Override

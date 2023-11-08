@@ -11,9 +11,6 @@ public class Paniers {
         return ligneArticles;
     }
 
-//    public void setLigneArticles(ArrayList<LigneArticle> ligneArticles) {
-//        this.ligneArticles = ligneArticles;
-//    }
 
     private String nom;
     private String medecin;

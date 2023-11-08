@@ -1,6 +1,11 @@
 package frame;
 
 import classmetier.*;
+import dao.MedecinDAO;
+import dao.MedicamentDAO;
+import dao.MutuelleDAO;
+import dao.SpecialisteDAO;
+import service.ClientService;
 import service.PanierService;
 import utils.MyException;
 import javax.swing.*;
@@ -8,7 +13,7 @@ import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AchatOrdonnance extends JFrame {
+public class AchatOrdonnanceFrame extends JFrame {
     private JTextField textPrix;
     private JTextField textQuantite;
     private JTextField textDate;
@@ -30,8 +35,15 @@ public class AchatOrdonnance extends JFrame {
     private JTextField textBoolean;
     Pharmacie p = new Pharmacie();
     private PanierService panierService = new PanierService();
+    ClientService clientService = new ClientService();
+    MedecinDAO medecinDAO = new MedecinDAO();
+    SpecialisteDAO specialisteDAO = new SpecialisteDAO();
+    MutuelleDAO mutuelleDAO = new MutuelleDAO();
+    MedicamentDAO medicamentDAO = new MedicamentDAO();
 
-    public AchatOrdonnance() throws Exception {
+
+
+    public AchatOrdonnanceFrame() throws Exception {
         try {
             UIManager.setLookAndFeel(new NimbusLookAndFeel());
         } catch (Exception ex) {
@@ -44,29 +56,30 @@ public class AchatOrdonnance extends JFrame {
         setContentPane(OrdonnancePanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        for (Clients clients : p.getClient()) {
+        for (Clients clients : clientService.findAll()) {
             comboClient.addItem(clients.getNom());
             comboClient.setSelectedIndex(-1);
         }
 
-        for (Medecins medecins : p.getMedecin()) {
+        for (Medecins medecins : medecinDAO.findAll()) {
             comboMedecin.addItem(medecins.getNom());
             comboMedecin.setSelectedIndex(-1);
         }
 
-        for (Specialistes specialistes : p.getSpecialiste()) {
+        for (Specialistes specialistes : specialisteDAO.findAll()) {
             comboSpecialiste.addItem(specialistes.getNom());
             comboSpecialiste.setSelectedIndex(-1);
         }
 
-        for (Medicaments medicaments : p.getMedicament()) {
+        for (Medicaments medicaments : medicamentDAO.findAll()) {
             comboMedicament.addItem(medicaments.getNom());
             comboMedicament.setSelectedIndex(-1);
             comboMedicament.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     if (medicaments.getNom().equals(comboMedicament.getSelectedItem())) {
-                        textPrix.setText(medicaments.getPrix());
+                        double prix = medicaments.getPrix();
+                        textPrix.setText(String.valueOf(prix));
                     }
                 }
             });
@@ -91,9 +104,9 @@ public class AchatOrdonnance extends JFrame {
                     throw new RuntimeException(ex);
                 }
                 JOptionPane.showMessageDialog(null, "Enregistré dans le panier");
-                Panier y = null;
+                PanierFrame y = null;
                 try {
-                    y = new Panier(panierService.getPanier());
+                    y = new PanierFrame(panierService.getPanier());
                 } catch (MyException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -105,7 +118,7 @@ public class AchatOrdonnance extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                Accueil.designAccueil();
+                AccueilFrame.designAccueil();
             }
         });
     }

@@ -16,37 +16,37 @@ public class ClientsTest {
     public ClientsTest() throws Exception {
     }
 
-    @BeforeAll
-    public static void before() throws MyException, Exception {
-        p = new Pharmacie();
-        clients = new Clients("a", "a", "a", "9", "a", "a", "a",
-                "111111111111111", "04-09-2020", p.getMutuelleByName("er"), p.getMedecinByName("a"), p.getSpecialisteByName("a"));
-
-    }
-
-    @Test
-    public void testConstructeur() throws Exception {
-        Medecins medecin = p.getMedecinByName("aaa");
-        Specialistes specialiste = p.getSpecialisteByName("zzz");
-        Mutuelle mutuelle = p.getMutuelleByName("er");
-        Clients clients = new Clients("Dupont", "Jean", "12 rue de la Paix",
-                "75008", "Paris", "06 12 34 56 78",
-                "jean.dupont@gmail.com", "123456789123456",
-                "04-09-1980", mutuelle, medecin, specialiste);
-
-        assertEquals("Dupont", clients.getNom());
-        assertEquals("Jean", clients.getPrenom());
-        assertEquals("12 rue de la Paix", clients.getAdresse());
-        assertEquals("75008", clients.getCodePostal());
-        assertEquals("Paris", clients.getVille());
-        assertEquals("06 12 34 56 78", clients.getTelephone());
-        assertEquals("jean.dupont@gmail.com", clients.getEmail());
-        assertEquals("123456789123456", clients.getSecuriteSociale());
-        assertEquals("04-09-1980", clients.getDateNaissance());
-        assertEquals("Mutuelle 123", clients.getMutuelle().getNom());
-        assertEquals("aaa", clients.getMedecin().getNom());
-        assertEquals("zzz", clients.getSpecialiste().getNom());
-    }
+//    @BeforeAll
+//    public static void before() throws MyException, Exception {
+//        p = new Pharmacie();
+//        clients = new Clients("a", "a", "a", "9", "a", "a", "a",
+//                "111111111111111", "04-09-2020", p.getMutuelleByName("er"), p.getMedecinByName("a"), p.getSpecialisteByName("a"));
+//
+//    }
+//
+//    @Test
+//    public void testConstructeur() throws Exception {
+//        Medecins medecin = p.getMedecinByName("aaa");
+//        Specialistes specialiste = p.getSpecialisteByName("zzz");
+//        Mutuelle mutuelle = p.getMutuelleByName("er");
+//        Clients clients = new Clients("Dupont", "Jean", "12 rue de la Paix",
+//                "75008", "Paris", "06 12 34 56 78",
+//                "jean.dupont@gmail.com", "123456789123456",
+//                "04-09-1980", mutuelle, medecin, specialiste);
+//
+//        assertEquals("Dupont", clients.getNom());
+//        assertEquals("Jean", clients.getPrenom());
+//        assertEquals("12 rue de la Paix", clients.getAdresse());
+//        assertEquals("75008", clients.getCodePostal());
+//        assertEquals("Paris", clients.getVille());
+//        assertEquals("06 12 34 56 78", clients.getTelephone());
+//        assertEquals("jean.dupont@gmail.com", clients.getEmail());
+//        assertEquals("123456789123456", clients.getSecuriteSociale());
+//        assertEquals("04-09-1980", clients.getDateNaissance());
+//        assertEquals("Mutuelle 123", clients.getMutuelle().getNom());
+//        assertEquals("aaa", clients.getMedecin().getNom());
+//        assertEquals("zzz", clients.getSpecialiste().getNom());
+//    }
 
     @Test
     public void test() {

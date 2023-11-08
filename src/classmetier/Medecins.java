@@ -51,4 +51,7 @@ public class Medecins extends Personnes {
         }
         this.agreement = agreement;
     }
+    public String toString() {
+        return getNom();
+    }
 }

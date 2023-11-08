@@ -17,8 +17,9 @@ public class MutuelleDAO extends DAO<Mutuelle> {
     }
 
     @Override
-    public void create(Mutuelle obj) {
+    public int create(Mutuelle obj) {
 
+        return 0;
     }
 
     @Override
@@ -51,9 +52,7 @@ public class MutuelleDAO extends DAO<Mutuelle> {
 
     @Override
     public List<Mutuelle> findAll() throws Exception {
-        StringBuilder sqlFindMutuelle = new StringBuilder();
-        sqlFindMutuelle.append("SELECT * FROM mutuelle");
-        PreparedStatement preparedStatement = connect.prepareStatement(sqlFindMutuelle.toString());
+        PreparedStatement preparedStatement = connect.prepareStatement("SELECT * FROM mutuelle");
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             Mutuelle mut = new Mutuelle();

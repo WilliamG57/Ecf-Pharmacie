@@ -18,8 +18,9 @@ public class MedicamentDAO extends DAO<Medicaments> {
     }
 
     @Override
-    public void create(Medicaments obj) {
+    public int create(Medicaments obj) {
 
+        return 0;
     }
 
     @Override
@@ -51,11 +52,21 @@ public class MedicamentDAO extends DAO<Medicaments> {
         } catch (MyException e) {
             throw new RuntimeException(e);
         }
-        return null;
+        return medi;
     }
 
     @Override
     public List<Medicaments> findAll() throws Exception {
-        return null;
+        PreparedStatement preparedStatement = connect.prepareStatement("SELECT * FROM medicament");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            Medicaments medi = new Medicaments();
+            medi.setMedicamentID(resultSet.getInt("medi_id"));
+            medi.setNom(resultSet.getString("medi_nom"));
+            medi.setPrix(resultSet.getDouble("medi_prix"));
+            medi.setMiseEnService(resultSet.getString("medi_miseenservice"));
+            medicaments.add(medi);
+        }
+        return medicaments;
     }
 }

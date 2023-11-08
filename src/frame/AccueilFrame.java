@@ -7,7 +7,7 @@ import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Accueil extends JFrame {
+public class AccueilFrame extends JFrame {
     private JButton btnAchat;
     private JPanel accueilChoix;
     private JButton btnClient;
@@ -22,7 +22,7 @@ public class Accueil extends JFrame {
         } catch (Exception ex) {
             System.err.println("Failed to initialize LaF");
         }
-        Accueil x = new Accueil();
+        AccueilFrame x = new AccueilFrame();
         x.setSize(1000, 600);
         x.setLocationRelativeTo(null);
         x.setVisible(true);
@@ -31,14 +31,14 @@ public class Accueil extends JFrame {
 
     }
 
-    public Accueil() {
+    public AccueilFrame() {
 
         btnAchat.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Achats y = null;
+                AchatsFrame y = null;
                 try {
-                    y = new Achats();
+                    y = new AchatsFrame();
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
@@ -50,9 +50,9 @@ public class Accueil extends JFrame {
         btnOrdonnance.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AchatOrdonnance y = null;
+                AchatOrdonnanceFrame y = null;
                 try {
-                    y = new AchatOrdonnance();
+                    y = new AchatOrdonnanceFrame();
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
@@ -63,9 +63,9 @@ public class Accueil extends JFrame {
         btnClient.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DetailClient y = null;
+                DetailClientFrame y = null;
                 try {
-                    y = new DetailClient();
+                    y = new DetailClientFrame();
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
@@ -77,9 +77,9 @@ public class Accueil extends JFrame {
         btnCreate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                CreateClient y = null;
+                CreateClientFrame y = null;
                 try {
-                    y = new CreateClient();
+                    y = new CreateClientFrame();
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
@@ -91,7 +91,7 @@ public class Accueil extends JFrame {
         btnHistorique.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Historique y = new Historique();
+                HistoriqueFrame y = new HistoriqueFrame();
                 y.setVisible(true);
                 dispose();
             }

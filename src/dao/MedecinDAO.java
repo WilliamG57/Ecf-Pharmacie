@@ -18,8 +18,9 @@ public class MedecinDAO extends DAO<Medecins> {
     }
 
     @Override
-    public void create(Medecins obj) {
+    public int create(Medecins obj) {
 
+        return 0;
     }
 
     @Override
