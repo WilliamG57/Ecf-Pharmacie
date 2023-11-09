@@ -21,7 +21,6 @@ public class PanierFrame extends JFrame {
     private DefaultTableModel model;
     private Paniers currentPanier;
     private HistoriqueService historiqueService = new HistoriqueService();
-    private PanierService panierService = new PanierService();
 
     public PanierFrame(Paniers pa) throws MyException {
         currentPanier = pa;
@@ -57,7 +56,6 @@ public class PanierFrame extends JFrame {
                 Historiques h = historiqueService.transfertPanierHistorique(currentPanier);
                 try {
                     historiqueService.ajoutHistorique(h);
-                    //panierService.supprimerPanier();
                     pa.getLigneArticles().clear();
                 } catch (MyException ex) {
                     throw new RuntimeException(ex);

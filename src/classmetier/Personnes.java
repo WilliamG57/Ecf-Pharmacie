@@ -28,7 +28,8 @@ public abstract class Personnes {
      * @param telephone
      * @param email
      */
-    public Personnes(String nom, String prenom, String adresse, String codePostal, String ville, String telephone, String email) {
+    public Personnes(String nom, String prenom, String adresse, String codePostal,
+                     String ville, String telephone, String email) {
         this.nom = nom;
         this.prenom = prenom;
         this.adresse = adresse;

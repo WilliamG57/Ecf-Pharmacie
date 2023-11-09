@@ -2,9 +2,12 @@ package dao;
 
 import classmetier.Clients;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,24 +22,29 @@ public class ClientDAO extends DAO<Clients> {
     public int create(Clients obj) {
 
         StringBuilder insertClient = new StringBuilder();
-        insertClient.append("insert into personne");
-        insertClient.append("(cli_id, cli_secu, cli_datenaissance, per_id, spe_id, med_id, mut_id");
-        insertClient.append("values(?, ?, ?, ?, ?, ?, ?");
+        insertClient.append("insert into client ");
+        insertClient.append("(`cli_secu`, `cli_datenaissance`, `per_id`, `spe_id`, `med_id`, `mut_id`) ");
+        insertClient.append("VALUES (?, ?, ?, ?, ?, ?)");
+
+        Date date = null;
+
+        try {
+            date = (Date) new SimpleDateFormat("dd/MM/yyyy").parse(obj.getDateNaissance());
+        } catch(ParseException ignored) {
+        }
 
         int newId = 0;
-        try (PreparedStatement ps = this.connect.prepareStatement(insertClient.toString(), PreparedStatement.RETURN_GENERATED_KEYS)) {
-            ps.setInt(1, obj.getPerId());
+        try (PreparedStatement ps = connect.prepareStatement(insertClient.toString(), PreparedStatement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, obj.getSecuriteSociale());
-            ps.setString(2, obj.getDateNaissance());
-            ps.setString(3, obj.getTelephone());
-            ps.setString(4, obj.getEmail());
-            ps.setString(5, obj.getAdresse());
-            ps.setString(6, obj.getCodePostal());
-            ps.setString(7, obj.getVille());
+            ps.setDate(2, date);
+            ps.setInt(3, obj.getPerId());
+            ps.setInt(4, obj.getSpecialiste_id());
+            ps.setInt(5, obj.getMedecin_id());
+            ps.setInt(6, obj.getMutuelle_id());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
-                newId = rs.getInt("cli_id");
+                newId = rs.getInt(1);
             }
         } catch (SQLException e) {
             System.out.println("RelationWithDB erreur : " + e.getMessage()

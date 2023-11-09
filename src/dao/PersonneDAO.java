@@ -1,10 +1,12 @@
 package dao;
 
+import classmetier.Clients;
 import classmetier.Personnes;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Savepoint;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,13 +22,14 @@ public class PersonneDAO extends DAO<Personnes> {
     public int create(Personnes obj) {
         StringBuilder insertPersonne = new StringBuilder();
         insertPersonne.append("insert into personne");
-        insertPersonne.append("(per_id, per_nom, per_prenom, per_telephone, per_email, per_adr," +
-                " per_codepostal, per_ville)");
-        insertPersonne.append("values(?, ?, ?, ?, ?, ?, ?, ?");
+        insertPersonne.append("(`per_nom`, `per_prenom`, `per_telephone`, `per_email`, `per_adr`," +
+                " `per_codepostal`, `per_ville`)");
+        insertPersonne.append("VALUES (?, ?, ?, ?, ?, ?, ?)");
+        System.out.println(insertPersonne.toString());
 
         int newId = 0;
-        try (PreparedStatement ps = this.connect.prepareStatement(insertPersonne.toString(), PreparedStatement.RETURN_GENERATED_KEYS)) {
-            //ps.setInt(1, obj.getPerId());
+        try (PreparedStatement ps = this.connect.prepareStatement(insertPersonne.toString(),
+                PreparedStatement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, obj.getNom());
             ps.setString(2, obj.getPrenom());
             ps.setString(3, obj.getTelephone());
@@ -36,8 +39,10 @@ public class PersonneDAO extends DAO<Personnes> {
             ps.setString(7, obj.getVille());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
+
             if (rs.next()) {
-                newId = rs.getInt("per_id");
+                newId = rs.getInt(1);
+                System.out.println(newId);
             }
         } catch (SQLException e) {
             System.out.println("RelationWithDB erreur : " + e.getMessage()
@@ -84,5 +89,33 @@ public class PersonneDAO extends DAO<Personnes> {
     @Override
     public List<Personnes> findAll() {
         return null;
+    }
+
+    public void transaction(Personnes obj) throws SQLException {
+
+        ClientDAO clientDao = new ClientDAO();
+        Savepoint save=null;
+
+        try {
+
+            connect.setAutoCommit(false);
+            save = connect.setSavepoint("depart");
+            // creation
+            int pId = this.create(obj);
+
+            obj.setPerId(pId);
+
+            clientDao.create((Clients) obj);
+
+            connect.commit();
+            connect.setAutoCommit(true);
+
+        } catch (SQLException sqle) {
+
+            connect.rollback(save);
+        }
+
+
+
     }
 }

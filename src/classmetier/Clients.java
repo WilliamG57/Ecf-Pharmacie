@@ -30,7 +30,8 @@ public class Clients extends Personnes {
      * @throws Exception
      */
     public Clients(String nom, String prenom, String adresse, String codePostal, String ville, String telephone,
-                   String email, String securiteSociale, String dateNaissance, Mutuelle mutuelle, Medecins medecin, Specialistes specialiste) throws Exception {
+                   String email, String securiteSociale, String dateNaissance, Mutuelle mutuelle,
+                   Medecins medecin, Specialistes specialiste)  {
         super(nom, prenom, adresse, codePostal, ville, telephone, email);
         this.setSecuriteSociale(securiteSociale);
         this.setDateNaissance(dateNaissance);
@@ -39,13 +40,21 @@ public class Clients extends Personnes {
         this.specialiste = specialiste;
     }
 
+
+    public Clients(String nom, String prenom, String adresse, String codePostal,
+                   String ville, String telephone, String email, String securiteSociale,
+                   String dateNaissance, int medecin_id, int specialiste_id, int mutuelle_id) {
+        super(nom, prenom, adresse, codePostal, ville, telephone, email);
+        this.securiteSociale = securiteSociale;
+        this.dateNaissance = dateNaissance;
+        this.medecin_id = medecin_id;
+        this.specialiste_id = specialiste_id;
+        this.mutuelle_id = mutuelle_id;
+    }
+
     public Clients() {
         super();
     }
-
-    public Clients(String text, String text1, String text2, String text3, String text4, String text5, String text6, String text7, String text8, int muId, int mId, int sId) {
-    }
-
 
     /**
      * Mise en place des getters/setters

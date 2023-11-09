@@ -86,16 +86,38 @@ public class CreateClientFrame extends JFrame {
                 int mId = ((Medecins) selectItem1).getMedId();
                 Object selectItem2 = comboSpecialiste.getSelectedItem();
                 int sId = ((Specialistes) selectItem2).getSpeId();
+                //System.out.println(muId);
                 try {
-                    Clients cl = new Clients(nomClient.getText(), prenomClient.getText(), adresseClient.getText(),
-                            textPostal.getText(), villeClient.getText(), telClient.getText(), mailClient.getText(),
-                            secuClient.getText(), dateClient.getText(), muId, mId, sId);
-                    clientDAO.create(cl);
+                    Clients cl = getClients(muId, mId, sId);
+                    //sous transaction
+                    System.out.println(cl.getNom());
+                    personneDAO.transaction(cl);
+                   // int pId = personneDAO.create(cl);
+                   // clientDAO.create(cl, pId);
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
             }
         });
+    }
+
+    private Clients getClients(int muId, int mId, int sId) {
+        String nom = textNom.getText();
+        String prenom = textPrenom.getText();
+        String adresse = textAdresse.getText();
+        String codePostal = textPostal.getText();
+        String ville = textVille.getText();
+        String telephone = textTelephone.getText();
+        String email = textMail.getText();
+        String securiteSocial = textSecu.getText();
+        String dateNaissance = textNaissance.getText();
+        int mutuelle = muId;
+        int medecin = mId;
+        int specialiste = sId;
+        Clients cl =
+                new Clients(nom, prenom, adresse, codePostal, ville, telephone, email,
+                securiteSocial, dateNaissance, mutuelle, medecin, specialiste);
+        return cl;
     }
 }
 
