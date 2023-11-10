@@ -53,12 +53,32 @@ public class PersonneDAO extends DAO<Personnes> {
 
     @Override
     public boolean delete(Personnes obj) {
-        return false;
+        StringBuilder sqlDeletePersonne = new StringBuilder();
+        sqlDeletePersonne.append("DELETE FROM personne ");
+        sqlDeletePersonne.append("WHERE per_id=?");
+        boolean requeteOk;
+        try (PreparedStatement preparedStatement = connect.prepareStatement(sqlDeletePersonne.toString())) {
+            preparedStatement.setInt(1, obj.getPerId());
+            requeteOk = true;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return requeteOk;
     }
 
     @Override
     public boolean update(Personnes obj) {
-        return false;
+        StringBuilder sqlUpdatePersonne = new StringBuilder();
+        sqlUpdatePersonne.append("UPDATE FROM personne ");
+        sqlUpdatePersonne.append("WHERE per_id=?");
+        boolean requeteOk;
+        try (PreparedStatement preparedStatement = connect.prepareStatement(sqlUpdatePersonne.toString())) {
+            preparedStatement.setInt(1, obj.getPerId());
+            requeteOk = true;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return requeteOk;
     }
 
     @Override
@@ -91,31 +111,64 @@ public class PersonneDAO extends DAO<Personnes> {
         return null;
     }
 
-    public void transaction(Personnes obj) throws SQLException {
-
+    public void transactionCreate(Personnes obj) throws SQLException {
         ClientDAO clientDao = new ClientDAO();
-        Savepoint save=null;
-
+        Savepoint save = null;
         try {
-
             connect.setAutoCommit(false);
             save = connect.setSavepoint("depart");
             // creation
             int pId = this.create(obj);
-
             obj.setPerId(pId);
-
             clientDao.create((Clients) obj);
-
             connect.commit();
             connect.setAutoCommit(true);
-
         } catch (SQLException sqle) {
-
             connect.rollback(save);
         }
-
-
-
     }
+//    public void transactionModifier(Personnes obj) {
+//        ClientDAO clientDAO = new ClientDAO();
+//        Savepoint save = null;
+//        try {
+//            connect.setAutoCommit(false);
+//            save = connect.setSavepoint("depart");
+//            int pId = this.update(obj);
+//
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

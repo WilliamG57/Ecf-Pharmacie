@@ -10,7 +10,7 @@
     <children>
       <component id="761f5" class="javax.swing.JComboBox" binding="listeClient">
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="6" vsize-policy="0" hsize-policy="2" anchor="0" fill="0" indent="0" use-parent-layout="false">
+          <grid row="0" column="2" row-span="1" col-span="4" vsize-policy="0" hsize-policy="2" anchor="0" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
@@ -24,14 +24,6 @@
         </constraints>
         <properties>
           <text value="Nom"/>
-        </properties>
-      </component>
-      <component id="e6c8d" class="javax.swing.JLabel" binding="adresseClient">
-        <constraints>
-          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Adresse"/>
         </properties>
       </component>
       <component id="ac4a" class="javax.swing.JLabel" binding="secuClient">
@@ -229,7 +221,7 @@
       </component>
       <component id="f7ca5" class="javax.swing.JButton" binding="btnRetour">
         <constraints>
-          <grid row="5" column="0" row-span="1" col-span="6" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="5" column="3" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Retour"/>
@@ -251,6 +243,32 @@
         </constraints>
         <properties>
           <editable value="false"/>
+        </properties>
+      </component>
+      <component id="adccc" class="javax.swing.JButton" binding="btnModifier">
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Modifier"/>
+        </properties>
+      </component>
+      <component id="e6c8d" class="javax.swing.JLabel" binding="adresseClient">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Adresse"/>
+        </properties>
+      </component>
+      <component id="1d577" class="javax.swing.JTextField" binding="textId">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <visible value="false"/>
         </properties>
       </component>
     </children>

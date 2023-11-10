@@ -86,14 +86,10 @@ public class CreateClientFrame extends JFrame {
                 int mId = ((Medecins) selectItem1).getMedId();
                 Object selectItem2 = comboSpecialiste.getSelectedItem();
                 int sId = ((Specialistes) selectItem2).getSpeId();
-                //System.out.println(muId);
                 try {
                     Clients cl = getClients(muId, mId, sId);
-                    //sous transaction
                     System.out.println(cl.getNom());
-                    personneDAO.transaction(cl);
-                   // int pId = personneDAO.create(cl);
-                   // clientDAO.create(cl, pId);
+                    personneDAO.transactionCreate(cl);
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
@@ -116,7 +112,7 @@ public class CreateClientFrame extends JFrame {
         int specialiste = sId;
         Clients cl =
                 new Clients(nom, prenom, adresse, codePostal, ville, telephone, email,
-                securiteSocial, dateNaissance, mutuelle, medecin, specialiste);
+                        securiteSocial, dateNaissance, mutuelle, medecin, specialiste);
         return cl;
     }
 }

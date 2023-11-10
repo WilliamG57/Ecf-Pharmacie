@@ -39,6 +39,10 @@ public abstract class Personnes {
         this.email = email;
     }
 
+    public String toString() {
+        return nom;
+    }
+
 
     /**
      * Mise en place des getters/setters

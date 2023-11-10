@@ -39,7 +39,8 @@ public class DetailClientFrame extends JFrame {
     private JButton btnRetour;
     private JTextField textSpecialiste;
     private JLabel specialisteClient;
-    private JButton btnCreate;
+    private JButton btnModifier;
+    private JTextField textId;
     Pharmacie p = new Pharmacie();
 
     ClientService clientService = new ClientService();
@@ -57,14 +58,14 @@ public class DetailClientFrame extends JFrame {
         setVisible(true);
         setContentPane(detailClientPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        //TODO
         for (Clients clients : clientService.findAll()) {
-            listeClient.addItem(clients.getNom());
+            listeClient.addItem(clients);
             listeClient.setSelectedIndex(-1);
             listeClient.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if (clients.getNom().equals(listeClient.getSelectedItem())) {
+                    if (clients.getNom().equals((Clients) listeClient.getSelectedItem())) {
                         textPrenom.setText(clients.getPrenom());
                         textNom.setText(clients.getNom());
                         try {
@@ -72,15 +73,17 @@ public class DetailClientFrame extends JFrame {
                         } catch (Exception ex) {
                             throw new RuntimeException(ex);
                         }
+                        textId.setText(String.valueOf(clients.getPerId()));
                         textTelephone.setText(clients.getTelephone());
                         textMail.setText(clients.getEmail());
                         textAdresse.setText(clients.getAdresse());
                         textPostal.setText(clients.getCodePostal());
                         textVille.setText(clients.getVille());
-                        textSecu.setText(clients.getSecuriteSociale() + "");
+                        textSecu.setText(clients.getSecuriteSociale());
                         textMutuelle.setText(clients.getMutuelle().getNom());
                         textMedecin.setText(clients.getMedecin().getNom());
                         textSpecialiste.setText(clients.getSpecialiste().getNom());
+                        System.out.println(clients.getNom());
                     }
                 }
             });
@@ -150,27 +153,23 @@ public class DetailClientFrame extends JFrame {
             }
         });
 
-//        btnCreate.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                //if (null == textNom) {
-//                textNom.setEditable(true);
-//                textPrenom.setEditable(true);
-//                textNaissance.setEditable(true);
-//                textTelephone.setEditable(true);
-//                textMail.setEditable(true);
-//                textSpecialiste.setEditable(true);
-//                textAdresse.setEditable(true);
-//                textPostal.setEditable(true);
-//                textVille.setEditable(true);
-//                textSecu.setEditable(true);
-//                textMutuelle.setEditable(true);
-//                textMedecin.setEditable(true);
-//                // } else {
-//                //    return;
-//                //}
-//            }
-//        });
+        btnModifier.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                textNom.setEditable(true);
+                textPrenom.setEditable(true);
+                textNaissance.setEditable(true);
+                textTelephone.setEditable(true);
+                textMail.setEditable(true);
+                textSpecialiste.setEditable(true);
+                textAdresse.setEditable(true);
+                textPostal.setEditable(true);
+                textVille.setEditable(true);
+                textSecu.setEditable(true);
+                textMutuelle.setEditable(true);
+                textMedecin.setEditable(true);
+            }
+        });
         btnRetour.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

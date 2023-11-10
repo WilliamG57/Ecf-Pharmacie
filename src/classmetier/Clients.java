@@ -56,6 +56,7 @@ public class Clients extends Personnes {
         super();
     }
 
+
     /**
      * Mise en place des getters/setters
      */

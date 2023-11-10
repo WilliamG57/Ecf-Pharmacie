@@ -57,7 +57,7 @@ public class ClientDAO extends DAO<Clients> {
     public boolean delete(Clients obj) {
         StringBuilder sqlDeleteClient = new StringBuilder();
         sqlDeleteClient.append("DELETE FROM client ");
-        sqlDeleteClient.append("WHERE cli_id=?");
+        sqlDeleteClient.append("WHERE per_id=?");
         boolean requeteOk;
         try (PreparedStatement preparedStatement = connect.prepareStatement(sqlDeleteClient.toString())) {
             preparedStatement.setInt(1, obj.getCliId());
@@ -70,8 +70,17 @@ public class ClientDAO extends DAO<Clients> {
 
     @Override
     public boolean update(Clients obj) {
-        return false;
-    }
+        StringBuilder sqlUpdateClient = new StringBuilder();
+        sqlUpdateClient.append("UPDATE FROM client ");
+        sqlUpdateClient.append("WHERE per_id=?");
+        boolean requeteOk;
+        try (PreparedStatement preparedStatement = connect.prepareStatement(sqlUpdateClient.toString())) {
+            preparedStatement.setInt(1, obj.getCliId());
+            requeteOk = true;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return requeteOk;    }
 
     @Override
     public Clients find(Integer cID) throws SQLException {
