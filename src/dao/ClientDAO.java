@@ -25,18 +25,19 @@ public class ClientDAO extends DAO<Clients> {
         insertClient.append("insert into client ");
         insertClient.append("(`cli_secu`, `cli_datenaissance`, `per_id`, `spe_id`, `med_id`, `mut_id`) ");
         insertClient.append("VALUES (?, ?, ?, ?, ?, ?)");
-
-        Date date = null;
-
-        try {
-            date = (Date) new SimpleDateFormat("dd/MM/yyyy").parse(obj.getDateNaissance());
-        } catch(ParseException ignored) {
-        }
-
+        java.util.Date date = new java.util.Date(obj.getDateNaissance());
+        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+        //todo
+//        try {
+//            sqlDate = (Date) new SimpleDateFormat("dd-MM-yyyy").parse(obj.getDateNaissance());
+//            //date = (Date) new SimpleDateFormat("dd-MM-yyyy").parse(obj.getDateNaissance());
+//        } catch (ParseException pe) {
+//            System.out.println("erreur :" + pe.getMessage());
+//        }
         int newId = 0;
         try (PreparedStatement ps = connect.prepareStatement(insertClient.toString(), PreparedStatement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, obj.getSecuriteSociale());
-            ps.setDate(2, date);
+            ps.setDate(2, sqlDate);
             ps.setInt(3, obj.getPerId());
             ps.setInt(4, obj.getSpecialiste_id());
             ps.setInt(5, obj.getMedecin_id());
@@ -80,7 +81,8 @@ public class ClientDAO extends DAO<Clients> {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return requeteOk;    }
+        return requeteOk;
+    }
 
     @Override
     public Clients find(Integer cID) throws SQLException {

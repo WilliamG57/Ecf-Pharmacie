@@ -2,6 +2,8 @@ package frame;
 
 import classmetier.*;
 import dao.*;
+import service.ClientService;
+import service.PersonneService;
 
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
@@ -37,7 +39,7 @@ public class CreateClientFrame extends JFrame {
     private JLabel medecinClient;
     private JLabel specialisteClient;
 
-    private PersonneDAO personneDAO = new PersonneDAO();
+    private ClientService clientService = new ClientService();
     private ClientDAO clientDAO = new ClientDAO();
     private MedecinDAO medecinDAO = new MedecinDAO();
     private SpecialisteDAO specialisteDAO = new SpecialisteDAO();
@@ -88,8 +90,11 @@ public class CreateClientFrame extends JFrame {
                 int sId = ((Specialistes) selectItem2).getSpeId();
                 try {
                     Clients cl = getClients(muId, mId, sId);
-                    System.out.println(cl.getNom());
-                    personneDAO.transactionCreate(cl);
+                    clientService.ajouterClient(cl);
+//                    personneDAO.transactionCreate(cl);
+                    JOptionPane.showMessageDialog(null, "Nouveau client ajouté !");
+                    dispose();
+                    AccueilFrame.designAccueil();
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
@@ -98,6 +103,7 @@ public class CreateClientFrame extends JFrame {
     }
 
     private Clients getClients(int muId, int mId, int sId) {
+
         String nom = textNom.getText();
         String prenom = textPrenom.getText();
         String adresse = textAdresse.getText();

@@ -1,6 +1,7 @@
 package frame;
 
 import classmetier.*;
+import dao.ClientDAO;
 import service.ClientService;
 
 import javax.swing.*;
@@ -60,12 +61,12 @@ public class DetailClientFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //TODO
         for (Clients clients : clientService.findAll()) {
-            listeClient.addItem(clients);
+            listeClient.addItem(clients.getNom());
             listeClient.setSelectedIndex(-1);
             listeClient.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if (clients.getNom().equals((Clients) listeClient.getSelectedItem())) {
+                    if (clients.getNom().equals(listeClient.getSelectedItem())) {
                         textPrenom.setText(clients.getPrenom());
                         textNom.setText(clients.getNom());
                         try {
@@ -168,6 +169,7 @@ public class DetailClientFrame extends JFrame {
                 textSecu.setEditable(true);
                 textMutuelle.setEditable(true);
                 textMedecin.setEditable(true);
+
             }
         });
         btnRetour.addActionListener(new ActionListener() {

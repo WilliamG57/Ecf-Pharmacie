@@ -1,7 +1,9 @@
 package dao;
 
 import classmetier.Clients;
+import classmetier.Medecins;
 import classmetier.Personnes;
+import classmetier.Specialistes;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -83,26 +85,6 @@ public class PersonneDAO extends DAO<Personnes> {
 
     @Override
     public Personnes find(Integer pID) throws SQLException {
-//        StringBuilder sqlFindPersonne = new StringBuilder();
-//        sqlFindPersonne.append("SELECT * FROM personne");
-//        sqlFindPersonne.append("WHERE id=?");
-//        Personnes per = null;
-//        try (PreparedStatement preparedStatement = connect.prepareStatement(sqlFindPersonne.toString())) {
-//            preparedStatement.setInt(1, pID);
-//            ResultSet resultSet = preparedStatement.executeQuery();
-//            while (resultSet.next()) {
-//                per = new Personnes();
-//                        per.setPer_id(resultSet.getInt("per_id")),
-//                        resultSet.getString("per_nom"),
-//                        resultSet.getString("per_prenom"),
-//                        resultSet.getString("per_adr"),
-//                        resultSet.getString("per_codepostal"),
-//                        resultSet.getString("per_ville"),
-//                        resultSet.getString("per_telephone"),
-//                        resultSet.getString("per_email")
-//                );
-//            }
-//        }
         return null;
     }
 
@@ -113,6 +95,9 @@ public class PersonneDAO extends DAO<Personnes> {
 
     public void transactionCreate(Personnes obj) throws SQLException {
         ClientDAO clientDao = new ClientDAO();
+        Clients clients = new Clients();
+        Specialistes specialistes = new Specialistes();
+        Medecins medecins = new Medecins();
         Savepoint save = null;
         try {
             connect.setAutoCommit(false);
@@ -120,6 +105,9 @@ public class PersonneDAO extends DAO<Personnes> {
             // creation
             int pId = this.create(obj);
             obj.setPerId(pId);
+            Boolean creerClient = clients instanceof Clients;
+            Boolean creerMedecin = medecins instanceof Medecins;
+            Boolean creerSpecialiste = specialistes instanceof Specialistes;
             clientDao.create((Clients) obj);
             connect.commit();
             connect.setAutoCommit(true);

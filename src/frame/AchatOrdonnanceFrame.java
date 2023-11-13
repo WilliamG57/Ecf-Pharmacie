@@ -33,7 +33,6 @@ public class AchatOrdonnanceFrame extends JFrame {
     private JComboBox comboSpecialiste;
     private JLabel textSpecialiste;
     private JTextField textBoolean;
-    Pharmacie p = new Pharmacie();
     private PanierService panierService = new PanierService();
     ClientService clientService = new ClientService();
     MedecinDAO medecinDAO = new MedecinDAO();

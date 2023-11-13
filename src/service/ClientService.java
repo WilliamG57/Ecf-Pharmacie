@@ -4,17 +4,16 @@ import classmetier.Clients;
 import classmetier.Medecins;
 import classmetier.Mutuelle;
 import classmetier.Specialistes;
-import dao.ClientDAO;
-import dao.MedecinDAO;
-import dao.MutuelleDAO;
-import dao.SpecialisteDAO;
+import dao.*;
 import utils.DateManagment;
 import utils.MyException;
 
 import javax.swing.*;
+import java.sql.SQLException;
 import java.util.List;
 
 public class ClientService extends PersonneService {
+    PersonneDAO personneDAO = new PersonneDAO();
     ClientDAO clientDAO = new ClientDAO();
     MedecinDAO medecinDAO = new MedecinDAO();
     SpecialisteDAO specialisteDAO = new SpecialisteDAO();
@@ -34,7 +33,7 @@ public class ClientService extends PersonneService {
 
     private void validateDateNaissance(String dateNaissance) throws MyException {
         DateManagment.parse(dateNaissance, "La date de naissance n'est pas au bon format");
-        JOptionPane.showMessageDialog(null, "La date de naissance n'est pas au bon format");
+        //JOptionPane.showMessageDialog(null, "La date de naissance n'est pas au bon format");
     }
 
     private void validateSecuriteSociale(String securiteSociale) throws MyException {
@@ -55,8 +54,9 @@ public class ClientService extends PersonneService {
         }
     }
 
-    public void ajouterClient(Clients client) throws MyException {
+    public void ajouterClient(Clients client) throws MyException, SQLException {
         validate(client);
+        personneDAO.transactionCreate(client);
     }
 
     public void supprimerClient(Clients client) {
