@@ -1,11 +1,9 @@
 package service;
 
-import classmetier.Clients;
 import classmetier.Personnes;
 import dao.PersonneDAO;
 import utils.MyException;
 
-import java.sql.SQLException;
 
 public class PersonneService {
     private Personnes personnes;

@@ -1,14 +1,14 @@
 package dao;
 
 import classmetier.Clients;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import utils.DateManagment;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +19,7 @@ public class ClientDAO extends DAO<Clients> {
         return client;
     }
 
+    private static final Logger LOGGER = LogManager.getLogger();
     @Override
     public int create(Clients obj) throws ParseException {
 
@@ -41,7 +42,7 @@ public class ClientDAO extends DAO<Clients> {
                 newId = rs.getInt(1);
             }
         } catch (SQLException e) {
-            System.out.println("RelationWithDB erreur : " + e.getMessage()
+            LOGGER.warn("RelationWithDB erreur : " + e.getMessage()
                     + "[SQL error code : " + e.getSQLState() + "]");
         }
         return newId;

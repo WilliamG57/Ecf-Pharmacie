@@ -33,7 +33,6 @@ public class ClientService extends PersonneService {
 
     private void validateDateNaissance(String dateNaissance) throws MyException {
         DateManagment.parse(dateNaissance, "La date de naissance n'est pas au bon format");
-        //JOptionPane.showMessageDialog(null, "La date de naissance n'est pas au bon format");
     }
 
     private void validateSecuriteSociale(String securiteSociale) throws MyException {
