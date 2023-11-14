@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Savepoint;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -113,6 +114,8 @@ public class PersonneDAO extends DAO<Personnes> {
             connect.setAutoCommit(true);
         } catch (SQLException sqle) {
             connect.rollback(save);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
         }
     }
 //    public void transactionModifier(Personnes obj) {

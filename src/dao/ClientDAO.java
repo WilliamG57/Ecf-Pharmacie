@@ -1,6 +1,7 @@
 package dao;
 
 import classmetier.Clients;
+import utils.DateManagment;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -19,25 +20,17 @@ public class ClientDAO extends DAO<Clients> {
     }
 
     @Override
-    public int create(Clients obj) {
+    public int create(Clients obj) throws ParseException {
 
         StringBuilder insertClient = new StringBuilder();
         insertClient.append("insert into client ");
         insertClient.append("(`cli_secu`, `cli_datenaissance`, `per_id`, `spe_id`, `med_id`, `mut_id`) ");
         insertClient.append("VALUES (?, ?, ?, ?, ?, ?)");
-        java.util.Date date = new java.util.Date(obj.getDateNaissance());
-        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-        //todo
-//        try {
-//            sqlDate = (Date) new SimpleDateFormat("dd-MM-yyyy").parse(obj.getDateNaissance());
-//            //date = (Date) new SimpleDateFormat("dd-MM-yyyy").parse(obj.getDateNaissance());
-//        } catch (ParseException pe) {
-//            System.out.println("erreur :" + pe.getMessage());
-//        }
+
         int newId = 0;
         try (PreparedStatement ps = connect.prepareStatement(insertClient.toString(), PreparedStatement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, obj.getSecuriteSociale());
-            ps.setDate(2, sqlDate);
+            ps.setDate(2, DateManagment.convertString(obj.getDateNaissance()));
             ps.setInt(3, obj.getPerId());
             ps.setInt(4, obj.getSpecialiste_id());
             ps.setInt(5, obj.getMedecin_id());
