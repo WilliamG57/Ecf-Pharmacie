@@ -12,26 +12,36 @@ public class Medicaments {
 
     private int medicamentID;
     private String nom;
-    private String categorie;
+    private CategorieMedi categorieMedi;
     private double prix;
     private String miseEnService;
     private String quantite;
+    private int catId;
 
     /**
      * Constructeur de medicaments
      *
      * @param nom
-     * @param categorie
+     * @param categorieMedi
      * @param prix
      * @param miseEnService
      * @param quantite
      */
-    public Medicaments(String nom, String categorie, double prix, String miseEnService, String quantite) {
+    public Medicaments(String nom, CategorieMedi categorieMedi, double prix, String miseEnService, String quantite) {
         this.nom = nom;
-        this.categorie = categorie;
         this.prix = prix;
         this.miseEnService = miseEnService;
         this.quantite = quantite;
+    }
+
+    public Medicaments(int medicamentID, String nom, CategorieMedi categorieMedi, double prix, String miseEnService, String quantite, int catId) {
+        this.medicamentID = medicamentID;
+        this.nom = nom;
+        this.categorieMedi = categorieMedi;
+        this.prix = prix;
+        this.miseEnService = miseEnService;
+        this.quantite = quantite;
+        this.catId = catId;
     }
 
     public Medicaments() {
@@ -56,12 +66,12 @@ public class Medicaments {
         this.nom = nom;
     }
 
-    public String getCategorie() {
-        return categorie;
+    public CategorieMedi getCategorieMedi() {
+        return categorieMedi;
     }
 
-    public void setCategorie(String categorie) {
-        this.categorie = categorie;
+    public void setCategorieMedi(CategorieMedi categorieMedi) {
+        this.categorieMedi = categorieMedi;
     }
 
     public double getPrix() {
@@ -91,4 +101,11 @@ public class Medicaments {
         this.quantite = quantite;
     }
 
+    public int getCategorie_id() {
+        return catId;
+    }
+
+    public void setCategorie_id(int categorie_id) {
+        this.catId = catId;
+    }
 }

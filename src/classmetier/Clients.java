@@ -33,8 +33,8 @@ public class Clients extends Personnes {
                    String email, String securiteSociale, String dateNaissance, Mutuelle mutuelle,
                    Medecins medecin, Specialistes specialiste)  {
         super(nom, prenom, adresse, codePostal, ville, telephone, email);
-        this.setSecuriteSociale(securiteSociale);
-        this.setDateNaissance(dateNaissance);
+        this.securiteSociale = securiteSociale;
+        this.dateNaissance = dateNaissance;
         this.mutuelle = mutuelle;
         this.medecin = medecin;
         this.specialiste = specialiste;

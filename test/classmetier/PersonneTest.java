@@ -25,7 +25,7 @@ public class PersonneTest {
 //    }
 
     @Test
-    public void setCodePostalValide() throws Exception {
+    void setCodePostalValide() throws Exception {
         assertEquals("99999", clients.getCodePostal());
     }
 
@@ -40,12 +40,12 @@ public class PersonneTest {
     }
 
     @Test
-    public void setVilleValide() throws Exception {
+    void setVilleValide() throws Exception {
         assertEquals("a", clients.getVille());
     }
 
     @Test
-    public void setVilleNull() throws Exception {
+    void setVilleNull() throws Exception {
         clients.setVille(null);
         NullPointerException message = assertThrows(
                 NullPointerException.class,
@@ -57,7 +57,7 @@ public class PersonneTest {
     }
 
     @Test
-    public void setTelephoneValide() throws Exception {
+    void setTelephoneValide() throws Exception {
         assertEquals("0123456789", clients.getTelephone());
     }
 

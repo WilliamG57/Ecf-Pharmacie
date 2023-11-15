@@ -37,7 +37,6 @@ public class ClientService extends PersonneService {
 
     private void validateSecuriteSociale(String securiteSociale) throws MyException {
         try {
-            // test longueur
             if (securiteSociale.length() != 15) {
                 throw new MyException("Le numéro de sécurité sociale doit contenir 15 chiffres");
             }
@@ -47,7 +46,6 @@ public class ClientService extends PersonneService {
                     throw new MyException("Le numéro de sécurité sociale doit être composé uniquement de chiffres.");
                 }
             }
-            // test valeur null
         } catch (NullPointerException e) {
             throw new MyException("Merci de mettre un numéro de sécurité sociale");
         }
@@ -59,7 +57,7 @@ public class ClientService extends PersonneService {
     }
 
     public void supprimerClient(Clients client) {
-
+        clientDAO.delete(client);
     }
 
     public void modifierClient(Clients client) {

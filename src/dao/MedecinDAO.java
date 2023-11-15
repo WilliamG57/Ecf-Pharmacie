@@ -1,6 +1,7 @@
 package dao;
 
 import classmetier.Medecins;
+import utils.DateManagment;
 import utils.MyException;
 
 import java.sql.PreparedStatement;
@@ -8,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.apache.log4j.builders.appender.SocketAppenderBuilder.LOGGER;
 
 public class MedecinDAO extends DAO<Medecins> {
 
@@ -20,7 +23,25 @@ public class MedecinDAO extends DAO<Medecins> {
     @Override
     public int create(Medecins obj) {
 
-        return 0;
+        StringBuilder insertMedecin = new StringBuilder();
+        insertMedecin.append("insert into medecin ");
+        insertMedecin.append("(`med_agreement`, `per_id`) ");
+        insertMedecin.append("VALUES (?, ?)");
+
+        int newId = 0;
+        try (PreparedStatement ps = connect.prepareStatement(insertMedecin.toString(), PreparedStatement.RETURN_GENERATED_KEYS)) {
+            ps.setInt(1, obj.getAgreement());
+            ps.setInt(2, obj.getPerId());
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                newId = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            LOGGER.warn("RelationWithDB erreur : " + e.getMessage()
+                    + "[SQL error code : " + e.getSQLState() + "]");
+        }
+        return newId;
     }
 
     @Override
