@@ -1,8 +1,8 @@
 package frame;
 
 import classmetier.*;
-import dao.ClientDAO;
 import service.ClientService;
+import utils.MyException;
 
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 
 
 public class DetailClientFrame extends JFrame {
@@ -42,11 +43,10 @@ public class DetailClientFrame extends JFrame {
     private JLabel specialisteClient;
     private JButton btnModifier;
     private JTextField textId;
-    Pharmacie p = new Pharmacie();
-
+    private boolean isNomEditable = false;
     ClientService clientService = new ClientService();
 
-    public DetailClientFrame() throws Exception {
+    public Clients DetailClientFrame() throws Exception {
 
         try {
             UIManager.setLookAndFeel(new NimbusLookAndFeel());
@@ -169,9 +169,47 @@ public class DetailClientFrame extends JFrame {
                 textSecu.setEditable(true);
                 textMutuelle.setEditable(true);
                 textMedecin.setEditable(true);
-
+                btnModifier.setText("Valider");
+                Object selectItem = comboMutuelle.getSelectedItem();
+                int muId = ((Mutuelle) selectItem).getMutId();
+                Object selectItem1 = comboMedecin.getSelectedItem();
+                int mId = ((Medecins) selectItem1).getMedId();
+                Object selectItem2 = comboSpecialiste.getSelectedItem();
+                int sId = ((Specialistes) selectItem2).getSpeId();
+                if (isNomEditable == true) {
+                    try {
+                        Clients cl = getClients(muId, mId, sId);
+                        clientService.modifierClient(new Clients(cl));
+                        JOptionPane.showMessageDialog(null, "Validé");
+                        isNomEditable = false;
+                    } catch (MyException ex) {
+                        throw new RuntimeException(ex);
+                    } catch (SQLException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+                isNomEditable = true;
             }
         });
+        private Clients getClients(int muId, int mId, int sId) {
+
+            String nom = textNom.getText();
+            String prenom = textPrenom.getText();
+            String adresse = textAdresse.getText();
+            String codePostal = textPostal.getText();
+            String ville = textVille.getText();
+            String telephone = textTelephone.getText();
+            String email = textMail.getText();
+            String securiteSocial = textSecu.getText();
+            String dateNaissance = textNaissance.getText();
+            int mutuelle = muId;
+            int medecin = mId;
+            int specialiste = sId;
+            Clients cl =
+                    new Clients(nom, prenom, adresse, codePostal, ville, telephone, email,
+                            securiteSocial, dateNaissance, mutuelle, medecin, specialiste);
+            return cl;
+        }
         btnRetour.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

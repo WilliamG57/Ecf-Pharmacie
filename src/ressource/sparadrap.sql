@@ -107,6 +107,7 @@ CREATE TABLE medicament
     medi_nom VARCHAR(20) NOT NULL,
     medi_prix NUMERIC(8,2) NOT NULL,
     medi_miseenservice DATE NOT NULL,
+    medi_stock INT NOT NULL,
     cat_id INT NOT NULL,
     PRIMARY KEY (medi_id),
     FOREIGN KEY (cat_id)
@@ -230,13 +231,13 @@ INSERT INTO pharmacie (pha_nom, pha_adr, pha_codepostal, pha_ville)
  INSERT INTO categorie (cat_categorie)
 	VALUES ("viagra");
 
-INSERT INTO medicament (medi_nom, medi_prix, medi_miseenservice, cat_id)
-	VALUES ("doliprane", 4.50, "1964-03-05", 1);
-INSERT INTO medicament (medi_nom, medi_prix, medi_miseenservice, cat_id)
-	VALUES ("millepertuis", 7.90, "1985-06-28", 2);
-INSERT INTO medicament (medi_nom, medi_prix, medi_miseenservice, cat_id)
-	VALUES ("collyre", 3.39, "1954-03-16", 3);
-INSERT INTO medicament (medi_nom, medi_prix, medi_miseenservice, cat_id)
-	VALUES ("sildenafil", 9.99, "1998-04-17", 4);
+INSERT INTO medicament (medi_nom, medi_prix, medi_miseenservice, medi_stock, cat_id)
+	VALUES ("doliprane", 4.50, "1964-03-05", 50, 1);
+INSERT INTO medicament (medi_nom, medi_prix, medi_miseenservice, medi_stock, cat_id)
+	VALUES ("millepertuis", 7.90, "1985-06-28", 50, 2);
+INSERT INTO medicament (medi_nom, medi_prix, medi_miseenservice, medi_stock, cat_id)
+	VALUES ("collyre", 3.39, "1954-03-16", 50, 3);
+INSERT INTO medicament (medi_nom, medi_prix, medi_miseenservice, medi_stock, cat_id)
+	VALUES ("sildenafil", 9.99, "1998-04-17", 50, 4);
     
     

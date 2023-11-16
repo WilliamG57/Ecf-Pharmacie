@@ -28,7 +28,7 @@ public class PersonneDAO extends DAO<Personnes> {
         insertPersonne.append("(`per_nom`, `per_prenom`, `per_telephone`, `per_email`, `per_adr`," +
                 " `per_codepostal`, `per_ville`)");
         insertPersonne.append("VALUES (?, ?, ?, ?, ?, ?, ?)");
-        System.out.println(insertPersonne.toString());
+        System.out.println(insertPersonne);
 
         int newId = 0;
         try (PreparedStatement ps = this.connect.prepareStatement(insertPersonne.toString(),
@@ -70,18 +70,23 @@ public class PersonneDAO extends DAO<Personnes> {
     }
 
     @Override
-    public boolean update(Personnes obj) {
+    public boolean update(Personnes obj) throws SQLException {
         StringBuilder sqlUpdatePersonne = new StringBuilder();
         sqlUpdatePersonne.append("UPDATE FROM personne ");
+        sqlUpdatePersonne.append("(`per_nom`, `per_prenom`, `per_telephone`, `per_email`, `per_adr`," +
+                "`per_codepostal`, `per_ville`)");
+        sqlUpdatePersonne.append("VALUES (?, ?, ?, ?, ?, ?, ?)");
         sqlUpdatePersonne.append("WHERE per_id=?");
-        boolean requeteOk;
-        try (PreparedStatement preparedStatement = connect.prepareStatement(sqlUpdatePersonne.toString())) {
-            preparedStatement.setInt(1, obj.getPerId());
-            requeteOk = true;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return requeteOk;
+        PreparedStatement ps = connect.prepareStatement(sqlUpdatePersonne.toString());
+        ps.setString(1, obj.getNom());
+        ps.setString(2, obj.getPrenom());
+        ps.setString(3, obj.getTelephone());
+        ps.setString(4, obj.getEmail());
+        ps.setString(5, obj.getAdresse());
+        ps.setString(6, obj.getCodePostal());
+        ps.setString(7, obj.getVille());
+        ps.executeUpdate();
+        return true;
     }
 
     @Override
@@ -118,18 +123,20 @@ public class PersonneDAO extends DAO<Personnes> {
             throw new RuntimeException(e);
         }
     }
-//    public void transactionModifier(Personnes obj) {
-//        ClientDAO clientDAO = new ClientDAO();
-//        Savepoint save = null;
-//        try {
-//            connect.setAutoCommit(false);
-//            save = connect.setSavepoint("depart");
-//            int pId = this.update(obj);
-//
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
+
+    public void transactionUpdate(Personnes obj) throws SQLException {
+        ClientDAO clientDAO = new ClientDAO();
+        Savepoint save = null;
+        try {
+            connect.setAutoCommit(false);
+            save = connect.setSavepoint("départ");
+            clientDAO.update((Clients) obj);
+            connect.commit();
+            connect.setAutoCommit(true);
+        } catch (SQLException sqle) {
+            connect.rollback(save);
+        }
+    }
 }
 
 

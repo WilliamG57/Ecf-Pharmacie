@@ -91,7 +91,6 @@ public class CreateClientFrame extends JFrame {
                 try {
                     Clients cl = getClients(muId, mId, sId);
                     clientService.ajouterClient(cl);
-//                    personneDAO.transactionCreate(cl);
                     JOptionPane.showMessageDialog(null, "Nouveau client ajouté !");
                     dispose();
                     AccueilFrame.designAccueil();

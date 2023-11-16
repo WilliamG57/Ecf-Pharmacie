@@ -60,8 +60,9 @@ public class ClientService extends PersonneService {
         clientDAO.delete(client);
     }
 
-    public void modifierClient(Clients client) {
-
+    public void modifierClient(Clients client) throws MyException, SQLException {
+        validate(client);
+        personneDAO.transactionUpdate(client);
     }
 
     public List<Clients> findAll() {

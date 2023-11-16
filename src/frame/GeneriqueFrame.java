@@ -28,7 +28,6 @@ public class GeneriqueFrame extends JFrame {
     private JLabel Prenom;
     private JLabel Postal;
     private JLabel Ville;
-    Pharmacie p = new Pharmacie();
     private MedecinDAO medecinDAO = new MedecinDAO();
     private SpecialisteDAO specialisteDAO = new SpecialisteDAO();
 

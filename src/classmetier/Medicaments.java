@@ -3,8 +3,6 @@ package classmetier;
 import utils.MyException;
 import utils.DateManagment;
 
-import java.util.Date;
-
 public class Medicaments {
     /**
      * Declaration de la liste de medicaments
@@ -15,8 +13,8 @@ public class Medicaments {
     private CategorieMedi categorieMedi;
     private double prix;
     private String miseEnService;
-    private String quantite;
-    private int catId;
+    private int stock;
+    private int categorie_id;
 
     /**
      * Constructeur de medicaments
@@ -25,23 +23,23 @@ public class Medicaments {
      * @param categorieMedi
      * @param prix
      * @param miseEnService
-     * @param quantite
+     * @param stock
      */
-    public Medicaments(String nom, CategorieMedi categorieMedi, double prix, String miseEnService, String quantite) {
+    public Medicaments(String nom, CategorieMedi categorieMedi, double prix, String miseEnService, int stock) {
         this.nom = nom;
         this.prix = prix;
         this.miseEnService = miseEnService;
-        this.quantite = quantite;
+        this.stock = stock;
     }
 
-    public Medicaments(int medicamentID, String nom, CategorieMedi categorieMedi, double prix, String miseEnService, String quantite, int catId) {
+    public Medicaments(int medicamentID, String nom, CategorieMedi categorieMedi, double prix, String miseEnService, int stock, int categorie_Id) {
         this.medicamentID = medicamentID;
         this.nom = nom;
         this.categorieMedi = categorieMedi;
         this.prix = prix;
         this.miseEnService = miseEnService;
-        this.quantite = quantite;
-        this.catId = catId;
+        this.stock = stock;
+        this.categorie_id = categorie_Id;
     }
 
     public Medicaments() {
@@ -93,19 +91,19 @@ public class Medicaments {
         this.miseEnService = DateManagment.parse(miseEnService,"La date de mise en service n'est pas au bon format");
     }
 
-    public String getQuantite() {
-        return quantite;
+    public int getStock() {
+        return stock;
     }
 
-    public void setQuantite(String quantite) {
-        this.quantite = quantite;
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
     public int getCategorie_id() {
-        return catId;
+        return categorie_id;
     }
 
     public void setCategorie_id(int categorie_id) {
-        this.catId = catId;
+        this.categorie_id = categorie_id;
     }
 }

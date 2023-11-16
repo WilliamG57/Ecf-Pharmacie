@@ -13,7 +13,7 @@ public abstract class DAO<T> {
 
     public abstract boolean delete(T obj);
 
-    public abstract boolean update(T obj);
+    public abstract boolean update(T obj) throws SQLException;
 
     public abstract T find(Integer pID) throws SQLException;
 

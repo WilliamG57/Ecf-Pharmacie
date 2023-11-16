@@ -20,6 +20,7 @@ public class ClientDAO extends DAO<Clients> {
     }
 
     private static final Logger LOGGER = LogManager.getLogger();
+
     @Override
     public int create(Clients obj) throws ParseException {
 
@@ -54,8 +55,8 @@ public class ClientDAO extends DAO<Clients> {
         sqlDeleteClient.append("DELETE FROM client ");
         sqlDeleteClient.append("WHERE per_id=?");
         boolean requeteOk;
-        try (PreparedStatement preparedStatement = connect.prepareStatement(sqlDeleteClient.toString())) {
-            preparedStatement.setInt(1, obj.getCliId());
+        try (PreparedStatement ps = connect.prepareStatement(sqlDeleteClient.toString())) {
+            ps.setInt(1, obj.getCliId());
             requeteOk = true;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -64,25 +65,28 @@ public class ClientDAO extends DAO<Clients> {
     }
 
     @Override
-    public boolean update(Clients obj) {
+    public boolean update(Clients obj) throws SQLException {
         StringBuilder sqlUpdateClient = new StringBuilder();
         sqlUpdateClient.append("UPDATE FROM client ");
-        sqlUpdateClient.append("WHERE per_id=?");
-        boolean requeteOk;
-        try (PreparedStatement preparedStatement = connect.prepareStatement(sqlUpdateClient.toString())) {
-            preparedStatement.setInt(1, obj.getCliId());
-            requeteOk = true;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return requeteOk;
+        sqlUpdateClient.append("(`cli_secu`, `cli_datenaissance`, `per_id`, `spe_id`, `med_id`, `mut_id`)");
+        sqlUpdateClient.append("VALUES (?, ?, ?, ?, ?, ?)");
+        sqlUpdateClient.append("WHERE cli_id = ?");
+        PreparedStatement ps = connect.prepareStatement(sqlUpdateClient.toString());
+        ps.setString(1, obj.getSecuriteSociale());
+        ps.setDate(2, DateManagment.convertString(obj.getDateNaissance()));
+        ps.setInt(3, obj.getPerId());
+        ps.setInt(4, obj.getSpecialiste_id());
+        ps.setInt(5, obj.getMedecin_id());
+        ps.setInt(6, obj.getMutuelle_id());
+        ps.executeUpdate();
+        return true;
     }
 
     @Override
     public Clients find(Integer cID) throws SQLException {
         StringBuilder sqlFindClient = new StringBuilder();
         sqlFindClient.append("SELECT * FROM personne p JOIN client c ON p.per_id = c.per_id");
-        sqlFindClient.append(" WHERE med_id=?");
+        sqlFindClient.append(" WHERE cli_id = ?");
         Clients cl = null;
         try (PreparedStatement preparedStatement = connect.prepareStatement(sqlFindClient.toString())) {
             preparedStatement.setInt(1, cID);
@@ -115,7 +119,7 @@ public class ClientDAO extends DAO<Clients> {
         String query = "SELECT * FROM personne p JOIN client c ON p.per_id = c.per_id";
         PreparedStatement statement = connect.prepareStatement(query);
         ResultSet resultSet = statement.executeQuery();
-        Clients cl = null;
+        Clients cl;
         while (resultSet.next()) {
             cl = new Clients();
             cl.setCliId(resultSet.getInt("cli_id"));

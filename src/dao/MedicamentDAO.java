@@ -24,14 +24,15 @@ public class MedicamentDAO extends DAO<Medicaments> {
     public int create(Medicaments obj) {
         StringBuilder insertMedicament = new StringBuilder();
         insertMedicament.append("insert into medicament ");
-        insertMedicament.append("(`medi_nom`, `medi_prix`, `medi_miseenservice`, `cat_id`)");
-        insertMedicament.append("VALUES (?, ?, ?, ?)");
+        insertMedicament.append("(`medi_nom`, `medi_prix`, `medi_miseenservice`, medi_stock, `cat_id`)");
+        insertMedicament.append("VALUES (?, ?, ?, ?, ?)");
 
         int newId = 0;
         try (PreparedStatement ps = connect.prepareStatement(insertMedicament.toString(), PreparedStatement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, obj.getNom());
             ps.setDouble(2, obj.getPrix());
             ps.setDate(3, DateManagment.convertString(obj.getMiseEnService()));
+            ps.setInt(4,obj.getStock());
             ps.setInt(4,obj.getCategorie_id());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
@@ -58,7 +59,8 @@ public class MedicamentDAO extends DAO<Medicaments> {
     @Override
     public Medicaments find(Integer medID) throws SQLException {
         StringBuilder sqlFindMedicament = new StringBuilder();
-        sqlFindMedicament.append("SELECT * FROM medicament");
+        sqlFindMedicament.append("SELECT * FROM medicament m");
+        sqlFindMedicament.append("JOIN categorie c ON c.cat_id = m.cat_id");
         sqlFindMedicament.append(" WHERE medi_id = ?");
         Medicaments medi = null;
         try (PreparedStatement preparedStatement = connect.prepareStatement(sqlFindMedicament.toString())) {
@@ -70,6 +72,7 @@ public class MedicamentDAO extends DAO<Medicaments> {
                 medi.setNom(resultSet.getString("medi_nom"));
                 medi.setPrix(resultSet.getDouble("medi_prix"));
                 medi.setMiseEnService(resultSet.getString("medi_miseenservice"));
+                medi.setStock(resultSet.getInt("medi_stock"));
             }
         } catch (MyException e) {
             throw new RuntimeException(e);
@@ -79,7 +82,7 @@ public class MedicamentDAO extends DAO<Medicaments> {
 
     @Override
     public List<Medicaments> findAll() throws Exception {
-        PreparedStatement preparedStatement = connect.prepareStatement("SELECT * FROM medicament");
+        PreparedStatement preparedStatement = connect.prepareStatement("SELECT * FROM medicament m JOIN categorie c ON c.cat_id = m.cat_id");
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             Medicaments medi = new Medicaments();
@@ -87,6 +90,7 @@ public class MedicamentDAO extends DAO<Medicaments> {
             medi.setNom(resultSet.getString("medi_nom"));
             medi.setPrix(resultSet.getDouble("medi_prix"));
             medi.setMiseEnService(resultSet.getString("medi_miseenservice"));
+            medi.setStock(resultSet.getInt("medi_stock"));
             medicaments.add(medi);
         }
         return medicaments;
