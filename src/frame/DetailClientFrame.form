@@ -131,7 +131,8 @@
           </grid>
         </constraints>
         <properties>
-          <editable value="false"/>
+          <editable value="true"/>
+          <enabled value="false"/>
         </properties>
       </component>
       <component id="cc963" class="javax.swing.JTextField" binding="textPostal">
@@ -189,34 +190,12 @@
           <editable value="false"/>
         </properties>
       </component>
-      <component id="2aee1" class="javax.swing.JTextField" binding="textMutuelle">
-        <constraints>
-          <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
-            <minimum-size width="150" height="20"/>
-            <preferred-size width="150" height="25"/>
-          </grid>
-        </constraints>
-        <properties>
-          <editable value="false"/>
-        </properties>
-      </component>
       <component id="1b894" class="javax.swing.JLabel" binding="medecinClient">
         <constraints>
           <grid row="4" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <labelFor value="6d5fb"/>
           <text value="Medecin"/>
-        </properties>
-      </component>
-      <component id="6d5fb" class="javax.swing.JTextField" binding="textMedecin">
-        <constraints>
-          <grid row="4" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="25"/>
-          </grid>
-        </constraints>
-        <properties>
-          <editable value="false"/>
         </properties>
       </component>
       <component id="f7ca5" class="javax.swing.JButton" binding="btnRetour">
@@ -233,16 +212,6 @@
         </constraints>
         <properties>
           <text value="Spécialiste"/>
-        </properties>
-      </component>
-      <component id="d7170" class="javax.swing.JTextField" binding="textSpecialiste">
-        <constraints>
-          <grid row="2" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-        </constraints>
-        <properties>
-          <editable value="false"/>
         </properties>
       </component>
       <component id="adccc" class="javax.swing.JButton" binding="btnModifier">
@@ -269,6 +238,36 @@
         </constraints>
         <properties>
           <visible value="false"/>
+        </properties>
+      </component>
+      <component id="2b8bd" class="javax.swing.JComboBox" binding="comboMedecin">
+        <constraints>
+          <grid row="4" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <editable value="true"/>
+          <enabled value="false"/>
+        </properties>
+      </component>
+      <component id="29acc" class="javax.swing.JComboBox" binding="comboSpecialiste">
+        <constraints>
+          <grid row="2" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="a6dd5" class="javax.swing.JComboBox" binding="comboMutuelle">
+        <constraints>
+          <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <editable value="true"/>
+          <enabled value="false"/>
         </properties>
       </component>
     </children>
