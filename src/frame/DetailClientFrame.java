@@ -5,13 +5,13 @@ import dao.MedecinDAO;
 import dao.MutuelleDAO;
 import dao.SpecialisteDAO;
 import service.ClientService;
+import utils.MyException;
 
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.sql.SQLException;
 
 
 public class DetailClientFrame extends JFrame {
@@ -106,38 +106,38 @@ public class DetailClientFrame extends JFrame {
                 }
             });
         }
-        comboSpecialiste.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                GeneriqueFrame x = null;
-                try {
-                    x = new GeneriqueFrame(textSpecialiste.getText(), "Specialiste");
-                } catch (Exception ex) {
-                    throw new RuntimeException(ex);
-                }
-                x.setVisible(true);
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
-            }
-        });
+//        comboSpecialiste.addMouseListener(new MouseListener() {
+//            @Override
+//            public void mouseClicked(MouseEvent e) {
+//                GeneriqueFrame x = null;
+//                try {
+//                    x = new GeneriqueFrame(medecin.getNom, "Specialiste");
+//                } catch (Exception ex) {
+//                    throw new RuntimeException(ex);
+//                }
+//                x.setVisible(true);
+//            }
+//
+//            @Override
+//            public void mousePressed(MouseEvent e) {
+//
+//            }
+//
+//            @Override
+//            public void mouseReleased(MouseEvent e) {
+//
+//            }
+//
+//            @Override
+//            public void mouseEntered(MouseEvent e) {
+//
+//            }
+//
+//            @Override
+//            public void mouseExited(MouseEvent e) {
+//
+//            }
+//        });
 
 //        textMedecin.addMouseListener(new MouseListener() {
 //            @Override
@@ -171,62 +171,44 @@ public class DetailClientFrame extends JFrame {
 //            }
 //        });
 
-//        btnModifier.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                textNom.setEditable(true);
-//                textPrenom.setEditable(true);
-//                textNaissance.setEditable(true);
-//                textTelephone.setEditable(true);
-//                textMail.setEditable(true);
-//                textSpecialiste.setEditable(true);
-//                textAdresse.setEditable(true);
-//                textPostal.setEditable(true);
-//                textVille.setEditable(true);
-//                textSecu.setEditable(true);
-//                textMutuelle.setEditable(true);
-//                textMedecin.setEditable(true);
-//                btnModifier.setText("Valider");
-//                Object selectItem = comboMutuelle.getSelectedItem();
-//                int muId = ((Mutuelle) selectItem).getMutId();
-//                Object selectItem1 = comboMedecin.getSelectedItem();
-//                int mId = ((Medecins) selectItem1).getMedId();
-//                Object selectItem2 = comboSpecialiste.getSelectedItem();
-//                int sId = ((Specialistes) selectItem2).getSpeId();
-//                if (isNomEditable == true) {
-//                    try {
-//                        Clients cl = getClients(muId, mId, sId);
-//                        clientService.modifierClient(new Clients(cl));
-//                        JOptionPane.showMessageDialog(null, "Validé");
-//                        isNomEditable = false;
-//                    } catch (MyException ex) {
-//                        throw new RuntimeException(ex);
-//                    } catch (SQLException ex) {
-//                        throw new RuntimeException(ex);
-//                    }
-//                }
-//                isNomEditable = true;
-//            }
-//        });
-//        private Clients getClients(int muId, int mId, int sId) {
-//
-//            String nom = textNom.getText();
-//            String prenom = textPrenom.getText();
-//            String adresse = textAdresse.getText();
-//            String codePostal = textPostal.getText();
-//            String ville = textVille.getText();
-//            String telephone = textTelephone.getText();
-//            String email = textMail.getText();
-//            String securiteSocial = textSecu.getText();
-//            String dateNaissance = textNaissance.getText();
-//            int mutuelle = muId;
-//            int medecin = mId;
-//            int specialiste = sId;
-//            Clients cl =
-//                    new Clients(nom, prenom, adresse, codePostal, ville, telephone, email,
-//                            securiteSocial, dateNaissance, mutuelle, medecin, specialiste);
-//            return cl;
-        //  }
+        btnModifier.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                textNom.setEditable(true);
+                textPrenom.setEditable(true);
+                textNaissance.setEditable(true);
+                textTelephone.setEditable(true);
+                textMail.setEditable(true);
+                comboSpecialiste.setEditable(true);
+                comboSpecialiste.setEnabled(false);
+                textAdresse.setEditable(true);
+                textPostal.setEditable(true);
+                textVille.setEditable(true);
+                textSecu.setEditable(true);
+                comboMutuelle.setEditable(true);
+                comboMedecin.setEditable(true);
+                btnModifier.setText("Valider");
+                int perId = Integer.parseInt(textId.getText());
+                Object selectItem = comboMutuelle.getSelectedItem();
+                int muId = ((Mutuelle) selectItem).getMutId();
+                Object selectItem1 = comboMedecin.getSelectedItem();
+                int mId = ((Medecins) selectItem1).getMedId();
+                Object selectItem2 = comboSpecialiste.getSelectedItem();
+                int sId = ((Specialistes) selectItem2).getSpeId();
+                if (isNomEditable == true) {
+                    try {
+                        Clients cl = getClients(muId, mId, sId, perId);
+                        clientService.modifierClient(cl);
+                        JOptionPane.showMessageDialog(null, "Validé");
+                        isNomEditable = false;
+                    } catch (MyException | SQLException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+                isNomEditable = true;
+            }
+        });
+
         btnRetour.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -234,5 +216,24 @@ public class DetailClientFrame extends JFrame {
                 AccueilFrame.designAccueil();
             }
         });
+    }
+    private Clients getClients(int muId, int mId, int sId, int perId) {
+
+        String nom = textNom.getText();
+        String prenom = textPrenom.getText();
+        String adresse = textAdresse.getText();
+        String codePostal = textPostal.getText();
+        String ville = textVille.getText();
+        String telephone = textTelephone.getText();
+        String email = textMail.getText();
+        String securiteSocial = textSecu.getText();
+        String dateNaissance = textNaissance.getText();
+        int mutuelle = muId;
+        int medecin = mId;
+        int specialiste = sId;
+        Clients cl =
+                new Clients(nom, prenom, adresse, codePostal, ville, telephone, email,
+                        securiteSocial, dateNaissance, mutuelle, medecin, specialiste);
+        return cl;
     }
 }

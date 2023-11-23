@@ -72,10 +72,9 @@ public class PersonneDAO extends DAO<Personnes> {
     @Override
     public boolean update(Personnes obj) throws SQLException {
         StringBuilder sqlUpdatePersonne = new StringBuilder();
-        sqlUpdatePersonne.append("UPDATE FROM personne ");
-        sqlUpdatePersonne.append("(`per_nom`, `per_prenom`, `per_telephone`, `per_email`, `per_adr`," +
-                "`per_codepostal`, `per_ville`)");
-        sqlUpdatePersonne.append("VALUES (?, ?, ?, ?, ?, ?, ?)");
+        sqlUpdatePersonne.append("UPDATE  personne ");
+        sqlUpdatePersonne.append("SET `per_nom` = ?, `per_prenom` = ?, `per_telephone` = ?, ");
+        sqlUpdatePersonne.append("`per_email` = ?, `per_adr` = ?, `per_codepostal` = ?, `per_ville` = ? ");
         sqlUpdatePersonne.append("WHERE per_id=?");
         PreparedStatement ps = connect.prepareStatement(sqlUpdatePersonne.toString());
         ps.setString(1, obj.getNom());
@@ -85,6 +84,7 @@ public class PersonneDAO extends DAO<Personnes> {
         ps.setString(5, obj.getAdresse());
         ps.setString(6, obj.getCodePostal());
         ps.setString(7, obj.getVille());
+        ps.setInt(8,obj.getPerId());
         ps.executeUpdate();
         return true;
     }

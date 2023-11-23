@@ -67,9 +67,9 @@ public class ClientDAO extends DAO<Clients> {
     @Override
     public boolean update(Clients obj) throws SQLException {
         StringBuilder sqlUpdateClient = new StringBuilder();
-        sqlUpdateClient.append("UPDATE FROM client ");
-        sqlUpdateClient.append("(`cli_secu`, `cli_datenaissance`, `per_id`, `spe_id`, `med_id`, `mut_id`)");
-        sqlUpdateClient.append("VALUES (?, ?, ?, ?, ?, ?)");
+        sqlUpdateClient.append("UPDATE client ");
+        sqlUpdateClient.append("SET `cli_secu` = ?, `cli_datenaissance` = ?, `per_id` = ?, ");
+        sqlUpdateClient.append("`spe_id` = ?, `med_id` = ?, `mut_id` = ? ");
         sqlUpdateClient.append("WHERE cli_id = ?");
         PreparedStatement ps = connect.prepareStatement(sqlUpdateClient.toString());
         ps.setString(1, obj.getSecuriteSociale());
@@ -78,6 +78,8 @@ public class ClientDAO extends DAO<Clients> {
         ps.setInt(4, obj.getSpecialiste_id());
         ps.setInt(5, obj.getMedecin_id());
         ps.setInt(6, obj.getMutuelle_id());
+        ps.setInt(7,obj.getCliId());
+
         ps.executeUpdate();
         return true;
     }
