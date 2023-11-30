@@ -45,12 +45,15 @@ public class Medecins extends Personnes {
         return agreement;
     }
 
+    //Controle qui devrait etre dans MedecinService pour la creation de medecin, mais pas necessaire pour cette version du projet
     public void setAgreement(int agreement) throws MyException {
         if (!Pattern.matches("[0-9]{3}", "" + agreement)) {
             throw new MyException("Le numéro d'agréément n'est pas valide.");
         }
         this.agreement = agreement;
     }
+
+    //toString pour l'affichage dans les comboBox
     public String toString() {
         return getNom();
     }

@@ -18,7 +18,6 @@ public class Singleton {
             props.setProperty("password", props.getProperty("jdbc.password"));
             Class.forName(props.getProperty("jdbc.driver.class"));
             connection = DriverManager.getConnection(props.getProperty("jdbc.url"), props);
-
         } catch (SQLException | ClassNotFoundException | IOException e) {
             System.out.println("RelationWithBD connection : " + e.getMessage());
         }
@@ -48,14 +47,9 @@ public class Singleton {
     public static void TestSingleton() {
         try {
             Connection connect = Singleton.getInstanceDB();
-            System.out.println(connect);
             String sql = "select * from personne ";
             PreparedStatement statement = connect.prepareStatement(sql);
-            //statement.setInt(1, 1);
             ResultSet result = statement.executeQuery();
-                while (result.next()) {
-                    System.out.println("résultat : " + result.getString("per_nom"));
-                }
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Erreur" + e.getMessage());

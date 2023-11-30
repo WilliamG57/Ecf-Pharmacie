@@ -32,6 +32,17 @@ public class Medicaments {
         this.stock = stock;
     }
 
+    /**
+     * Constructeur
+     *
+     * @param medicamentID
+     * @param nom
+     * @param categorieMedi
+     * @param prix
+     * @param miseEnService
+     * @param stock
+     * @param categorie_Id
+     */
     public Medicaments(int medicamentID, String nom, CategorieMedi categorieMedi, double prix, String miseEnService, int stock, int categorie_Id) {
         this.medicamentID = medicamentID;
         this.nom = nom;
@@ -47,7 +58,7 @@ public class Medicaments {
     }
 
     /**
-     * Declaration des getters/setters
+     * Mise en place des getters/setters
      */
 
     public int getMedicamentID() {

@@ -46,7 +46,6 @@ public class Ordonnances {
 
     /**
      * Mise en place des getters/setters
-     * @return
      */
     public String getNom() {
         return nom;

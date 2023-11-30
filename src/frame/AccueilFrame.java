@@ -28,7 +28,6 @@ public class AccueilFrame extends JFrame {
         x.setVisible(true);
         x.getContentPane().add(x.accueilChoix);
         x.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
     }
 
     public AccueilFrame() {

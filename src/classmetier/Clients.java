@@ -8,6 +8,8 @@ public class Clients extends Personnes {
     private Mutuelle mutuelle;
     private Medecins medecin;
     private Specialistes specialiste;
+
+    //Declaration transitoire pour la recuperation d'id
     private int medecin_id;
     private int specialiste_id;
     private int mutuelle_id;
@@ -31,7 +33,7 @@ public class Clients extends Personnes {
      */
     public Clients(String nom, String prenom, String adresse, String codePostal, String ville, String telephone,
                    String email, String securiteSociale, String dateNaissance, Mutuelle mutuelle,
-                   Medecins medecin, Specialistes specialiste)  {
+                   Medecins medecin, Specialistes specialiste) {
         super(nom, prenom, adresse, codePostal, ville, telephone, email);
         this.securiteSociale = securiteSociale;
         this.dateNaissance = dateNaissance;
@@ -40,7 +42,23 @@ public class Clients extends Personnes {
         this.specialiste = specialiste;
     }
 
-
+    /**
+     * Constructeur client pour le create et l'update
+     *
+     * @param nom
+     * @param prenom
+     * @param adresse
+     * @param codePostal
+     * @param ville
+     * @param telephone
+     * @param email
+     * @param securiteSociale
+     * @param dateNaissance
+     * @param medecin_id
+     * @param specialiste_id
+     * @param mutuelle_id
+     */
+    // Constructeur avec les declarations transitoire pour la recuperation d'id
     public Clients(String nom, String prenom, String adresse, String codePostal,
                    String ville, String telephone, String email, String securiteSociale,
                    String dateNaissance, int medecin_id, int specialiste_id, int mutuelle_id) {

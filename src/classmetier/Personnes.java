@@ -39,6 +39,7 @@ public abstract class Personnes {
         this.email = email;
     }
 
+    //toString pour l'affichage dans les comboBox
     public String toString() {
         return nom;
     }

@@ -10,6 +10,9 @@ public class CategorieMedi {
     public CategorieMedi() {
     }
 
+    /**
+     * Mise en place des getters/setters
+     */
     public CategorieMedi(String categorie) {
         this.categorie = categorie;
     }

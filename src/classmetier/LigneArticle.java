@@ -8,6 +8,24 @@ public class LigneArticle {
     private int quantite;
 
 
+    /**
+     * Constructeur de ligneArticle
+     *
+     * @param medicament
+     * @param quantite
+     * @param prix
+     * @throws MyException
+     */
+    //Transformation de String medicament en Medicament medicament dans la prochaine version du projet
+    public LigneArticle(String medicament, int quantite, String prix) throws MyException {
+        this.setMedicament(medicament);
+        this.setQuantite(quantite);
+        this.setPrix(prix);
+    }
+
+    /**
+     * Declaration getters/setters
+     */
     public String getMedicament() {
         return medicament;
     }
@@ -33,17 +51,5 @@ public class LigneArticle {
     }
 
 
-    /**
-     * Constructeur panier
-     *
-     * @param medicament
-     * @param quantite
-     * @param prix
-     * @throws MyException
-     */
-    public LigneArticle(String medicament, int quantite, String prix) throws MyException {
-        this.setMedicament(medicament);
-        this.setQuantite(quantite);
-        this.setPrix(prix);
-    }
+
 }

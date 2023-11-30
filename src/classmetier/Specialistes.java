@@ -17,7 +17,7 @@ public class Specialistes extends Personnes {
      * @param ville      ville du specialiste
      * @param telephone  telephone du specialiste
      * @param email      email du specialiste
-     * @param specialite  specialite du specialiste
+     * @param specialite specialite du specialiste
      */
     public Specialistes(String nom, String prenom, String adresse, String codePostal, String ville, String telephone,
                         String email, String specialite) {
@@ -26,9 +26,11 @@ public class Specialistes extends Personnes {
     }
 
     public Specialistes() {
-
     }
 
+    /**
+     * Declaration getters/setters
+     */
     public int getSpeId() {
         return speId;
     }
@@ -45,6 +47,7 @@ public class Specialistes extends Personnes {
         this.specialite = specialite;
     }
 
+    //toString pour l'affichage dans les comboBox
     public String toString() {
         return getNom();
     }

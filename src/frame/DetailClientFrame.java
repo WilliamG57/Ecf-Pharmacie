@@ -41,6 +41,7 @@ public class DetailClientFrame extends JFrame {
     private JLabel specialisteClient;
     private JButton btnModifier;
     private JTextField textId;
+    private JTextField textCliId;
     private JComboBox comboMedecin;
     private JComboBox comboSpecialiste;
     private JComboBox comboMutuelle;
@@ -92,6 +93,7 @@ public class DetailClientFrame extends JFrame {
                         } catch (Exception ex) {
                             throw new RuntimeException(ex);
                         }
+                        textCliId.setText(String.valueOf(clients.getCliId()));
                         textId.setText(String.valueOf(clients.getPerId()));
                         textTelephone.setText(clients.getTelephone());
                         textMail.setText(clients.getEmail());
@@ -171,6 +173,8 @@ public class DetailClientFrame extends JFrame {
 //            }
 //        });
 
+        //Bouton 1er clik pour rendre les champs editable,
+        //puis second clik pour valider la modification du client
         btnModifier.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -189,6 +193,7 @@ public class DetailClientFrame extends JFrame {
                 comboMedecin.setEditable(true);
                 btnModifier.setText("Valider");
                 int perId = Integer.parseInt(textId.getText());
+                int clId = Integer.parseInt(textCliId.getText());
                 Object selectItem = comboMutuelle.getSelectedItem();
                 int muId = ((Mutuelle) selectItem).getMutId();
                 Object selectItem1 = comboMedecin.getSelectedItem();
@@ -197,10 +202,12 @@ public class DetailClientFrame extends JFrame {
                 int sId = ((Specialistes) selectItem2).getSpeId();
                 if (isNomEditable == true) {
                     try {
-                        Clients cl = getClients(muId, mId, sId, perId);
+                        Clients cl = getClients(muId, mId, sId, perId, clId);
                         clientService.modifierClient(cl);
                         JOptionPane.showMessageDialog(null, "Validé");
                         isNomEditable = false;
+                        dispose();
+                        AccueilFrame.designAccueil();
                     } catch (MyException | SQLException ex) {
                         throw new RuntimeException(ex);
                     }
@@ -209,6 +216,7 @@ public class DetailClientFrame extends JFrame {
             }
         });
 
+        //Bouton pour retourner pas d'accueil
         btnRetour.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -217,8 +225,8 @@ public class DetailClientFrame extends JFrame {
             }
         });
     }
-    private Clients getClients(int muId, int mId, int sId, int perId) {
 
+    private Clients getClients(int muId, int mId, int sId, int perId, int clId) {
         String nom = textNom.getText();
         String prenom = textPrenom.getText();
         String adresse = textAdresse.getText();
@@ -234,6 +242,8 @@ public class DetailClientFrame extends JFrame {
         Clients cl =
                 new Clients(nom, prenom, adresse, codePostal, ville, telephone, email,
                         securiteSocial, dateNaissance, mutuelle, medecin, specialiste);
+        cl.setPerId(perId);
+        cl.setCliId(clId);
         return cl;
     }
 }

@@ -14,13 +14,20 @@ import java.util.List;
 
 public class ClientDAO extends DAO<Clients> {
     List<Clients> client = new ArrayList<>();
-
     public List<Clients> getClient() {
         return client;
     }
 
     private static final Logger LOGGER = LogManager.getLogger();
 
+
+    /**
+     * Methode de creation de Client
+     *
+     * @param obj
+     * @return
+     * @throws ParseException
+     */
     @Override
     public int create(Clients obj) throws ParseException {
 
@@ -49,6 +56,12 @@ public class ClientDAO extends DAO<Clients> {
         return newId;
     }
 
+    /**
+     * Methode de suppression de Client
+     *
+     * @param obj
+     * @return
+     */
     @Override
     public boolean delete(Clients obj) {
         StringBuilder sqlDeleteClient = new StringBuilder();
@@ -64,6 +77,13 @@ public class ClientDAO extends DAO<Clients> {
         return requeteOk;
     }
 
+    /**
+     * Methode de mise à jours de Client
+     *
+     * @param obj
+     * @return
+     * @throws SQLException
+     */
     @Override
     public boolean update(Clients obj) throws SQLException {
         StringBuilder sqlUpdateClient = new StringBuilder();
@@ -78,12 +98,18 @@ public class ClientDAO extends DAO<Clients> {
         ps.setInt(4, obj.getSpecialiste_id());
         ps.setInt(5, obj.getMedecin_id());
         ps.setInt(6, obj.getMutuelle_id());
-        ps.setInt(7,obj.getCliId());
-
+        ps.setInt(7, obj.getCliId());
         ps.executeUpdate();
         return true;
     }
 
+    /**
+     * Methode de recherche par id de Client
+     *
+     * @param cID
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Clients find(Integer cID) throws SQLException {
         StringBuilder sqlFindClient = new StringBuilder();
@@ -116,6 +142,12 @@ public class ClientDAO extends DAO<Clients> {
         return cl;
     }
 
+    /**
+     * Methode pour trouver tout les Client
+     *
+     * @return
+     * @throws SQLException
+     */
     @Override
     public List<Clients> findAll() throws SQLException {
         String query = "SELECT * FROM personne p JOIN client c ON p.per_id = c.per_id";
@@ -137,6 +169,7 @@ public class ClientDAO extends DAO<Clients> {
             cl.setMutuelle_id(resultSet.getInt("mut_id"));
             cl.setMedecin_id(resultSet.getInt("med_id"));
             cl.setSpecialiste_id(resultSet.getInt("spe_id"));
+            cl.setPerId(resultSet.getInt("per_id"));
             client.add(cl);
         }
         resultSet.close();

@@ -1,18 +1,27 @@
 package classmetier;
 
-public class Mutuelle  {
+public class Mutuelle {
 
     private int mutId;
     private String nom;
 
-    public Mutuelle() {
-    }
 
+    /**
+     * Constructeur
+     * @param mutId
+     * @param nom
+     */
     public Mutuelle(int mutId, String nom) {
         this.mutId = mutId;
         this.nom = nom;
     }
 
+    public Mutuelle() {
+    }
+
+    /**
+     * Mise en place des getters/setters
+     */
     public int getMutId() {
         return mutId;
     }
@@ -29,6 +38,8 @@ public class Mutuelle  {
         this.nom = nom;
     }
 
+
+    //toString pour l'affichage dans les comboBox
     public String toString() {
         return nom;
     }

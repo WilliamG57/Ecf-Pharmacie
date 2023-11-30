@@ -61,7 +61,6 @@ public class Historiques {
     /**
      * Mise en place des getters/setters
      *
-     * @return
      */
     public String getNom() {
         return nom;

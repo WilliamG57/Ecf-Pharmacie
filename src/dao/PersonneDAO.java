@@ -126,11 +126,13 @@ public class PersonneDAO extends DAO<Personnes> {
 
     public void transactionUpdate(Personnes obj) throws SQLException {
         ClientDAO clientDAO = new ClientDAO();
+        PersonneDAO personneDAO = new PersonneDAO();
         Savepoint save = null;
         try {
             connect.setAutoCommit(false);
             save = connect.setSavepoint("départ");
             clientDAO.update((Clients) obj);
+            personneDAO.update(obj);
             connect.commit();
             connect.setAutoCommit(true);
         } catch (SQLException sqle) {
@@ -138,35 +140,3 @@ public class PersonneDAO extends DAO<Personnes> {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
