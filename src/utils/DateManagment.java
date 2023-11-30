@@ -3,8 +3,8 @@ package utils;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+//Methode de gestion des erreurs des dates
 public class DateManagment {
-
     public static String parse(String date, String message) throws MyException {
         try {
             if (date == null) {
@@ -17,9 +17,8 @@ public class DateManagment {
             throw new MyException(message);
         }
     }
-
+//Methode de conversion des dates
     public static java.sql.Date convertString(String date) {
-
         java.util.Date tampon;
         java.sql.Date result = null;
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");

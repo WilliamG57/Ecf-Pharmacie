@@ -44,16 +44,16 @@ public class Singleton {
         }
     }
 
-    public static void TestSingleton() {
-        try {
-            Connection connect = Singleton.getInstanceDB();
-            String sql = "select * from personne ";
-            PreparedStatement statement = connect.prepareStatement(sql);
-            ResultSet result = statement.executeQuery();
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Erreur" + e.getMessage());
-            System.exit(0);
-        }
-    }
+//    public static void TestSingleton() {
+//        try {
+//            Connection connect = Singleton.getInstanceDB();
+//            String sql = "select * from personne ";
+//            PreparedStatement statement = connect.prepareStatement(sql);
+//            ResultSet result = statement.executeQuery();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            System.out.println("Erreur" + e.getMessage());
+//            System.exit(0);
+//        }
+//    }
 }
